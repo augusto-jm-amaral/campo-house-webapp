@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
 module.exports = function () {
@@ -41,6 +42,16 @@ var schema = new Schema({
     anuncios: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Anuncios'}],
     }
+});
+
+schema.method('encripitarSenha', function (usuario) {
+  var salt = bcrypt.genSaltSync();
+  usuario.senha = bcrypt.hashSync(usuario.senha, salt);
+  return usuario;
+});
+
+schema.method('validarSenha', function (encodedPassword, password) {
+  return bcrypt.compareSync(password, encodedPassword);
 });
 
 return mongoose.model('Usuarios', schema);
