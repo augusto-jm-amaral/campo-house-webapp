@@ -1,0 +1,19 @@
+{
+  "name": "apprancho",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "consign": "^0.1.2",
+    "express": "^4.13.4",
+    "helmet": "^1.3.0",
+    "mongoose": "^4.4.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
