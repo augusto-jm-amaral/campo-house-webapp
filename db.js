@@ -6,7 +6,7 @@ module.exports = function(app) {
     var cfg = app.libs.config.db;
 
     //Criando a conexão com o banco
-    mongoose.connect(cfg.url, {poolSize: cfg.poolSize});
+    mongoose.connect(cfg.url, cfg.options);
 
     //Evento de conexão
     mongoose.connection.on('connected',  () => {

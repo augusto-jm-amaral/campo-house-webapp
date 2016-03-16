@@ -3,8 +3,14 @@ module.exports = function(app) {
   var config = {
     db: {
       url : 'mongodb://localhost/campushouse',
-      debug : true,
-      poolSize : 10
+      options : {
+        user: 'campushouseuser',
+        pass: 'C4W9UsH0uZe',
+        server: {
+          poolSize: 30,
+          debug : true
+        }
+      }
     },
     jwtSecret: '4PpR4NCH0',
     jwtSession: {session: false}
