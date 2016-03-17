@@ -13,7 +13,8 @@ module.exports = function(app) {
       }
     },
     jwtSecret: '4PpR4NCH0',
-    jwtSession: {session: false}
+    jwtSession: {session: false},
+    urlRaizApi: '/api'
     // populateDb: true
   };
 

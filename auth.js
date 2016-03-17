@@ -29,8 +29,6 @@ module.exports = function (app) {
       });
   }));
 
-  }));
-
   return {
     initialize: function() {
       return passport.initialize();

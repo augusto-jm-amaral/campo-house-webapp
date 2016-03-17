@@ -3,7 +3,7 @@ module.exports = function (app) {
   const cfg = app.libs.config;
   const Usuarios = app.db.models.Usuarios;
 
-  app.route('/login')
+  app.route(cfg.urlRaizApi + '/login')
     .post(function get(req, res){
 
           req.checkBody('email').notEmpty();
@@ -25,17 +25,17 @@ module.exports = function (app) {
                         token: jwt.encode(playload, cfg.jwtSecret)
                       });
                   }else{
-                    res.status(400).json([{param: 'login', msg: 'E-mail ou senha incorretos.'}]).end();
+                    res.sendStatus(400).end();
                   }
                 }else{
-                  res.status(400).json([{param: 'login', msg: 'E-mail ou senha incorretos.'}]).end();
+                  res.sendStatus(400).end();
                 }
             }).catch(function (err) {
-              res.status(400).json([{param: 'login', msg: 'E-mail ou senha incorretos.'}]).end();
+              res.sendStatus(400).end();
             });
 
           }else{
-            res.status(400).json([{param: 'login', msg: 'E-mail ou senha incorretos.'}]).end();
+            res.sendStatus(400).end();
           }
       });
 };
