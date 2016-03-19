@@ -58,8 +58,7 @@ var schema = new Schema({
       type: String,
     },
     dataAtualizacao: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Usuarios'
+      type: Number
     },
     listaArquivos: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Arquivos'}]

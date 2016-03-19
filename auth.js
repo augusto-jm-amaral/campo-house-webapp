@@ -20,7 +20,7 @@ module.exports = function (app) {
 
       var promise = Usuarios.findById(playload._id);
       promise.then(function (usuario) {
-        if(usuario){
+        if(usuario && !usuario.bloqueado){
           return done(null, usuario);
         }
         return done(null, false);

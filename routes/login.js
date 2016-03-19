@@ -1,3 +1,5 @@
+var jwt = require('jwt-simple');
+
 module.exports = function (app) {
 
   const cfg = app.libs.config;
@@ -16,9 +18,8 @@ module.exports = function (app) {
             var email = req.body.email;
             var senha = req.body.senha;
 
-            var query = Usuarios.findOne({email: email});
-            query.then(function (usuario) {
-              if(usuario){
+            Usuarios.findOne({email: email}, function (err, usuario) {
+              if(usuario && !err){
                   if(usuario.validarSenha(usuario.senha, senha)){
                       const playload = {_id: usuario._id};
                       res.json({
@@ -27,11 +28,9 @@ module.exports = function (app) {
                   }else{
                     res.sendStatus(400).end();
                   }
-                }else{
-                  res.sendStatus(400).end();
-                }
-            }).catch(function (err) {
-              res.sendStatus(400).end();
+              }else{
+                res.sendStatus(400).end();
+              }
             });
 
           }else{

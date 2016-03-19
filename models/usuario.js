@@ -31,10 +31,16 @@ var schema = new Schema({
       required: true
     },
     dataCadastro: {
-      type: Number
+      type: Number,
+      require: true,
+      default: new Date().getTime()
     },
     chaveAcesso: {
       type: String,
+      require: true,
+      index: {
+        unique: true
+      }
     },
     bloqueado: {
       type: Boolean,
