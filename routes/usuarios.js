@@ -67,10 +67,7 @@ module.exports = function (app) {
 
         req.checkBody('nome','').notEmpty().isName();
         req.checkBody('sobreNome','').notEmpty().isName();
-        // req.checkBody('dataNascimento','').notEmpty().isNumeric();
         req.checkBody('email','').notEmpty().isEmail();
-        // req.checkBody('telefone','').notEmpty().isMobilePhone();
-        // req.checkBody('sobre','').notEmpty();
         req.checkBody('senha','').notEmpty().isPassword();
 
         var erros = req.validationErrors();
@@ -119,7 +116,33 @@ module.exports = function (app) {
     .all(app.auth.authenticate('usuario'))
     .put(function get(req, res){
 
-        res.sendStatus(200).end();
+      req.checkBody('nome','').notEmpty().isName();
+      req.checkBody('sobreNome','').notEmpty().isName();
+      req.checkBody('email','').notEmpty().isEmail();
+
+      if(req.body.dataNascimento){
+        req.checkBody('dataNascimento','').notEmpty().isNumeric();
+      }
+      if(req.body.telefone){
+        req.checkBody('telefone','').notEmpty().isMobilePhone();
+      }
+      if(req.body.sobre){
+        req.checkBody('sobre','').notEmpty();
+      }
+      if(req.body.senha){
+        req.checkBody('senha','').notEmpty().isPassword();
+      }
+
+      var erros = req.validationErrors();
+
+      if(!erros){
+
+        // var usuario = new Usuarios();
+        // Usuarios.findByIdAndUpdate(req.body._id, req.body, )
+
+      }else{
+        res.status(400).end();
+      }
 
       })
     .delete(function get(req, res){
@@ -129,24 +152,3 @@ module.exports = function (app) {
       });
 
 };
-
-//
-// // create reusable transporter object using the default SMTP transport
-// var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
-//
-// // setup e-mail data with unicode symbols
-// var mailOptions = {
-//     from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address
-//     to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
-//     subject: 'Hello ✔', // Subject line
-//     text: 'Hello world 🐴', // plaintext body
-//     html: '<b>Hello world 🐴</b>' // html body
-// };
-//
-// // send mail with defined transport object
-// transporter.sendMail(mailOptions, function(error, info){
-//     if(error){
-//         return console.log(error);
-//     }
-//     console.log('Message sent: ' + info.response);
-// });
