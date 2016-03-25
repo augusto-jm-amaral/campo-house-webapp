@@ -14,7 +14,7 @@ module.exports = function(app) {
     },
     jwtSecret: '4PpR4NCH0',
     jwtSession: {session: false},
-    urlRaizApi: '/api',
+    urlRaizApi: '/api/1.0',
     urlServe: 'http://localhost:3000'
     // populateDb: true
   };
