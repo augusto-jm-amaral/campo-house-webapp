@@ -107,14 +107,16 @@ module.exports = function (app) {
               res.sendStatus(200).end();
             }
           });
-
-
         }else{
           console.log(erros);
           res.sendStatus(400).end();
         }
 
-      })
+      });
+
+
+  app.route(cfg.urlRaizApi + '/usuarios')
+    .all(app.auth.authenticate('usuario'))
     .put(function get(req, res){
 
         res.sendStatus(200).end();
