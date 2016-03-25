@@ -137,14 +137,18 @@ module.exports = function (app) {
 
       if(!erros){
 
-        // var usuario = new Usuarios();
-        // Usuarios.findByIdAndUpdate(req.body._id, req.body, )
+        Usuarios.findByIdAndUpdate(req.body._id, req.body, function (err, usuario) {
+          if(err){
+            res.sendStatus(412).end();
+          }else{
+            res.sendStatus(200).end();
+          }
+        });
 
       }else{
-        res.status(400).end();
+        res.sendStatus(400).end();
       }
-
-      })
+    })
     .delete(function get(req, res){
 
         res.sendStatus(200).end();
