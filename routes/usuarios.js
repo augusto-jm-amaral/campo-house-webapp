@@ -14,14 +14,7 @@ module.exports = function (app) {
     }
   });
 
-  app.route(cfg.urlRaizApi + '/usuarios')
-    .get(function get(req, res){
-
-        console.log(JSON.stringify(req.query));
-
-        res.sendStatus(200).end();
-
-      });
+  // app.route(cfg.urlRaizApi + '/usuarios')
 
   app.route(cfg.urlRaizApi + '/usuarios/validaremail/:_hash')
     .get(function get(req, res){
@@ -51,14 +44,49 @@ module.exports = function (app) {
             });
 
         }else{
-          res.sendStatus(412).end();
+          res.sendStatus(400).end();
         }
       });
 
   app.route(cfg.urlRaizApi + '/usuarios/:_id')
     .get(function get(req, res){
 
-        res.sendStatus(200).end();
+        req.checkParams('_id','').notEmpty().isMongoId();
+        req.checkQuery('p','').notEmpty().isBoolean();
+
+        var erros = req.validationErrors();
+
+        if(!erros){
+
+          var query = Usuarios.findOne({_id: req.params._id})
+            .select({
+              nome: 1,
+              sobreNome: 1,
+              dataNascimento: 1,
+              email: 1,
+              telefone: 1,
+              sobre: 1,
+              anuncios: 1
+            });
+
+          if(req.query.p)
+            query.populate('anuncios');
+
+          query.then(function (usuario) {
+            if(usuario){
+              res.status(200).json(usuario).end();
+            }else{
+              res.sendStatus(404).end();
+            }
+          }).catch(function (err) {
+            console.log(err);
+            res.sendStatus(412).end();
+          });
+
+        }else{
+          console.log(erros);
+          res.sendStatus(400).end();
+        }
 
       });
 
@@ -114,8 +142,16 @@ module.exports = function (app) {
 
   app.route(cfg.urlRaizApi + '/usuarios')
     .all(app.auth.authenticate('usuario'))
+    // .get(function get(req, res){
+    //
+    //   console.log(JSON.stringify(req.query));
+    //
+    //   res.sendStatus(200).end();
+    //
+    // });
     .put(function get(req, res){
 
+      req.checkBody('_id','').notEmpty().isMongoId();
       req.checkBody('nome','').notEmpty().isName();
       req.checkBody('sobreNome','').notEmpty().isName();
       req.checkBody('email','').notEmpty().isEmail();
@@ -135,7 +171,7 @@ module.exports = function (app) {
 
       var erros = req.validationErrors();
 
-      if(!erros){
+      if(!erros && req.user.validarUsuario(req.user,req.body)){
 
         Usuarios.findByIdAndUpdate(req.body._id, req.body, function (err, usuario) {
           if(err){
@@ -146,6 +182,7 @@ module.exports = function (app) {
         });
 
       }else{
+        console.log(erros);
         res.sendStatus(400).end();
       }
     })

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
-  
-  angular.module('campushouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
+
+  angular.module('campohouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
 
   function CadastroAnuncioCtrl($scope, $location) {
 
