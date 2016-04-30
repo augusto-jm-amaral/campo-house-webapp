@@ -1,7 +1,7 @@
 (function () {
   'use strict';
-  
-  angular.module('campushouse').controller('HomeCtrl', HomeCtrl);
+
+  angular.module('campohouse').controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl($scope, $location) {
 

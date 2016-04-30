@@ -1,7 +1,7 @@
 (function () {
   'use strict';
-  
-  angular.module('campushouse').controller('BuscarAnuncioCtrl',BuscarAnuncioCtrl);
+
+  angular.module('campohouse').controller('BuscarAnuncioCtrl',BuscarAnuncioCtrl);
 
   function BuscarAnuncioCtrl($scope, $location) {
 

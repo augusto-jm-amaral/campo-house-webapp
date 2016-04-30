@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('campushouse')
+  angular.module('campohouse')
     .config(config);
 
     function config($routeProvider) {

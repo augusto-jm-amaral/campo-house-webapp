@@ -61,5 +61,10 @@ schema.method('validarSenha', function (encodedPassword, password) {
   return bcrypt.compareSync(password, encodedPassword);
 });
 
+schema.method('validarUsuario', function (sessionUser, usuario) {
+  // return (sessionUser._id == usuario._id) && (sessionUser.email === usuario.email);
+  return (sessionUser._id == usuario._id);
+});
+
 return mongoose.model('Usuarios', schema);
 };
