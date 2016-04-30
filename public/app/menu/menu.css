@@ -1,0 +1,41 @@
+.img-logo {
+	max-height: 40px;
+}
+
+.nav-brand-logo {
+	padding-top: 5px;
+}
+
+.navbar-default {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.foto-perfil {
+	max-height: 40px;
+	border: 1px solid;
+}
+
+.navbar-nav > li > a.perfil {
+    padding-bottom: 4px;
+    padding-top: 6px;
+}
+
+.navbar-default .navbar-nav-custom > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav-custom > li > a:hover {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav-custom > .open > a,
+.navbar-default .navbar-nav-custom > .open > a:focus,
+.navbar-default .navbar-nav-custom > .open > a:hover {
+	background-color: rgba(0,0,0,0);
+    color: #fff
+}
+
+.navbar-fixed-top-custom {
+	position: absolute;
+}

@@ -1,0 +1,31 @@
+.img-topo {
+	background-image: url(../img/img-1.jpg);
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	padding: 200px 0;
+ 	color: #fff;
+ 	top: 0;
+}
+
+.tarja-busca{
+	height: 150px;
+	top: 250px;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	z-index: 9999;
+	left: 0;
+	right: 0;
+}
+
+.tarja-busca > .container-fluid {
+    margin-top: 52px;
+}
+
+.input-lg{
+	border-radius: 2px;
+}
+
+.btn-lg{
+	border-radius: 2px;
+}
