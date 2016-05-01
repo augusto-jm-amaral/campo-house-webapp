@@ -13,7 +13,6 @@
 	top: 250px;
 	background-color: rgba(0,0,0,0.6);
 	position: absolute;
-	z-index: 9999;
 	left: 0;
 	right: 0;
 }
@@ -28,4 +27,13 @@
 
 .btn-lg{
 	border-radius: 2px;
+}
+
+.texto-principal {
+	left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    top: 120px;
 }

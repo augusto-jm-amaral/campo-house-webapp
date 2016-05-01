@@ -1,5 +1,9 @@
+.navbar-fixed-top-custom {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
 .img-logo {
-	max-height: 40px;
+    max-height: 40px;
 }
 
 .nav-brand-logo {
@@ -25,7 +29,8 @@
     color: #fff;
 }
 
-.navbar-default .navbar-nav-custom > li > a:hover {
+.navbar-default .navbar-nav-custom > li > a:hover,
+.navbar-default .navbar-nav-custom > li > a:focus {
     color: #fff;
 }
 
@@ -38,4 +43,84 @@
 
 .navbar-fixed-top-custom {
 	position: absolute;
+}
+
+.navbar-nav > li > .dropdown-menu-custom {
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+
+.navbar-toggle-custom {
+    border: 0;
+    float: left;
+}
+
+.navbar-default .navbar-toggle-custom .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-fixed-top-custom .navbar-toggle-custom:hover,
+.navbar-fixed-top-custom .navbar-toggle-custom:focus {
+    background-color: rgba(0,0,0,0);
+}
+
+.dropdown-menu-custom > li > a {
+    color: #736945;
+}
+
+.dropdown-menu-custom > li > a:hover,
+.dropdown-menu-custom > li > a:focus {
+    background-color: #A69F85;
+    color: #594F2C;
+}
+
+.navbar-default .navbar-collapse-custom {
+    border-color: #A69F85;
+}
+
+.dropdown-menu .divider {
+    background-color: #A69F85;
+}
+
+.navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a {
+    color: #736945;
+}
+
+.navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: #594F2C;
+}
+
+@media (max-width: 767px) { 
+    .navbar-default {
+        background-color: #fff;
+        border-color: #fff;
+    }
+
+    .navbar-default .navbar-nav-custom > li > a {
+        color: #736945;
+    }
+
+    .navbar-default .navbar-nav-custom > li > a:hover,
+    .navbar-default .navbar-nav-custom > li > a:focus {
+        color: #736945;
+    }
+
+    .navbar-default .navbar-nav-custom > .open > a,
+    .navbar-default .navbar-nav-custom > .open > a:focus,
+    .navbar-default .navbar-nav-custom > .open > a:hover {
+        background-color: rgba(0,0,0,0);
+        color: #736945;
+    }
+
+    .navbar-default .navbar-toggle-custom .icon-bar {
+        background-color: #736945;
+    }
+
+    .img-logo {
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+    }
 }
