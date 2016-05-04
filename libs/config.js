@@ -4,8 +4,8 @@ module.exports = function(app) {
     db: {
       url : 'mongodb://localhost/campushouse',
       options : {
-        user: 'campushouseuser',
-        pass: 'C4W9UsH0uZe',
+        // user: 'campushouseuser',
+        // pass: 'C4W9UsH0uZe',
         server: {
           poolSize: 30,
           debug : true

@@ -12,30 +12,30 @@ var schema = new Schema({
       type: String,
       required: true
     },
-    localCep: {
-      type: String
-    },
-    localLogradouro: {
-      type: String
-    },
-    localNumero: {
-      type: String
-    },
-    localBairro: {
-      type: String
-    },
-    localCidade: {
-      type: String
-    },
-    localEstado: {
-      type: String
-    },
-    localPais: {
-      type: String
-    },
-    localInfoProximidades: {
-      type: String,
-    },
+    // localCep: {
+    //   type: String
+    // },
+    // localLogradouro: {
+    //   type: String
+    // },
+    // localNumero: {
+    //   type: String
+    // },
+    // localBairro: {
+    //   type: String
+    // },
+    // localCidade: {
+    //   type: String
+    // },
+    // localEstado: {
+    //   type: String
+    // },
+    // localPais: {
+    //   type: String
+    // },
+    // localInfoProximidades: {
+    //   type: String,
+    // },
     regrasGerais: {
       type: String,
     },
@@ -49,16 +49,24 @@ var schema = new Schema({
       type: Number
     },
     dataCadastro: {
-      type: Number
+      type: Date,
+      required: true,
+      default: new Date()
     },
     dataAtualizacao: {
-      type: Number,
+      type: Date,
+      required: true
     },
     localComplemento: {
       type: String,
     },
-    dataAtualizacao: {
-      type: Number
+    etapa: {
+      type: Number,
+      required: true
+    },
+    usuario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Usuarios'
     },
     listaArquivos: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Arquivos'}]

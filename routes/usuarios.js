@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (app) {
 
@@ -142,13 +142,6 @@ module.exports = function (app) {
 
   app.route(cfg.urlRaizApi + '/usuarios')
     .all(app.auth.authenticate('usuario'))
-    // .get(function get(req, res){
-    //
-    //   console.log(JSON.stringify(req.query));
-    //
-    //   res.sendStatus(200).end();
-    //
-    // });
     .put(function get(req, res){
 
       req.checkBody('_id','').notEmpty().isMongoId();

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bcrypt": "^0.8.5",
+    "address-validator": "^0.2.2",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "compression": "^1.6.1",
     "consign": "^0.1.2",

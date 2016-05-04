@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 
 module.exports = function () {
@@ -45,10 +45,11 @@ var schema = new Schema({
     bloqueado: {
       type: Boolean,
       default: true
-    },
-    anuncios: {
-      type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Anuncios'}],
     }
+    // ,
+    // anuncios: {
+    //   type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Anuncios'}],
+    // }
 });
 
 schema.method('encripitarSenha', function (usuario) {

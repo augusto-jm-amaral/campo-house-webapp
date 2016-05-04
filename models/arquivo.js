@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 module.exports = function () {
 
@@ -19,6 +19,11 @@ var schema = new Schema({
     anuncio: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Anuncios',
+      required: true
+    },
+    usuario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Usuarios',
       required: true
     }
 });

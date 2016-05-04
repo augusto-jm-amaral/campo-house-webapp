@@ -1,36 +1,14 @@
-var multer = require('multer');
-
 
 module.exports = function (app) {
 
-
   const cfg = app.libs.config;
   const Anuncios = app.db.models.Anuncios;
-
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './public/imgprodutos');
-    },
-    filename: function (req, file, cb) {
-      var datetimestamp = Date.now();
-      cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
-    }
-  });
-
-  var upload = multer({ storage: storage }).single('file');
-
-  app.route(cfg.urlRaizApi + '/anuncios/imagens')
-    .all(app.auth.authenticate('usuario'))
-    .post(function get(req, res){
-
-      res.sendStatus(200).end();
-
-    });
+  const Arquivos = app.db.models.Arquivos;
 
   app.route(cfg.urlRaizApi + '/anuncios')
     .get(function get(req, res){
 
-        console.log(JSON.stringify(req.query));
+        // console.log(JSON.stringify(req.query));
 
         res.sendStatus(200).end();
 

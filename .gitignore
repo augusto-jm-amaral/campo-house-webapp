@@ -24,7 +24,6 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -35,3 +34,7 @@ jspm_packages
 
 # remove libs
 public/lib/
+
+build/
+
+node_modules
