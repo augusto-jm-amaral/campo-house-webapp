@@ -1,6 +1,5 @@
 const addressValidator = require('address-validator');
 const Address = addressValidator.Address;
-const _ = require('underscore');
 
 module.exports = function (app) {
 
