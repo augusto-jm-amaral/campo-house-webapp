@@ -81,7 +81,7 @@ module.exports = function (app) {
               }else{
                 res.sendStatus(200).end();
               }
-            })
+            });
 
           }else{
             res.sendStatus(412).end();

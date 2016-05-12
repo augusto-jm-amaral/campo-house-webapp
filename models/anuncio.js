@@ -12,30 +12,6 @@ var schema = new Schema({
       type: String,
       required: true
     },
-    // localCep: {
-    //   type: String
-    // },
-    // localLogradouro: {
-    //   type: String
-    // },
-    // localNumero: {
-    //   type: String
-    // },
-    // localBairro: {
-    //   type: String
-    // },
-    // localCidade: {
-    //   type: String
-    // },
-    // localEstado: {
-    //   type: String
-    // },
-    // localPais: {
-    //   type: String
-    // },
-    // localInfoProximidades: {
-    //   type: String,
-    // },
     regrasGerais: {
       type: String,
     },
@@ -61,8 +37,7 @@ var schema = new Schema({
       type: String,
     },
     etapa: {
-      type: Number,
-      required: true
+      type: [{type: String, enum:['logradouro', 'foto', 'valor'], required: true}]
     },
     usuario: {
       type: mongoose.Schema.Types.ObjectId,

@@ -14,8 +14,6 @@ module.exports = function (app) {
     }
   });
 
-  // app.route(cfg.urlRaizApi + '/usuarios')
-
   app.route(cfg.urlRaizApi + '/usuarios/validaremail/:_hash')
     .get(function get(req, res){
 
@@ -87,7 +85,6 @@ module.exports = function (app) {
           console.log(erros);
           res.sendStatus(400).end();
         }
-
       });
 
   app.route(cfg.urlRaizApi + '/usuarios')
@@ -136,7 +133,6 @@ module.exports = function (app) {
           console.log(erros);
           res.sendStatus(400).end();
         }
-
       });
 
 
