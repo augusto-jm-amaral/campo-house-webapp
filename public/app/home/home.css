@@ -37,3 +37,15 @@
     text-shadow: 0.1em 0.1em 0.2em black;
     top: 120px;
 }
+
+.fotos-ranchos-home {
+	height: 100%;
+    max-height: 250px;
+    width: 100%;
+}
+
+@media (max-width: 767px) { 
+	.fotos-ranchos-home {
+		margin-bottom: 15px;
+	}
+}
