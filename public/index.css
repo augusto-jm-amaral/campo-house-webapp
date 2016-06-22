@@ -1,4 +1,9 @@
-/*body {
-	font-family: 'Roboto', sans-serif;
-	font-weight: 500;
-}*/
+body {
+	/*font-family: 'Roboto', sans-serif;
+	font-weight: 500;*/
+	/*padding-top: 70px;*/
+}
+
+.container-custom {
+	margin-top: 70px;
+}

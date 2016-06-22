@@ -5,7 +5,7 @@
 		if (largJanela < 768) {
 			$('.img-logo').attr('src','app/img/casa-marrom-transparencia.png');
 		}else {
-			$('.img-logo').attr('src','app/img/casa-branca-transparencia.png');
+			$('.img-logo').attr('src','app/img/casa-marrom-transparencia.png');
 		}
 	}
 

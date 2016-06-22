@@ -1,1 +1,283 @@
-Hello campoHouse
+<link rel="stylesheet" href="app/menu/menu2.css" charset="utf-8">
+<div ng-include src="'app/menu/menu.html'"/>
+<div class="container container-custom">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<ul class="nav nav-pills nav-justified" role="tablist" id="tabs-anuncio">
+				<li role="presentation" class="active-custom active"><a class="a-nav-custom" href="javascript(0);" data-target="#geral" aria-controls="geral" role="tab" data-toggle="tab">Geral</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#localizacao" aria-controls="localizacao" role="tab" data-toggle="tab">Localização</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#espaco" aria-controls="espaco" role="tab" data-toggle="tab">O Espaço</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#comodidade" aria-controls="comodidade" role="tab" data-toggle="tab">Comodidades</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#ofertavalor" aria-controls="ofertavalor" role="tab" data-toggle="tab">Oferta de Valor</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#preco" aria-controls="preco" role="tab" data-toggle="tab">Preço</a></li>
+			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
+			</ul>
+		</div>
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="geral">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Conte sobre seu Imóvel<br>
+					    		<small>
+					    			Descreva aqui o que seu imóvel tem de mais incrível, quais são seus atrativos e o que o torna tão especial.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	
+			    	<form class="form-horizontal" id="form-cad-anuncio-geral">
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Título do Anúncio</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<input id="geral-titulo" type="text" class="form-control" placeholder="Seja claro e objetivo, este será o título do seu anúncio." data-model="sobreTitulo" required="required" maxlength="50">
+			    				<p class="hidden text-danger" data-for="sobreTitulo">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Descrição</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<textarea id="geral-descricao" class="form-control" rows="5" placeholder="Inclua detalhes positivos de seu imóvel, fale sobre o espaço, opções de lazer, descanso, itens para eventos, etc. Seja criativo." data-model="sobreDescricao" required="required" maxlength="500"></textarea>
+			    				<p class="hidden text-danger" data-for="sobreDescricao">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button id="btnGravarGeral" type="button" class="btn btn-primary pull-right">Avançar</button>
+			    			</div>
+			    		</div>
+
+			    	</form>
+
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="localizacao">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Localização do Imóvel<br>
+					    		<small>
+					    			Informe aqui o endereço correto do seu imóvel, será assim que as pessoas o encontrarão
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<form class="form-horizontal" id="form-cad-anuncio-localizacao">
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">País</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<select class="form-control" data-model="localPais" required="required">
+			    					<option value="Brasil">Brasil</option>
+			    				</select>
+			    				<p class="hidden text-danger" data-for="localPais">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Logradouro</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<input type="text" class="form-control" placeholder="ex. Rua das Andorinhas, 15. ou Estrada do Bambú, 258" data-model="localLogradouro" required="required" maxlength="255">
+			    				<p class="hidden text-danger" data-for="localLogradouro">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+						
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Cidade</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<input type="text" class="form-control" placeholder="ex. Lins" data-model="localCidade" required="required" maxlength="255">
+			    				<p class="hidden text-danger" data-for="localCidade">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Estado</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<input type="text" class="form-control" placeholder="ex. São Paulo" data-model="localEstado" required="required" maxlength="255">
+			    				<p class="hidden text-danger" data-for="localEstado">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">CEP</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<input type="text" class="form-control icep" placeholder="ex. 12543-000" data-model="localCep" required="required" maxlength="10">
+			    				<p class="hidden text-danger" data-for="localCep">Campo obrigatório</p>
+			    			</div>
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Complemento</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<textarea class="form-control" row="3" placeholder="Dê mais informações que ajudem localizar o imóvel" data-model="localComplemento" maxlength="255"></textarea>
+			    			</div>
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Informações das proximidades</label>
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<textarea class="form-control" row="3" placeholder="Conte aos seus anfitriões o que ele encontrarão nas redondezas" data-model="localInfoProximidades" maxlength="300"></textarea>
+			    			</div>
+			    		</div>
+						
+			    		<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button type="button" id="btnGravarLocal" class="btn btn-primary pull-right">Avançar</button>
+			    			</div>
+			    		</div>
+
+			    	</form>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="espaco">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Sobre o Espaço<br>
+					    		<small>
+					    			Informe detalhes sobre o espaço do seu imóvel. Assim as pessoas poderão encontrar um lugar ideal para aproveitarem.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<form class="form-horizontal" id="form-cad-anuncio-espaco">
+			    		<div class="form-group">
+			    			<div class="row">
+			    				<div class="col-md-4" id="espaco1"></div>
+			    				<div class="col-md-4" id="espaco2"></div>
+			    				<div class="col-md-4" id="espaco3"></div>
+			    			</div>
+			    		</div>
+			    		<div class="form-group">
+			    			<div class="row">
+			    				<div class="col-md-8" id="espaco4"></div>
+			    				<div class="col-md-4" id="espaco5"></div>
+			    			</div>
+			    		</div>
+			    		<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button type="button" id="btnGravarEspaco" class="btn btn-primary pull-right">Avançar</button>
+			    			</div>
+			    		</div>
+
+			    	</form>
+
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="comodidade">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Comodidades<br>
+					    		<small>
+					    			Destaque aqui quais são os itens que seu imóvel oferece para que os hospedes tenham a melhor experiência possível.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<form class="form-horizontal" id="form-cad-anuncio-comodidade">
+			    		<div id="itenscomodidade"></div>
+				    	<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button type="button" id="btnGravarComodidade" class="btn btn-primary pull-right">Avançar</button>
+			    			</div>
+			    		</div>
+					</form>
+				</div>
+
+			    <div role="tabpanel" class="tab-pane fade" id="ofertavalor">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Oferta de Valor<br>
+					    		<small>
+					    			A oferta de valor é uma característica única, ou seja, diga para qual finalidade seu imóvel é perfeito. Esta informação também ajudará as pessoas encontrarem o lugar ideal.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<form class="form-horizontal" id="form-cad-anuncio-oferta-valor">
+			    		
+						<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button type="button" id="btnGravarOfertaValor" class="btn btn-primary pull-right">Avançar</button>
+			    			</div>
+			    		</div>
+			    	</form>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="preco">
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Preço<br>
+					    		<small>
+					    			Defina o preço que será cobrada a diária.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<h4>Defina o Preço Padrão</h4>
+			    	<form class="form-horizontal" id="form-cad-anuncio-preco">
+			    		<div class="form-group">
+			    			<div class="row">
+				    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				    				<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Diária (R$)</label>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<input type="text" class="form-control idouble" data-model="precoDiaria" maxlength="17">
+									</div>
+				    			</div>
+							</div>
+						</div>
+						<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<button type="button" id="btnGravarPreco" class="btn btn-primary pull-right">Gravar Preço Padrão</button>
+			    			</div>
+			    		</div>
+			    	</form>
+
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="fotos">
+			    	
+			    	<fieldset>
+			    		<legend>
+			    			<h3>
+					    		Escolha as melhores fotos para que as pessoas fiquem impressionadas<br>
+					    		<small>
+					    			São permitidas no máximo 12 fotos.
+					    		</small>
+					    	</h3>
+			    		</legend>
+			    	</fieldset>
+			    	<form class="form-horizontal" id="form-cad-anuncio-fotos">
+			    		<div class="progress">
+							<div id="progressBarFotos" class="progress-bar progress-bar-striped active" 
+								role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
+						</div>
+			    		<div class="form-group">
+			    			<div class="col-lg-2 col-md-2 col-sm-4 col-md-12">
+			    				<input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png">
+			    			</div>
+			    		</div>
+			    		<div class="form-group" id="fotos-selecionadas">
+						<!-- 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div> -->
+						</div>
+			    		<div class="form-group">
+			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    				<hr>
+			    				<!-- <button type="button" id="btnGravarFotos" class="btn btn-primary pull-right">Salvar Fotos <i class="fa fa-upload"></i></button> -->
+			    			</div>
+			    		</div>					    	
+			    	</form>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+</div>
