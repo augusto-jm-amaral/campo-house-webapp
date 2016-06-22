@@ -1,0 +1,31 @@
+.navbar-default .navbar-nav-custom > li > a {
+    color: #736945;
+}
+
+.navbar-default .navbar-nav-custom > li > a:hover,
+.navbar-default .navbar-nav-custom > li > a:focus {
+    color: #594F2C;
+}
+
+.navbar-default .navbar-nav-custom > .open > a,
+.navbar-default .navbar-nav-custom > .open > a:focus,
+.navbar-default .navbar-nav-custom > .open > a:hover {
+	background-color: rgba(0,0,0,0);
+    color: #594F2C
+}
+
+.navbar-fixed-top-custom {
+	border-bottom: 1px solid #a6a08d;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.navbar-nav > li > .dropdown-menu-custom {
+    border: 1px solid #a6a08d;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.nav-justified > li.active-custom.active {
+    border-bottom: 1px solid #a6a08d;
+}

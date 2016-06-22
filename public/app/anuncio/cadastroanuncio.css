@@ -1,0 +1,61 @@
+@media (max-width: 767px) { 
+	.nav-stacked > li {
+	  float: left;
+	}
+	.nav-stacked > li + li {
+	  margin-left: 2px;
+	}
+	.menu-stacked-fixed {
+		position: static !important;
+	}
+
+}
+
+.menu-stacked-fixed {
+	position: fixed;
+}
+
+.menu-stacked-fixed-right {
+	position: fixed;
+	right: 0;
+}
+
+.disable-cadastro {
+	display: none !important;
+}
+
+.enable-cadastro {
+	display: inline !important;
+}
+
+.divFoto {
+	padding-bottom: 15px;
+}
+
+.btn-rem-foto {
+	position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 99;
+}
+
+.nav-pills > li.active > a.a-nav-custom, 
+.nav-pills > li.active > a.a-nav-custom:focus, 
+.nav-pills > li.active > a.a-nav-custom:hover {
+    background-color: transparent;
+    color: #594f2c;
+    font-weight: 700;
+}
+
+.a-nav-custom {
+    color: #f2e1a2;
+}
+
+.a-nav-custom:focus,
+.a-nav-custom:hover {
+    color: #736945;
+}
+
+.nav > li > a:hover {
+    background-color: #fff;
+}
