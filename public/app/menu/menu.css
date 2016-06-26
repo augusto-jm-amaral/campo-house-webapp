@@ -38,7 +38,7 @@
 .navbar-default .navbar-nav-custom > .open > a:focus,
 .navbar-default .navbar-nav-custom > .open > a:hover {
 	background-color: rgba(0,0,0,0);
-    color: #fff
+    /*color: #fff*/
 }
 
 .navbar-fixed-top-custom {
@@ -64,15 +64,15 @@
     background-color: rgba(0,0,0,0);
 }
 
-.dropdown-menu-custom > li > a {
+/*.dropdown-menu-custom > li > a {
     color: #736945;
-}
+}*/
 
-.dropdown-menu-custom > li > a:hover,
+/*.dropdown-menu-custom > li > a:hover,
 .dropdown-menu-custom > li > a:focus {
     background-color: #A69F85;
     color: #594F2C;
-}
+}*/
 
 .navbar-default .navbar-collapse-custom {
     border-color: #A69F85;
@@ -82,14 +82,20 @@
     background-color: #A69F85;
 }
 
-.navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a {
+.navbar-default .navbar-nav > .open > a
+,.navbar-default .navbar-nav > .open > a:focus
+,.navbar-default .navbar-nav > .open > a:hover {
+    color: #fff;
+}
+
+/*.navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a {
     color: #736945;
 }
 
 .navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a:focus,
 .navbar-fixed-top-custom .navbar-nav .open .dropdown-menu > li > a:hover {
     color: #594F2C;
-}
+}*/
 
 @media (max-width: 767px) { 
     .navbar-default {
@@ -97,24 +103,24 @@
         border-color: #fff;
     }
 
-    .navbar-default .navbar-nav-custom > li > a {
-        color: #736945;
+   .navbar-default .navbar-nav-custom > li > a {
+        color: #777;
     }
 
     .navbar-default .navbar-nav-custom > li > a:hover,
     .navbar-default .navbar-nav-custom > li > a:focus {
-        color: #736945;
+        color: #777;
     }
 
     .navbar-default .navbar-nav-custom > .open > a,
     .navbar-default .navbar-nav-custom > .open > a:focus,
     .navbar-default .navbar-nav-custom > .open > a:hover {
         background-color: rgba(0,0,0,0);
-        color: #736945;
+        color: #777;
     }
 
     .navbar-default .navbar-toggle-custom .icon-bar {
-        background-color: #736945;
+        background-color: #5CB85C;
     }
 
     .img-logo {

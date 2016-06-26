@@ -49,6 +49,8 @@
 
 .a-nav-custom {
     color: #f2e1a2;
+    cursor: default;
+    pointer-events: none;
 }
 
 .a-nav-custom:focus,
@@ -58,4 +60,17 @@
 
 .nav > li > a:hover {
     background-color: #fff;
+}
+
+.label-form {
+	padding-top: 10px;
+}
+
+@media (max-width: 767px) { 
+	.nav-justified > li.active-custom {
+    	display: none;
+	}
+	.active-custom.active {
+	    display: block !important;
+	}
 }

@@ -5,5 +5,24 @@ body {
 }
 
 .container-custom {
-	margin-top: 70px;
+	margin-top: 72px;
+}
+
+.breadcrumb-custom {
+    background-color: #a6a08d;
+    list-style: outside none none;
+    position: fixed;
+    top: 51px;
+    width: 100%;
+    z-index: 999;
+}
+
+.breadcrumb-custom > li > span {
+	color: #fff;
+}
+
+@media (max-width: 767px) {
+    .space-bottom {
+        margin-bottom: 15px;
+    }
 }
