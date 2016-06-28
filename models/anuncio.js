@@ -36,8 +36,10 @@ var schema = new Schema({
     localComplemento: {
       type: String,
     },
-    etapa: {
-      type: [{type: String, enum:['logradouro', 'foto', 'valor'], required: true}]
+    status: {
+      type: Number,
+      require: true,
+      default: 1
     },
     usuario: {
       type: mongoose.Schema.Types.ObjectId,
@@ -52,7 +54,7 @@ var schema = new Schema({
     listaComentarios: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comentarios'}]
     },
-    listaComodidades: {
+    listaAnuncioComodidades: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioComodidades'}]
     },
     anuncioOfertaValores: {

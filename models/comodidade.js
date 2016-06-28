@@ -5,7 +5,10 @@ module.exports = function () {
 
 var schema = new Schema({
     descComodidade: {
-      type: String
+      type: String,
+      index: {
+        unique: true
+      }
     },
     categoria: {
       type: mongoose.Schema.Types.ObjectId,

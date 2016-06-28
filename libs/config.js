@@ -15,7 +15,15 @@ module.exports = function(app) {
     jwtSecret: '4PpR4NCH0',
     jwtSession: {session: false},
     urlRaizApi: '/apiv1.0',
-    urlServe: 'http://localhost:3000'
+    urlServe: 'http://localhost:3000',
+    etapasAnuncio: {
+      geral: "Geral",
+      foto: "Fotos",
+      logradouro: "Endereço",
+      valor: "Valores"
+    },
+    numMaxFotos: 20
+
     // populateDb: true
   };
 
