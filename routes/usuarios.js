@@ -94,6 +94,7 @@ module.exports = function (app) {
         req.checkBody('sobreNome','').notEmpty().isName();
         req.checkBody('email','').notEmpty().isEmail();
         req.checkBody('senha','').notEmpty().isPassword();
+        // req.checkBody('telefone','').notEmpty().isMobilePhone();
 
         var erros = req.validationErrors();
 

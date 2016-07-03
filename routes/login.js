@@ -23,8 +23,10 @@ module.exports = function (app) {
                   if(usuario.validarSenha(usuario.senha, senha)){
                       const playload = {_id: usuario._id};
                       res.json({
-                        token: jwt.encode(playload, cfg.jwtSecret)
-                      });
+                        token: jwt.encode(playload, cfg.jwtSecret),
+                        nome: usuario.nome,
+                        _id: usuario._id
+                      }).end();
                   }else{
                     res.sendStatus(400).end();
                   }

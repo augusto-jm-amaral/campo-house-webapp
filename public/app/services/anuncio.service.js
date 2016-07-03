@@ -3,25 +3,25 @@
 
   angular
     .module('campohouse')
-    .factory('Usuario', Usuario);
+    .factory('Anuncio', Anuncio);
 
-  Usuario.$inject = ['$http','Config'];
+  Anuncio.$inject = ['$http','Config'];
 
-  function Usuario($http, Config) {
+  function Anuncio($http) {
 
-      var url = Config.getUrlApi() + '/usuarios';
+      var url = Config.getUrlApi + '/anuncios';
 
       var service = {
-        get: getUsuarios,
-        save: saveUsuarios,
-        delete: deleteUsuarios
+        get: getAnuncio,
+        save: saveAnuncio,
+        delete: deleteAnuncio
       };
 
      return service;
 
      ///////////////
 
-     function getUsuarios(_id, query) {
+     function getAnuncio(_id, query) {
 
        var getUrl = url;
 
@@ -36,11 +36,9 @@
        return $http.get(url);
      };
 
-     function saveUsuarios(usuario) {
+     function saveAnuncio(anuncio) {
 
-       console.log(url);
-
-       if(usuario._id){
+       if(anuncio._id){
          return $http.put(url, usuario);
        }else{
          return $http.post(url, usuario);
@@ -48,7 +46,7 @@
 
      };
 
-     function deleteUsuarios(usuario) {
+     function deleteAnuncio(usuario) {
        return $http.get(url + usuario._id);
      };
 

@@ -1,122 +1,159 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-fixed-top-custom">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle navbar-toggle-custom collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand nav-brand-logo" href="javascript:void(0);">
-        <img class="img-responsive img-logo">
-      </a>
-    </div>
+<div ng-controller="MenuCtrl">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-collapse-custom" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-nav-custom navbar-right">
-        <li><a ng-href="#/cadastroanuncio">Anunciar</a></li>
-        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalCadLogin">Entrar ou Criar Conta</a></li>
-        <li class="dropdown">
-          <a href="javascript:void(0);" class="dropdown-toggle perfil" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Olá Bruno 
-            <img class="img-circle foto-perfil" ng-src="app/img/foto-perfil.jpg">
-            <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-custom">
-            <li><a href="#">Meu Perfil</a></li>
-            <li><a href="#">Meus Anúncios</a></li>
-            <li><a href="#">Minhas Reservas</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Sair</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-<div class="modal fade" id="modalCadLogin" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+  <nav class="navbar navbar-default navbar-fixed-top navbar-fixed-top-custom">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle navbar-toggle-custom collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
-        <h4 class="modal-title text-center" id="exampleModalLabel">Entrar ou Criar Conta</h4>
+        <a class="navbar-brand nav-brand-logo" href="javascript:void(0);">
+          <img class="img-responsive img-logo">
+        </a>
       </div>
-      <div class="modal-body">
-        <form id="form-login" class="form-horizontal">
-          <div class="form-group">
-            <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Já possui cadastro Campo House? Acesse.</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom">
-              <input type="text" id="email" class="form-control" placeholder="E-mail" maxlength="255" required>
-              <p class="hidden text-danger">Campo obrigatório</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <input type="password" class="form-control" id="senha" placeholder="Senha" maxlength="255" required>
-              <p class="hidden text-danger" data-for="senha">Campo obrigatório</p>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <button type="button" class="btn btn-success btn-sm form-control">Entrar</button>
-            </div>
-          </div>
-        </form>
 
-        <form id="form-cadastrousuario" class="form-horizontal">
-          <div class="form-group">
-            <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Ainda não? Crie uma conta. É rápido.</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom">
-              <input type="text" id="nome" class="form-control" placeholder="Primeiro Nome" maxlength="255" required>
-              <p class="hidden text-danger">Campo obrigatório</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" maxlength="255" required>
-              <p class="hidden text-danger" data-for="senha">Campo obrigatório</p>
-            </div>
-          </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-collapse-custom" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-nav-custom navbar-right">
+          <!-- <li><a ng-href="#/cadastroanuncio">Anunciar</a></li> -->
+          <li>
+            <a href="javascript:void(0);" ng-click="anunciar()">Anunciar</a>
+          </li>
+          <li ng-show="showEntrarOuCriarConta">
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalCadLogin">Entrar ou Criar Conta</a>
+          </li>
+          <li class="dropdown hidden menuUsuario" ng-show="showOpcoes">
+            <a href="javascript:void(0);" class="dropdown-toggle perfil" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Olá {{nomeUsuario}}
+              <img class="img-circle foto-perfil" ng-src="app/img/foto-perfil.jpg">
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-custom">
+                <li><a href="#">Meu Perfil</a></li>
+                <li><a href="#">Meus Anúncios</a></li>
+                <li><a href="#">Minhas Reservas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:void(0);" ng-click="logout();">Sair</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-          <div class="form-group">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <input type="text" id="emailCadastro" class="form-control" placeholder="E-mail" maxlength="255" required>
-              <p class="hidden text-danger">Campo obrigatório</p>
-            </div>
-          </div>
 
-          <div class="form-group">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <input type="text" class="form-control" id="telefone" placeholder="Número Celular" maxlength="255" required>
-              <p class="hidden text-danger" data-for="senha">Campo obrigatório</p>
-            </div>
-          </div>
+    <div class="modal fade" id="modalCadLogin" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title text-center" id="exampleModalLabel">Entrar ou Criar Conta</h4>
+        </div>
+        <div class="modal-body">
 
-          <div class="form-group">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom">
-              <input type="password" id="senhacadastro" class="form-control" placeholder="Senha" maxlength="255" required>
-              <p class="hidden text-danger">Campo obrigatório</p>
+          <form name="loginForm" class="form-horizontal" novalidate="true">
+            <div ng-show="loginForm.$invalid && runLogin" class="alert alert-danger text-center" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Os campos em vermelho são obrigatórios.
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <input type="password" class="form-control" id="repetirsenhacadastro" placeholder="Repetir Senha" maxlength="255" required>
-              <p class="hidden text-danger" data-for="senha">Campo obrigatório</p>
+            <div ng-show="loginOuSenhaInvalidos" class="alert alert-warning text-center" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Login ou senha inválidos.
             </div>
-          </div>
+            <div class="form-group">
+              <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Já possui cadastro Campo House? Acesse.</label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom" ng-class="{ 'has-error' : loginForm.emailLogin.$invalid && loginForm.emailLogin.$touched }">
+                <input ng-model="emailLogin" name="emailLogin" type="email" class="form-control" placeholder="E-mail" required maxlength="255">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : loginForm.senhaLogin.$invalid && loginForm.senhaLogin.$touched }">
+                <input ng-model="senhaLogin" name="senhaLogin" type="password" class="form-control" placeholder="Senha" required maxlength="255">
+                <p class="hidden text-danger" data-for="senha">Campo obrigatório</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button ng-click="login();" type="button" class="btn btn-success btn-sm form-control">Entrar</button>
+              </div>
+            </div>
+          </form>
 
-          <div class="form-group">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <button type="button" class="btn btn-success btn-sm form-control">Criar Conta</button>
+          <form name="formCadastrousuario" class="form-horizontal" novalidate>
+
+            <div ng-show="formCadastrousuario.$invalid && runCadastro" class="alert alert-danger text-center" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Os campos em vermelho são obrigatórios.
             </div>
-          </div>
-        </form>
-      </div>
+
+            <div ng-show="erroCadastro" class="alert alert-warning text-center" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Erro ao cadastrar, seus dados podem estar inválidos.
+            </div>
+
+            <div ng-show="sucessoCadastro" class="alert alert-success text-center" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Cadastro realizado com sucesso.
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Ainda não? Crie uma conta. É rápido.</label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom" ng-class="{ 'has-error' : formCadastrousuario.nomeCadastro.$invalid && formCadastrousuario.nomeCadastro.$touched }">
+                <input name="nomeCadastro" ng-model="nomeCadastro" type="text" class="form-control" placeholder="Primeiro Nome" maxlength="255" required>
+                <!-- <p class="hidden text-danger">Campo obrigatório</p> -->
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : formCadastrousuario.sobreNomeCadastro.$invalid && formCadastrousuario.sobreNomeCadastro.$touched }">
+                <input name="sobreNomeCadastro" ng-model="sobreNomeCadastro" type="text" class="form-control" placeholder="Sobrenome" maxlength="255" required>
+                <!-- <p class="hidden text-danger" data-for="senha">Campo obrigatório</p> -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formCadastrousuario.emailCadastro.$invalid && formCadastrousuario.emailCadastro.$touched }">
+                <input name="emailCadastro" ng-model="emailCadastro" type="email" class="form-control" placeholder="E-mail" maxlength="255" required>
+                <!-- <p class="hidden text-danger">Campo obrigatório</p> -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formCadastrousuario.telefoneCadastro.$invalid && formCadastrousuario.telefoneCadastro.$touched }">
+                <input name="telefoneCadastro" ng-model="telefoneCadastro" type="tel" class="form-control" placeholder="Número Celular" maxlength="255" required>
+                <!-- <p class="hidden text-danger" data-for="senha">Campo obrigatório</p> -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 space-bottom" ng-class="{ 'has-error' : formCadastrousuario.senhaCadastro.$invalid && formCadastrousuario.senhaCadastro.$touched }">
+                <input name="senhaCadastro" ng-model="senhaCadastro" type="password" class="form-control" placeholder="Senha" ng-minlength="6" maxlength="20" required>
+                <p ng-show="formCadastrousuario.senhaCadastro.$error.minlength" class="help-block">A senha é muito pequeno.</p>
+                <p ng-show="formCadastrousuario.senhaCadastro.$error.maxlength" class="help-block">A senha é muito grande.</p>
+                <!-- <p class="hidden text-danger">Campo obrigatório</p> -->
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : formCadastrousuario.repetirSenhaCadastro.$invalid && formCadastrousuario.repetirSenhaCadastro.$touched }">
+                <input name="repetirSenhaCadastro" ng-model="repetirSenhaCadastro" ng-pattern="senhaCadastro" class="form-control" type="password" placeholder="Repetir Senha" maxlength="255" required>
+                <p ng-show="formCadastrousuario.repetirSenhaCadastro.$invalid && formCadastrousuario.repetirSenhaCadastro.$touched" class="help-block">Senha não confirmada.</p>
+                <!-- <p class="hidden text-danger" data-for="senha">Campo obrigatório</p> -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="button" ng-click="cadastro();" class="btn btn-success btn-sm form-control">Criar Conta</button>
+              </div>
+            </div>
+          </form>
+        </div>
         <!-- <div class="modal-footer">
-          
-        </div> -->
+
+      </div> -->
+      </div>
     </div>
   </div>
+  <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}" ></toaster-container>
 </div>
+
 
 <script src="app/menu/menu.js" type="text/javascript" charset="utf-8"></script>
