@@ -66,7 +66,7 @@ module.exports = function (app) {
         res.sendStatus(400).end();
       }
 
-    })
+    });
 
     app.route(cfg.urlRaizApi + '/anuncios/:_idanuncio/logradouros/:_idlogradouro')
     .all(app.auth.authenticate('usuario'))
@@ -108,8 +108,8 @@ module.exports = function (app) {
               localPais: inexact[0].country,
               localInfoProximidades: req.body.localInfoProximidades,
               dataAtualizacao: new Date(),
-              // usuario: req.user._id,
-              // anuncio: req.params._idanuncio,
+              usuario: req.user._id,
+              anuncio: req.params._idanuncio,
               loc: {coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
             })
             .then(function (logradouro) {

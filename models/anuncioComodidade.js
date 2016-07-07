@@ -20,6 +20,11 @@ var schema = new Schema({
       ref: 'Anuncios',
       required: true
     },
+    usuario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Usuarios',
+      required: true
+    }
 });
 
 return mongoose.model('AnuncioComodidades', schema);

@@ -5,7 +5,16 @@ module.exports = function () {
 
 var schema = new Schema({
     descCategoria: {
-      type: String
+      type: String,
+      index: {
+        unique: true
+      }
+    },
+    tipo: {
+      type: String,
+      index: {
+        unique: true
+      }
     }
 });
 

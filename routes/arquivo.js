@@ -41,20 +41,52 @@ module.exports = function (app) {
 
       if(req.file){
 
-        new Arquivos({
-          nome: req.file.originalname,
-          url: '/imganuncio/' + req.file.filename,
-          formato: req.file.mimetype,
-          anuncio: req.params._id,
-          usuario: req.user._id
-        })
-        .save()
-        .then(function (img) {
-          res.status(200).json({_id: img._id}).end();
-        }).catch(function (err) {
-          console.log(err);
-          res.sendStatus(412).end();
-        })
+        Arquivos.count({anuncio: req.params._id}, function (err, count) {
+
+          if(count < cfg.numMaxFotos){
+
+            new Arquivos({
+              nome: req.file.originalname,
+              url: '/imganuncio/' + req.file.filename,
+              formato: req.file.mimetype,
+              anuncio: req.params._id,
+              usuario: req.user._id
+            })
+            .save()
+            .then(function (img) {
+
+              Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
+                .then(function (anuncio) {
+                  if(anuncio){
+                    anuncio.listaArquivos.push(img);
+                    anuncio.save()
+                      .then(function (anuncio) {
+                        res.status(200).json(anuncio);
+                      }).catch(function (err) {
+                        console.log(err);
+                        res.sendStatus(412).end();
+                      })
+                  }else{
+                    res.sendStatus(412).end();
+                  }
+                })
+                .catch(function (err) {
+                  console.log(err);
+                  res.sendStatus(412).end();
+                });
+
+              res.status(200).json({_id: img._id}).end();
+            }).catch(function (err) {
+              console.log(err);
+              res.sendStatus(412).end();
+            });
+
+          }else{
+            res.sendStatus(400);
+          }
+
+        });
+
       }else{
         console.log(erros);
         res.sendStatus(400).end();

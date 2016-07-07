@@ -2,7 +2,20 @@
   'use strict';
 
   angular.module('campohouse')
-    .config(config);
+    .config(config)
+    .run(run);
+
+    function run($rootScope, $location) {
+        $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute, Login) {
+
+          if (nextRoute.access && nextRoute.access.loginRequerido) {
+            if(!Login.islogin()){
+                //tratar quando não estiver logado
+            }
+          }
+
+        });
+    };
 
     function config($routeProvider) {
 

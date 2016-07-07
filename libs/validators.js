@@ -3,7 +3,8 @@ module.exports = function (app) {
     // Valida senha com no minimo:
     // 1 Letra maiuscula, 1 minuscula, 1 numerico
     isPassword: function (value) {
-      var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,20}$/;
+      // var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,20}$/;
+      var passw = /.{6,20}/; 
       if(value.match(passw)){
         return true;
       }
