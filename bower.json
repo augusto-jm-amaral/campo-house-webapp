@@ -27,6 +27,7 @@
     "bootstrap": "^3.3.6",
     "ng-file-upload": "^12.0.4",
     "normalize-css": "https://github.com/necolas/normalize.css.git#^3.0.3",
-    "angular-bootstrap": "^1.2.4"
+    "angular-bootstrap": "^1.2.4",
+    "font-awesome": "fontawesome#^4.6.3"
   }
 }

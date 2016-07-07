@@ -21,6 +21,10 @@ body {
 	color: #fff;
 }
 
+.form-control-focus:focus {
+	border-color: white;
+}
+
 @media (max-width: 767px) {
     .space-bottom {
         margin-bottom: 15px;

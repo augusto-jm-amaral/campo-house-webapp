@@ -1,22 +1,19 @@
 <link rel="stylesheet" href="app/menu/menu.css" charset="utf-8">
+<link rel="stylesheet" href="app/rodape/rodape.css" charset="utf-8">
 <div ng-include src="'app/menu/menu.html'"/>
 <div class="img-topo">
 	<div class="texto-principal text-center">
-		<h1>
-		Saia do agito!
-		</h1>
-		<h3>
-			Aqui está o seu refúgio, fique a vontade.
-		</h3>
+		<h1>Saia do agito e relaxe!</h1>
+		<h3>A tranquilidade vive aqui.</h3>
 	</div>
 	<div class="tarja-busca">
 		<div class="container-fluid">
 			<form class="form-horizontal">
 				<div class="col-lg-6 collg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
     				<div class="input-group">
-      					<input type="text" class="form-control input-lg" placeholder="Busque pela cidade que deseja...">
+      					<input type="text" class="form-control form-control-focus input-lg" placeholder="Busque pela cidade que deseja">
       					<span class="input-group-btn">
-        					<button class="btn btn-lg btn-default" type="button">Buscar</button>
+        					<button class="btn btn-lg btn-success" type="button">Buscar</button>
   						</span>
     				</div>
   				</div>
@@ -24,37 +21,73 @@
 		</div>
 	</div>
 </div>
-<div class="container">
-	<h2 class="text-center">Ranchos em Destaque</h2>
-	<hr>
-	<h3>Lins - SP</h3>
-	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/foto-rancho-3.jpg" class="img-responsive fotos-ranchos-home">
+<div class="container container-fundo">
+		<h2 class="text-center text-title">Destaques Campo House</h2>
+
+		<h3 class="text-center text-title-2">Lins - SP</h3>
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-3.jpg')"></div>
+					<span class="title-foto-home">Rancho Dourado</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 500</strong></span>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
+					<span class="title-foto-home">Recanto Encantado</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 350</strong></span>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/918525019460993.jpg')"></div>
+					<span class="title-foto-home">Village Tiête</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 750</strong></span>
+					</div>
+				</a>
+			</div>
 		</div>
 
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/foto-rancho-2.jpg" class="img-responsive fotos-ranchos-home">
-		</div>
+		<h3 class="text-center text-title-2">Sabino - SP</h3>
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-3.jpg')"></div>
+					<span class="title-foto-home">Rancho Dourado</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 630</strong></span>
+					</div>
+				</a>
+			</div>
 
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/918525019460993.jpg" class="img-responsive fotos-ranchos-home">
-		</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
+					<span class="title-foto-home">Recanto Encantado</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 450</strong></span>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<a href="#">
+					<div class="fotos-ranchos-home" style="background-image:url('app/img/918525019460993.jpg')"></div>
+					<span class="title-foto-home">Village Tiête</span>
+					<div class="preco-foto-home">
+						<span><strong>R$ 535</strong></span>
+					</div>
+				</a>
+			</div>
 	</div>
-
-	<h3>Sabino - SP</h3>
-	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/foto-rancho-3.jpg" class="img-responsive fotos-ranchos-home">
-		</div>
-
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/foto-rancho-2.jpg" class="img-responsive fotos-ranchos-home">
-		</div>
-
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-			<img ng-src="app/img/918525019460993.jpg" class="img-responsive fotos-ranchos-home">
-		</div>
-	</div>
-
 </div>
+<div ng-include src="'app/rodape/rodape.html'"/>
