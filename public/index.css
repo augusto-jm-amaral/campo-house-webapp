@@ -9,7 +9,8 @@ body {
 }
 
 .breadcrumb-custom {
-    background-color: #a6a08d;
+    /*background-color: #a6a08d;*/
+		background-color: #594f2c;
     list-style: outside none none;
     position: fixed;
     top: 51px;

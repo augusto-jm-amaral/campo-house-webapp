@@ -56,6 +56,13 @@
           loginRequerido: true
         }
       })
+      .when('/anuncio', {
+        templateUrl: 'app/anuncio/anuncio.html',
+        controller: 'AnuncioCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});
