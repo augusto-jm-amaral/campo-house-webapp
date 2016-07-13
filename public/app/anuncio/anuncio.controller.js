@@ -5,6 +5,8 @@
 
   function AnuncioCtrl($scope, $location) {
 
+    $('.carousel').carousel();
+
   };
 
 })();

@@ -1,0 +1,83 @@
+.foto-anuncio-carousel {
+		background-position: center center;
+    background-size: cover;
+    max-height: 400px;
+    min-height: 250px;
+    height: 400px;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-custom {
+  margin-top: 70px;
+}
+
+.carousel-control-custom {
+  width: 5%;
+}
+
+.container-anuncio {
+  margin-top: 15px;
+}
+
+.lista-itens {
+  list-style: none;
+}
+
+.lista-itens > li {
+  float: left;
+}
+
+.container-icons {
+  width: 70%;
+}
+
+.fa-espaco {
+    color: #777777;
+    font-size: 36px;
+}
+
+.form-custom-mensagem {
+  margin: 15px;
+}
+
+.anuncio-nome-dono {
+  font-size: 16px;
+  color: #777777;
+  margin-bottom: 10px;
+}
+
+.anuncio-contato-dono {
+  font-size: 18px;
+  color: #777777;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.div-preco {
+    position: absolute;
+    right: 94px;
+}
+
+.text-justify-padding-right {
+  padding-right: 55px;
+}
+
+.row-space-bottom {
+  padding-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+  .div-preco {
+      position: static;
+  }
+  .container-icons {
+    width: 100%;
+  }
+  .text-justify-padding-right {
+    padding-right: 0;
+  }
+  .div-espaco {
+      margin-bottom: 20px;
+  }
+}

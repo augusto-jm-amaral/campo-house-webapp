@@ -9,7 +9,8 @@ body {
 }
 
 .breadcrumb-custom {
-    background-color: #a6a08d;
+    /*background-color: #a6a08d;*/
+		background-color: #594f2c;
     list-style: outside none none;
     position: fixed;
     top: 51px;
@@ -19,6 +20,10 @@ body {
 
 .breadcrumb-custom > li > span {
 	color: #fff;
+}
+
+.form-control-focus:focus {
+	border-color: white;
 }
 
 @media (max-width: 767px) {
