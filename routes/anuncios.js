@@ -17,7 +17,7 @@ module.exports = function (app) {
   app.route(cfg.urlRaizApi + '/anuncios/:_id')
     .get(function get(req, res){
 
-      req.checkBody('_id','').notEmpty().isMongoId();
+      req.checkParams('_id','').notEmpty().isMongoId();
 
       var erros = req.validationErrors();
 
@@ -99,12 +99,14 @@ module.exports = function (app) {
 
           Anuncios({
             sobreTitulo: req.body.sobreTitulo,
-            sobreDescricao: req.body.sobreDescricao
+            sobreDescricao: req.body.sobreDescricao,
+            usuario: req.user._id
           })
           .save(function (err, anuncio) {
             if(!err){
               res.status(200).json(anuncio).end();
             }else{
+              console.log(err);
               res.sendStatus(412).end();
             }
           });
@@ -119,22 +121,26 @@ module.exports = function (app) {
     .all(app.auth.authenticate('usuario'))
     .put(function get(req, res){
 
-        req.checkParam('_id').notEmpty().isMongoId();
+        req.checkParams('_id').notEmpty().isMongoId();
 
         var erros = req.validationErrors();
 
         if(!erros){
 
               Anuncios.update(
-                {_id: id, usuario: req.user._id},
+                {_id: req.params._id, usuario: req.user._id},
                 { $set: {
                    sobreTitulo: req.body.sobreTitulo,
                    sobreDescricao: req.body.sobreDescricao,
                    regrasGerais: req.body.regrasGerais,
-                   precoDiaria: req.body.precoDiaria,
-                   precoSemanal: req.body.precoSemanal,
-                   precoMensal: req.body.precoMensal,
+                   precoDiaria: req.body.precoDiaria ? req.body.precoDiaria : 0,
+                   precoSemanal: req.body.precoSemanal ? req.body.precoSemanal : 0,
+                   precoMensal: req.body.precoMensal ? req.body.precoMensal : 0,
                    localComplemento: req.body.localComplemento,
+                   numQuartos: req.body.numQuartos,
+                   numBanheiros: req.body.numBanheiros,
+                   numCamas: req.body.numCamas,
+                   numMaxVisitantes: req.body.numMaxVisitantes,
                    listaArquivos: req.body.listaArquivos,
                    listaPrecosTemporadas: req.body.listaArquivos,
                    listaComentarios: req.body.listaComentarios,
@@ -143,11 +149,14 @@ module.exports = function (app) {
                    anuncioEspacos: req.body.anuncioOfertaValores,
                    dataAtualizacao: new Date()
                  }},
-                function (err, anuncio) {
+                function (err) {
                   if(err){
+                    console.log(err);
                     res.sendStatus(412);
                   }else{
-                    res.status(200).json(anuncio);
+                    Anuncios.findOne({_id: req.params._id, usuario: req.user._id}, function (err, anuncio) {
+                      res.status(200).json(anuncio);
+                    });
                   }
               });
 

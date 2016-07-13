@@ -5,6 +5,7 @@ module.exports = function (app) {
 
         const Categorias = app.db.models.Categorias;
         const Comodidades = app.db.models.Comodidades;
+        const Espacos = app.db.models.Espacos;
 
         Categorias.find({descCategoria: 'composta'}, function (err, categoria) {
             if(!categoria.length){
@@ -115,6 +116,28 @@ module.exports = function (app) {
             }
 
           });
+
+
+        // Espacos.find({}, function (err, espacos) {
+        //     if(!espacos.length){
+        //       new Espacos({
+        //         nome: 'Quartos',
+        //         descEspaco: 'Número de quartos'
+        //       }).save();
+        //       new Espacos({
+        //         nome: 'Camas',
+        //         descEspaco: 'Número de camas'
+        //       }).save();
+        //       new Espacos({
+        //         nome: 'Banheiros',
+        //         descEspaco: 'Número de banheiros'
+        //       }).save();
+        //       new Espacos({
+        //         nome: 'Max. Visitantes',
+        //         descEspaco: 'Numero de máximo de pessoas a acormodar'
+        //       }).save();
+        //     }
+        //   });
         //
         // Comodidades.find({descComodidade: ''}, function (err, comodidades) {
         //     if(!comodidades.length){

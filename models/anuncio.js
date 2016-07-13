@@ -16,13 +16,16 @@ var schema = new Schema({
       type: String,
     },
     precoDiaria: {
-      type: Number
+      type: Number,
+      default: 0
     },
     precoSemanal: {
-      type: Number
+      type: Number,
+      default: 0
     },
     precoMensal: {
-      type: Number
+      type: Number,
+      default: 0
     },
     dataCadastro: {
       type: Date,
@@ -31,7 +34,8 @@ var schema = new Schema({
     },
     dataAtualizacao: {
       type: Date,
-      required: true
+      required: true,
+      default: new Date()
     },
     localComplemento: {
       type: String,
@@ -43,7 +47,28 @@ var schema = new Schema({
     },
     usuario: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Usuarios'
+      ref: 'Usuarios',
+      required: true
+    },
+    numQuartos: {
+      type: Number,
+      required: true,
+      default: -1
+    },
+    numBanheiros: {
+      type: Number,
+      required: true,
+      default: -1
+    },
+    numCamas:{
+      type: Number,
+      required: true,
+      default: -1
+    },
+    numMaxVisitantes:{
+      type: Number,
+      required: true,
+      default: -1
     },
     listaArquivos: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Arquivos'}]
@@ -59,10 +84,10 @@ var schema = new Schema({
     },
     anuncioOfertaValores: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioOfertaValores'}]
-    },
-    anuncioEspacos: {
-      type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioEspacos'}]
     }
+    // anuncioEspacos: {
+    //   type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioEspacos'}]
+    // }
 });
 
 return mongoose.model('Anuncios', schema);

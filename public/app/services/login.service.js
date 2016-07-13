@@ -35,6 +35,7 @@
      };
 
      function islogin(){
+      //  console.log(1);
        if($window.sessionStorage.token){
          return true;
        }else{

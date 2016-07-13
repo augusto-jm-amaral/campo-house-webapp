@@ -12,12 +12,13 @@ module.exports = function (app) {
     .post(function (req, res) {
 
       req.checkParams('_id','').notEmpty().isMongoId();
-      req.checkBody('localNumero','').notEmpty().isNumeric();
-      req.checkBody('localBairro','').notEmpty().isName();
+      // req.checkBody('localNumero','').notEmpty().isNumeric();
+      req.checkBody('localCep','').notEmpty().isNumeric();
+      // req.checkBody('localBairro','').notEmpty().isName();
       req.checkBody('localCidade','').notEmpty().isName();
       req.checkBody('localEstado','').notEmpty().isName();
       req.checkBody('localPais','').notEmpty().isName();
-      req.checkBody('localRua','').notEmpty().isName();
+      req.checkBody('localRua','').notEmpty();
 
       var erros = req.validationErrors();
 
@@ -42,10 +43,11 @@ module.exports = function (app) {
               localEstado: inexact[0].state,
               localPais: inexact[0].country,
               localInfoProximidades: req.body.localInfoProximidades,
+              localComplemento: req.body.localComplemento,
               dataAtualizacao: new Date(),
               usuario: req.user._id,
               anuncio: req.params._id,
-              loc: {coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
+              loc: {type:'Point', coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
             })
             .save()
             .then(function (logradouro) {
@@ -63,26 +65,26 @@ module.exports = function (app) {
         });
 
       }else{
+        console.log(erros);
         res.sendStatus(400).end();
       }
 
-    });
-
-    app.route(cfg.urlRaizApi + '/anuncios/:_idanuncio/logradouros/:_idlogradouro')
-    .all(app.auth.authenticate('usuario'))
+    })
+    // app.route(cfg.urlRaizApi + '/anuncios/:_idanuncio/logradouros')
+    // .all(app.auth.authenticate('usuario'))
     .get(function (req, res) {
       //implementar
     })
     .put(function (req, res) {
 
-      req.checkParams('_idanuncio','').notEmpty().isMongoId();
-      req.checkParams('_idlogradouro','').notEmpty().isMongoId();
+      req.checkParams('_id','').notEmpty().isMongoId();
+      // req.checkParams('_idlogradouro','').notEmpty().isMongoId();
       req.checkBody('localNumero','').notEmpty().isNumeric();
-      req.checkBody('localBairro','').notEmpty().isName();
+      // req.checkBody('localBairro','').notEmpty().isName();
       req.checkBody('localCidade','').notEmpty().isName();
       req.checkBody('localEstado','').notEmpty().isName();
       req.checkBody('localPais','').notEmpty().isName();
-      req.checkBody('localRua','').notEmpty().isName();
+      req.checkBody('localRua','').notEmpty();
 
       var erros = req.validationErrors();
 
@@ -99,7 +101,7 @@ module.exports = function (app) {
 
           if(!err && inexact.length){
 
-            Logradouros.update({_id: req.params._idlogradouro, usuario: req.user._id, anuncio: req.params._idanuncio},{
+            Logradouros.update({usuario: req.user._id, anuncio: req.params._id},{
               localCep: inexact[0].postalCode,
               localRua: inexact[0].street,
               localNumero: inexact[0].streetNumber,
@@ -110,7 +112,7 @@ module.exports = function (app) {
               dataAtualizacao: new Date(),
               usuario: req.user._id,
               anuncio: req.params._idanuncio,
-              loc: {coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
+              loc: {type:'Point', coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
             })
             .then(function (logradouro) {
               res.status(200).json(logradouro).end();
@@ -127,19 +129,20 @@ module.exports = function (app) {
         });
 
       }else{
+        console.log(erros);
         res.sendStatus(400).end();
       }
     })
     .delete(function (req, res) {
 
-      req.checkParams('_idanuncio','').notEmpty().isMongoId();
-      req.checkParams('_idlogradouro','').notEmpty().isMongoId();
+      req.checkParams('_id','').notEmpty().isMongoId();
+      // req.checkParams('_idlogradouro','').notEmpty().isMongoId();
 
       var erros = req.validationErrors();
 
       if(!erros){
 
-        Logradouros.remove({_id: req.params._idlogradouro, usuario: req.user._id, anuncio: req.params._idanuncio}, function (err) {
+        Logradouros.remove({usuario: req.user._id, anuncio: req.params._id}, function (err) {
           if(!err){
             res.sendStatus(200).end();
           }else{

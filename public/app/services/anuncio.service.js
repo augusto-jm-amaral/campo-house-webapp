@@ -7,9 +7,9 @@
 
   Anuncio.$inject = ['$http','Config'];
 
-  function Anuncio($http) {
+  function Anuncio($http, Config) {
 
-      var url = Config.getUrlApi + '/anuncios';
+      var url = Config.getUrlApi() + '/anuncios';
 
       var service = {
         get: getAnuncio,
@@ -39,9 +39,9 @@
      function saveAnuncio(anuncio) {
 
        if(anuncio._id){
-         return $http.put(url, usuario);
+         return $http.put(url + '/' + anuncio._id , anuncio);
        }else{
-         return $http.post(url, usuario);
+         return $http.post(url, anuncio);
        }
 
      };

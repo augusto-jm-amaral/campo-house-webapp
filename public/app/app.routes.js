@@ -5,8 +5,10 @@
     .config(config)
     .run(run);
 
-    function run($rootScope, $location) {
-        $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute, Login) {
+    // run.$inject = ['']
+
+    function run($rootScope, $location, Login) {
+        $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
 
           if (nextRoute.access && nextRoute.access.loginRequerido) {
             if(!Login.islogin()){
@@ -17,9 +19,9 @@
         });
     };
 
-    function config($routeProvider) {
+    function config($routeProvider, $httpProvider) {
 
-      // $httpProvider.interceptors.push('TokenInterceptor');
+      $httpProvider.interceptors.push('TokenInterceptor');
 
       $routeProvider.when('/home', {
         templateUrl: 'app/home/home.html',

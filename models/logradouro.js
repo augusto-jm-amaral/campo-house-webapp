@@ -26,7 +26,10 @@ var schema = new Schema({
       type: String
     },
     localInfoProximidades: {
-      type: String,
+      type: String
+    },
+    localComplemento: {
+      type: String
     },
     dataCadastro: {
       type: Date,
