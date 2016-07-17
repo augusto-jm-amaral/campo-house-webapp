@@ -5,7 +5,9 @@ module.exports = function (app) {
 
         const Categorias = app.db.models.Categorias;
         const Comodidades = app.db.models.Comodidades;
-        const Espacos = app.db.models.Espacos;
+        const TipoImovelOption = app.db.models.TipoImovelOption;
+        const NumAcomodaOption = app.db.models.NumAcomodaOption;
+        const OfertaValores = app.db.models.OfertaValores;
 
         Categorias.find({descCategoria: 'composta'}, function (err, categoria) {
             if(!categoria.length){
@@ -117,43 +119,143 @@ module.exports = function (app) {
 
           });
 
+          TipoImovelOption.find({nome: 'Casa para enventos'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Casa para enventos'
+              }).save();
+            }
+          });
+          TipoImovelOption.find({nome: 'Chácara'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Chácara'
+              }).save();
+            }
+          });
+          TipoImovelOption.find({nome: 'Chalé'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Chalé'
+              }).save();
+            }
+          });
+          TipoImovelOption.find({nome: 'Fazenda'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Fazenda'
+              }).save();
+            }
+          });
+          TipoImovelOption.find({nome: 'Rancho'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Rancho'
+              }).save();
+            }
+          });
+          TipoImovelOption.find({nome: 'Sítio'}, function(err, tipos){
+            if(!tipos.length){
+              new TipoImovelOption({
+                nome: 'Sítio'
+              }).save();
+            }
+          });
 
-        // Espacos.find({}, function (err, espacos) {
-        //     if(!espacos.length){
-        //       new Espacos({
-        //         nome: 'Quartos',
-        //         descEspaco: 'Número de quartos'
-        //       }).save();
-        //       new Espacos({
-        //         nome: 'Camas',
-        //         descEspaco: 'Número de camas'
-        //       }).save();
-        //       new Espacos({
-        //         nome: 'Banheiros',
-        //         descEspaco: 'Número de banheiros'
-        //       }).save();
-        //       new Espacos({
-        //         nome: 'Max. Visitantes',
-        //         descEspaco: 'Numero de máximo de pessoas a acormodar'
-        //       }).save();
-        //     }
-        //   });
-        //
-        // Comodidades.find({descComodidade: ''}, function (err, comodidades) {
-        //     if(!comodidades.length){
-        //
-        //       var comodidade = new Categorias({
-        //         descCategoria: 'composta',
-        //         tipo: 'checkbox'
-        //       });
-        //
-        //       console.log(categoria);
-        //
-        //       categoria.save();
-        //
-        //     }
-        //
-        //   });
+
+          NumAcomodaOption.find({nome: 'Até 5'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 5',
+                num: 5
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 10'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 10',
+                num: 10
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 15'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 15',
+                num: 15
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 20'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 20',
+                num: 20
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 30'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 30',
+                num: 30
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 40'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 40',
+                num: 40
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Até 50'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Até 50',
+                num: 50
+              }).save();
+            }
+          });
+          NumAcomodaOption.find({nome: 'Mais de 50'}, function(err, acomoda){
+            if(!acomoda.length){
+              new NumAcomodaOption({
+                nome: 'Mais de 50',
+                num: 99
+              }).save();
+            }
+          });
+
+          OfertaValores.find({nome: 'Perfeito para Pesca'}, function(err, oferta){
+            if(!oferta.length){
+              new OfertaValores({
+                nome: 'Perfeito para Pesca'
+              }).save();
+            }
+          });
+          OfertaValores.find({nome: 'Festa com Amigos'}, function(err, oferta){
+            if(!oferta.length){
+              new OfertaValores({
+                nome: 'Festa com Amigos'
+              }).save();
+            }
+          });
+          OfertaValores.find({nome: 'Folga em Família'}, function(err, oferta){
+            if(!oferta.length){
+              new OfertaValores({
+                nome: 'Folga em Família'
+              }).save();
+            }
+          });
+          OfertaValores.find({nome: 'Eventos'}, function(err, oferta){
+            if(!oferta.length){
+              new OfertaValores({
+                nome: 'Eventos'
+              }).save();
+            }
+          });
 
       }
     }

@@ -6,11 +6,8 @@ module.exports = function () {
 var schema = new Schema({
     nome: {
       type: String
-    },
-    descEspaco: {
-      type: String
     }
 });
 
-return mongoose.model('Espacos', schema);
+return mongoose.model('TipoImovelOption', schema);
 };

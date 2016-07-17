@@ -166,26 +166,71 @@
 
 			    		<div class="form-group">
 				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Quantidade de Quartos</label>
-				    			<select ng-model="anuncio.numQuartos" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select>
+				    			<label class="label-form">Número de Quartos</label>
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = (anuncio.numQuartos > 0 ? anuncio.numQuartos - 1 : anuncio.numQuartos);">
+                        <strong>-</strong>
+                      </button>
+                    </div>
+                    <input ng-model="anuncio.numQuartos" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = anuncio.numQuartos + 1;">
+                        <strong>+</strong>
+                      </button>
+                    </div>
+                  </div>
+				    			<!-- <select ng-model="anuncio.numQuartos" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
 				    		</div>
 				    	</div>
 			    		<div class="form-group">
 				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Quantidade de Camas</label>
-				    			<select ng-model="anuncio.numCamas" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select>
+				    			<label class="label-form">Número de Camas</label>
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numCamas = (anuncio.numCamas > 0 ? anuncio.numCamas - 1 : anuncio.numQuartos);">
+                        <strong>-</strong>
+                      </button>
+                    </div>
+                    <input ng-model="anuncio.numCamas" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numCamas = anuncio.numCamas + 1;">
+                        <strong>+</strong>
+                      </button>
+                    </div>
+                  </div>
+				    			<!-- <select ng-model="anuncio.numCamas" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
 				    		</div>
 				    	</div>
 			    		<div class="form-group">
 				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Quantidade de Banheiros</label>
-				    			<select ng-model="anuncio.numBanheiros" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select>
+				    			<label class="label-form">Número de Banheiros</label>
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = (anuncio.numBanheiros > 0 ? anuncio.numBanheiros - 1 : anuncio.numBanheiros);">
+                        <strong>-</strong>
+                      </button>
+                    </div>
+                    <input ng-model="anuncio.numBanheiros" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = anuncio.numBanheiros + 1;">
+                        <strong>+</strong>
+                      </button>
+                    </div>
+                  </div>
+				    			<!-- <select ng-model="anuncio.numBanheiros" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
 				    		</div>
 				    	</div>
 			    		<div class="form-group">
 				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Número maxímo de Visitantes</label>
-				    			<select ng-model="anuncio.numMaxVisitantes" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select>
+				    			<label class="label-form">Número de pessoas que acomoda</label>
+				    			<select ng-model="anuncio.numAcomoda" ng-options="item._id as item.nome for item in numAcomodaOptions" class="form-control input-sm"></select>
+				    		</div>
+				    	</div>
+			    		<div class="form-group">
+				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				    			<label class="label-form">Tipo de Imóvel</label>
+				    			<select ng-model="anuncio.tipoImovel" ng-options="item._id as item.nome for item in tipoImovelOptions" class="form-control input-sm"></select>
 				    		</div>
 				    	</div>
 
@@ -201,6 +246,7 @@
 
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="comodidade">
+			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="comodidade"> -->
 			    	<fieldset>
 			    		<legend>
 			    			<h3>
@@ -213,33 +259,50 @@
 			    	</fieldset>
 			    	<form class="form-horizontal" id="form-cad-anuncio-comodidade">
 			    		<h4>Itens Comuns</h4>
-			    		<div class="checkbox">
+
+              <div ng-repeat="comodidade in comodidades">
+                <div ng-show="comodidade.categoria.tipo=='checkbox'" class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkComodidade(comodidade._id)">
+                    {{comodidade.descComodidade}}
+                  </label>
+                </div>
+                <!-- <div ng-show="comodidade.categoria.tipo=='textArea'">
+                  <label>
+                    {{comodidade.descComodidade}}
+                  </label>
+                  <textarea class="form-control" rows="3"></textarea>
+                </div> -->
+              </div>
+
+              <h4 style="margin-top: 1em;">Outros</h4>
+			    		<!-- <div class="checkbox">
 			    			<label>
 			    				<input type="checkbox" value="">
 			    				Toalha de banho
 			    			</label>
-			    		</div>
-			    		<div class="checkbox">
-			    			<label>
-			    				<input type="checkbox" value="">
-			    				Toalha de banho
-			    			</label>
-			    		</div>
-
-
+			    		</div> -->
+              <!-- <div class="form-group"> -->
+                <label style="font-weight: 500;">O que levar:</label>
+                <textarea ng-model="anuncio.oquelevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
+                <div style="padding: 1em;"></div>
+                <label style="font-weight: 500;">O que não levar:</label>
+                <textarea ng-model="anuncio.oquenaolevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
+              <!-- </div> -->
 
 				    	<div class="form-group">
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			    				<hr>
 			    				<button type="button" id="btnVoltarComodidade" class="btn btn-default pull-left">Voltar</button>
-			    				<button type="button" id="btnGravarComodidade" class="btn btn-success pull-right">Avançar</button>
+			    				<button ng-click="salvarAnuncio('ofertavalor');" type="button" id="btnGravarComodidade" class="btn btn-success pull-right">Avançar</button>
 			    			</div>
 			    		</div>
 					</form>
 				</div>
 
 			    <div role="tabpanel" class="tab-pane fade" id="ofertavalor">
-			    	<fieldset>
+			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="ofertavalor"> -->
+			    	<fieldset style="margin-top: 2em;">
 			    		<legend>
 			    			<h3>
 					    		Oferta de Valor<br>
@@ -249,30 +312,34 @@
 					    	</h3>
 			    		</legend>
 			    	</fieldset>
+
 			    	<form class="form-horizontal" id="form-cad-anuncio-oferta-valor">
-			    		<div class="checkbox">
-			    			<label>
-			    				<input type="checkbox" value="">
-			    				Ideal para pescaria
-			    			</label>
-			    		</div>
-			    		<div class="checkbox">
+              <div ng-repeat="oferta in ofertaValores">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkOfertaValor(oferta._id)">
+                    {{oferta.nome}}
+                  </label>
+                </div>
+              </div>
+			    		<!-- <div class="checkbox">
 			    			<label>
 			    				<input type="checkbox" value="">
 			    				Reunião em família
 			    			</label>
-			    		</div>
+			    		</div> -->
 						<div class="form-group">
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			    				<hr>
 			    				<button type="button" id="btnVoltarOfertaValor" class="btn btn-default pull-left">Voltar</button>
-			    				<button type="button" id="btnGravarOfertaValor" class="btn btn-success pull-right">Avançar</button>
+			    				<button type="button" id="btnGravarOfertaValor" ng-click="salvarAnuncio('preco');" class="btn btn-success pull-right">Avançar</button>
 			    			</div>
 			    		</div>
 			    	</form>
 			    </div>
+			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="preco"> -->
 			    <div role="tabpanel" class="tab-pane fade" id="preco">
-			    	<fieldset>
+			    	<fieldset style="margin-top: 2em;">
 			    		<legend>
 			    			<h3>
 					    		Preço<br>
@@ -289,7 +356,7 @@
 				    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				    				<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Diária (R$)</label>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<input type="text" class="form-control idouble" data-model="precoDiaria" maxlength="17">
+										<input type="number" class="form-control idouble" ng-model="anuncio.precoDiaria" maxlength="17">
 									</div>
 				    			</div>
 							</div>
@@ -298,15 +365,16 @@
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			    				<hr>
 			    				<button type="button" id="btnVoltarPreco" class="btn btn-default pull-left">Voltar</button>
-			    				<button type="button" id="btnGravarPreco" class="btn btn-success pull-right">Avançar</button>
+			    				<button ng-click="salvarAnuncio('fotos');" type="button" id="btnGravarPreco" class="btn btn-success pull-right">Avançar</button>
 			    			</div>
 			    		</div>
 			    	</form>
 
 			    </div>
+			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="fotos"> -->
 			    <div role="tabpanel" class="tab-pane fade" id="fotos">
 
-			    	<fieldset>
+			    	<fieldset style="margin-top: 2em;">
 			    		<legend>
 			    			<h3>
 					    		Escolha as melhores fotos para que as pessoas fiquem impressionadas<br>

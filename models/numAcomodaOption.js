@@ -6,8 +6,11 @@ module.exports = function () {
 var schema = new Schema({
     nome: {
       type: String
+    },
+    num:{
+      type: Number
     }
 });
 
-return mongoose.model('OfertaValores', schema);
+return mongoose.model('NumAcomodaOption', schema);
 };

@@ -3,32 +3,103 @@
   angular.module('campohouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
 
   // CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster'];
-  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro'];
+  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options'];
 
   // function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster) {
-  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro) {
-
-    $scope.optionsEspacos = [
-      {name: 'Não desejo informar.', value: -1},
-      {name: 'Até 1', value: 1},
-      {name: 'Até 2', value: 2},
-      {name: 'Até 3', value: 3},
-      {name: 'Até 10', value: 10},
-      {name: 'Até 15', value: 15},
-      {name: 'Até 20', value: 20},
-      {name: 'Mais de 20', value: 99}
-    ];
-    // console.log($scope.optionsEspacos[0].value);
-    // $scope.selecionado = $scope.optionsEspacos[0].value;
+  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options) {
 
     $scope.anuncio = {
       sobreTitulo: '',
       sobreDescricao: '',
-      numQuartos: $scope.optionsEspacos[0].value,
-      numBanheiros: $scope.optionsEspacos[0].value,
-      numCamas: $scope.optionsEspacos[0].value,
-      numMaxVisitantes: $scope.optionsEspacos[0].value
+      numQuartos: 0,
+      numBanheiros: 0,
+      numCamas: 0,
+      precoDiaria: 0,
+      oquelevar: '',
+      oquenaolevar: '',
+      listaComodidades: [],
+      listaOfertaValores: []
     };
+
+    $scope.tipoImovelOptions = [];
+    $scope.numAcomodaOptions = [];
+    $scope.comodidades = [];
+    $scope.ofertaValores = [];
+
+    Options.getTipoImovel()
+      .then(function (res) {
+        $scope.tipoImovelOptions = res.data;
+        $scope.anuncio.tipoImovel = $scope.tipoImovelOptions[0]._id;
+        // console.log($scope.tipoImovelOptions[0]._id);
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+    Options.getNumAcomoda()
+      .then(function (res) {
+        $scope.numAcomodaOptions = res.data;
+        $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+    Options.getComodidades()
+      .then(function (res) {
+        $scope.comodidades = res.data;
+        // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+    Options.getOfertaValores()
+      .then(function (res) {
+        $scope.ofertaValores = res.data;
+        // $scope.ofertaValores[0].checked = true;
+        // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+    $scope.checkComodidade = function (_id) {
+
+        var listaAux = []
+        var existe = false;
+
+        for (var i = 0; i < $scope.anuncio.listaComodidades.length; i++) {
+          if($scope.anuncio.listaComodidades[i]==_id){
+            existe = true;
+          }else{
+            listaAux.push($scope.anuncio.listaComodidades[i])
+          }
+        }
+
+        if(existe){
+          $scope.anuncio.listaComodidades = listaAux;
+        }else{
+          $scope.anuncio.listaComodidades.push(_id);
+        }
+    };
+
+    $scope.checkOfertaValor = function (_id) {
+
+        var listaAux = []
+        var existe = false;
+
+        for (var i = 0; i < $scope.anuncio.listaOfertaValores.length; i++) {
+          if($scope.anuncio.listaOfertaValores[i]==_id){
+            existe = true;
+          }else{
+            listaAux.push($scope.anuncio.listaOfertaValores[i])
+          }
+        }
+
+        if(existe){
+          $scope.anuncio.listaOfertaValores = listaAux;
+        }else{
+          $scope.anuncio.listaOfertaValores.push(_id);
+        }
+    };
+
 
     $scope.logradouro = {
       localCep: '',
@@ -45,13 +116,14 @@
     $scope.salvarAnuncio = function (next) {
 
       // if($scope.formGeral.$valid){
-
+        // console.log($scope.anuncio);
         Anuncio.save($scope.anuncio)
           .then(function (res) {
 
-            $scope.anuncio = res.data;
-
+            // if(anuncio._id)
             $("#tabs-anuncio a[aria-controls='"+ next + "']").tab('show');
+
+            $scope.anuncio = res.data;
 
             toaster.pop({
               type:'success',
@@ -100,7 +172,7 @@
             toaster.pop({
               type:'error',
               title: 'Anúncio',
-              body: "Erro ao salvar, tente novamente.",
+              body: "O Endereço não foi encontrado.",
               showCloseButton: true
             });
 
@@ -144,27 +216,27 @@
         $("#tabs-anuncio a[aria-controls='localizacao']").tab('show');
       });
 
-      $('#btnGravarComodidade').on('click', function(){
-        $("#tabs-anuncio a[aria-controls='ofertavalor']").tab('show');
-      });
+      // $('#btnGravarComodidade').on('click', function(){
+      //   $("#tabs-anuncio a[aria-controls='ofertavalor']").tab('show');
+      // });
 
       $('#btnVoltarComodidade').on('click', function(){
         $("#tabs-anuncio a[aria-controls='espaco']").tab('show');
       });
 
 
-      $('#btnGravarOfertaValor').on('click', function(){
-        $("#tabs-anuncio a[aria-controls='preco']").tab('show');
-      });
+      // $('#btnGravarOfertaValor').on('click', function(){
+      //   $("#tabs-anuncio a[aria-controls='preco']").tab('show');
+      // });
 
       $('#btnVoltarOfertaValor').on('click', function(){
         $("#tabs-anuncio a[aria-controls='comodidade']").tab('show');
       });
 
 
-      $('#btnGravarPreco').on('click', function(){
-        $("#tabs-anuncio a[aria-controls='fotos']").tab('show');
-      });
+      // $('#btnGravarPreco').on('click', function(){
+      //   $("#tabs-anuncio a[aria-controls='fotos']").tab('show');
+      // });
 
       $('#btnVoltarPreco').on('click', function(){
         $("#tabs-anuncio a[aria-controls='ofertavalor']").tab('show');

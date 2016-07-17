@@ -41,7 +41,7 @@ module.exports = function (app) {
               localNumero: inexact[0].streetNumber,
               localCidade: inexact[0].city,
               localEstado: inexact[0].state,
-              localPais: inexact[0].country,
+              localPais: 'Brasil',
               localInfoProximidades: req.body.localInfoProximidades,
               localComplemento: req.body.localComplemento,
               dataAtualizacao: new Date(),

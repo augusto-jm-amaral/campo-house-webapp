@@ -5,6 +5,9 @@ module.exports = function (app) {
   const Anuncios = app.db.models.Anuncios;
   const Arquivos = app.db.models.Arquivos;
   const Logradouros = app.db.models.Logradouros;
+  const TipoImovelOption = app.db.models.TipoImovelOption;
+  const NumAcomodaOption = app.db.models.NumAcomodaOption;
+  const ObjectId = app.db.Types.ObjectId;
 
   app.route(cfg.urlRaizApi + '/anuncios')
     .get(function get(req, res){
@@ -100,7 +103,9 @@ module.exports = function (app) {
           Anuncios({
             sobreTitulo: req.body.sobreTitulo,
             sobreDescricao: req.body.sobreDescricao,
-            usuario: req.user._id
+            usuario: req.user._id,
+            tipoImovel: new ObjectId(req.body.tipoImovel),
+            numAcomoda: new ObjectId(req.body.numAcomoda)
           })
           .save(function (err, anuncio) {
             if(!err){
@@ -112,6 +117,7 @@ module.exports = function (app) {
           });
 
         }else{
+          console.log(erros);
           res.sendStatus(400).end();
         }
 
@@ -141,11 +147,15 @@ module.exports = function (app) {
                    numBanheiros: req.body.numBanheiros,
                    numCamas: req.body.numCamas,
                    numMaxVisitantes: req.body.numMaxVisitantes,
-                   listaArquivos: req.body.listaArquivos,
+                   tipoImovel: new ObjectId(req.body.tipoImovel),
+                   numAcomoda: new ObjectId(req.body.numAcomoda),
+                   oquenaolevar: req.body.oquenaolevar,
+                   oquelevar: req.body.oquelevar,
+                  //  listaArquivos: req.body.listaArquivos,
+                   listaComodidades: req.body.listaComodidades,
                    listaPrecosTemporadas: req.body.listaArquivos,
                    listaComentarios: req.body.listaComentarios,
-                  //  listaComodidades: req.body.listaComodidades,
-                   anuncioOfertaValores: req.body.anuncioOfertaValores,
+                   listaOfertaValores: req.body.listaOfertaValores,
                    anuncioEspacos: req.body.anuncioOfertaValores,
                    dataAtualizacao: new Date()
                  }},
@@ -161,6 +171,7 @@ module.exports = function (app) {
               });
 
         }else{
+          console.log(erros);
           res.sendStatus(400).end();
         }
 

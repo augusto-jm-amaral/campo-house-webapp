@@ -53,22 +53,33 @@ var schema = new Schema({
     numQuartos: {
       type: Number,
       required: true,
-      default: -1
+      default: 0
     },
     numBanheiros: {
       type: Number,
       required: true,
-      default: -1
+      default: 0
     },
     numCamas:{
       type: Number,
       required: true,
-      default: -1
+      default: 0
     },
-    numMaxVisitantes:{
-      type: Number,
-      required: true,
-      default: -1
+    numAcomoda:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'NumAcomodaOption'
+    },
+    tipoImovel: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'TipoImovelOption'
+    },
+    oquelevar: {
+      type: String,
+      default: ''
+    },
+    oquenaolevar: {
+      type: String,
+      default: ''
     },
     listaArquivos: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Arquivos'}]
@@ -79,15 +90,12 @@ var schema = new Schema({
     listaComentarios: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comentarios'}]
     },
-    listaAnuncioComodidades: {
-      type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioComodidades'}]
+    listaComodidades: {
+      type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comodidades'}]
     },
-    anuncioOfertaValores: {
+    listaOfertaValores: {
       type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioOfertaValores'}]
     }
-    // anuncioEspacos: {
-    //   type: [{type: mongoose.Schema.Types.ObjectId, ref: 'AnuncioEspacos'}]
-    // }
 });
 
 return mongoose.model('Anuncios', schema);
