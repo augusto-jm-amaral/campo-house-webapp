@@ -23,7 +23,8 @@ body {
 }
 
 .form-control-focus:focus {
-	border-color: white;
+	border-color: none;
+	box-shadow: none;
 }
 
 @media (max-width: 767px) {
