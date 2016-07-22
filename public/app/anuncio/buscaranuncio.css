@@ -1,20 +1,20 @@
 .div-pesquisa {
     background-color: #edefed;
     padding: 20px 10px;
-    position: fixed;
-    top: 50px;
     width: 100%;
-    z-index: 9999;
+    z-index: 99;
+}
+
+.navbar {
+  margin-bottom: 0 !important;
 }
 
 .form-pesquisa {
   margin-bottom: 0;
+  padding: 0 15px;
 }
 
 .container-anuncios {
-    margin-top: 135px;
-    /*background-color: #f8f8f8;
-    border-radius: 4px;*/
     padding-bottom: 20px;
 }
 
@@ -24,7 +24,11 @@
 }
 
 .div-anuncio {
-  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.info {
+  padding: 15px 0;
 }
 
 .detalhe-foto-anuncio {

@@ -9,13 +9,9 @@ body {
 }
 
 .breadcrumb-custom {
-    /*background-color: #a6a08d;*/
-		background-color: #594f2c;
+    background-color: #594f2c;
     list-style: outside none none;
-    position: fixed;
-    top: 51px;
-    width: 100%;
-    z-index: 999;
+    /*border-radius: 0;*/
 }
 
 .breadcrumb-custom > li > span {
