@@ -22,7 +22,7 @@ module.exports = function(app) {
       logradouro: "Endereço",
       valor: "Valores"
     },
-    numMaxFotos: 9999
+    numMaxFotos: 12
 
     // populateDb: true
   };

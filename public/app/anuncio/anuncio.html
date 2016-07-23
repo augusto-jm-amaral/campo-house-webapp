@@ -52,30 +52,45 @@
 <div class="container container-anuncio">
   <div class="row row-space-bottom">
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
-        <h3 class="text-title-2">RANCHO DOURADO</h3>
+        <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
         <p>Camponesa, Lins, SP</p>
         <div class="container-icons">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
                 <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
+                <p>{{anuncio.tipoImovel.nome}}</p>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
                 <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
+                <p>Acomoda {{anuncio.numAcomoda.num}}</p>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <div ng-show="anuncio.numCamas" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
               <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+              <p>{{anuncio.numCamas}} Camas</p>
+            </div>
+            <div ng-show="anuncio.numQuartos" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+              <p>{{anuncio.numQuartos}} Quartos</p>
+            </div>
+            <div ng-show="anuncio.numBanheiros" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+              <p>{{anuncio.numBanheiros}} Banheiros</p>
             </div>
         </div>
-        <div class="container-icons">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                Rancho
+        <!-- <div class="container-icons"> -->
+            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+            </div> -->
+            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                Acomoda 15
+            <div ng-show="anuncio.numCamas"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              {{anuncio.numCamas}} Camas
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-              10 Camas
-            </div>
-        </div>
+            <div ng-show="anuncio.numQuartos"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              {{anuncio.numQuartos}} Quartos
+            </div> -->
+            <!-- <div ng-show="anuncio.numBanheiros"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              {{anuncio.numBanheiros}} Quartos
+            </div> -->
+        <!-- </div> -->
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
           <div class="panel panel-default">
@@ -104,7 +119,8 @@
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
           <h4 class="text-title-2">Sobre o imóvel</h4>
           <p class="text-justify text-justify-padding-right">
-            Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados.
+            {{anuncio.sobreDescricao}}
+            <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
           </p>
       </div>
   </div>

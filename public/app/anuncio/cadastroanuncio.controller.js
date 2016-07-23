@@ -196,7 +196,7 @@
 
 
         if($scope.anuncio.listaArquivos.length < 12){
-          // $scope.files.push(file);
+
           if(!file.result){
 
             file.up = true;
@@ -211,8 +211,7 @@
               $timeout(function () {
                 file.result = response.data;
                 $scope.anuncio = response.data;
-                // file.success = true;
-                // file.up = false;
+
               });
 
             }, function (response) { // error
@@ -225,8 +224,7 @@
                   body: "Erro ao carregar a imagem.",
                   showCloseButton: true
                 });
-                // file.err = true;
-                // file.up = false;
+
               });
 
             }, function (evt) { // upload

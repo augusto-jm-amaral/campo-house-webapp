@@ -27,12 +27,13 @@ module.exports = function (app) {
       if(!erros){
         Anuncios.findOne({_id: req.params._id, status: 1})
         .populate([
+          {path: 'usuario', model: 'Usuarios', select: {nome: 1, sobreNome: 1, telefone: 1}},
+          {path: 'numAcomoda', model: 'NumAcomodaOption'},
+          {path: 'tipoImovel', model: 'TipoImovelOption'},
           {path: 'listaArquivos', model: 'Arquivos'},
-          {path: 'listaPrecosTemporadas', model: 'PrecosTemporadas'},
           {path: 'listaComentarios', model: 'Comentarios'},
-          {path: 'AnuncioComodidades', model: 'listaComodidades'},
-          {path: 'anuncioOfertaValores', model: 'AnuncioOfertaValores'},
-          {path: 'anuncioEspacos', model: 'AnuncioEspacos'}
+          {path: 'listaComodidades', model: 'Comodidades'},
+          {path: 'listaOfertaValores', model: 'AnuncioOfertaValores'}
         ])
         .then(function (anuncio) {
           if(anuncio){

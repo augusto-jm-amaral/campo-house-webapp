@@ -33,7 +33,7 @@
           getUrl += query;
        }
 
-       return $http.get(url);
+       return $http.get(getUrl);
      };
 
      function saveAnuncio(anuncio) {
