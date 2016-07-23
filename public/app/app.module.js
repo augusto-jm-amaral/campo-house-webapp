@@ -1,6 +1,6 @@
 (function () {
   'use strict';
 
-  angular.module('campohouse', ['ngRoute', 'ngAnimate', 'ngTouch','ui.bootstrap', 'toaster']);
+  angular.module('campohouse', ['ngRoute', 'ngAnimate', 'ngTouch', 'ngFileUpload','ui.bootstrap', 'toaster']);
 
 })();

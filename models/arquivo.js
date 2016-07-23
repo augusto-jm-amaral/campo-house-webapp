@@ -28,5 +28,5 @@ var schema = new Schema({
     }
 });
 
-return mongoose.model('Comentario', schema);
+return mongoose.model('Arquivos', schema);
 };

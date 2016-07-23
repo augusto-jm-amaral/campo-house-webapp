@@ -7,7 +7,7 @@ module.exports = function (app) {
   const Anuncios = app.db.models.Anuncios;
   const Arquivos = app.db.models.Arquivos;
 
-  var limits = { fileSize: 1024 * 5} // 4 mb
+  // var limits = { fileSize: 1024 * 5} // 4 mb
 
   var storage = multer.diskStorage({
     fileFilter: function (req, file, cb) {
@@ -15,6 +15,8 @@ module.exports = function (app) {
       req.checkParams('_id','').notEmpty().isMongoId();
 
       var erros = req.validationErrors();
+
+      console.log(erros);
 
       if(!erros){
         cb(null, true);
@@ -24,7 +26,7 @@ module.exports = function (app) {
     },
     destination: function (req, file, cb) {
 
-        cb(null, '/imganuncio');
+        cb(null, './public/imganuncio');
 
     },
     filename: function (req, file, cb) {
@@ -33,9 +35,16 @@ module.exports = function (app) {
     }
   });
 
-  var upload = multer({ storage: storage, limits: limits }).single('file');
+  var upload = multer({
+     storage: storage,
+     limits: {
+       fields: 1,
+       files: 1,
+       fileSize: 512000
+     }
+   }).single('file');
 
-  app.route(cfg.urlRaizApi + '/anuncios/:_id/imagens/')
+  app.route(cfg.urlRaizApi + '/anuncios/:_id/imagens')
     .all(app.auth.authenticate('usuario'))
     .post( upload ,function (req, res) {
 
@@ -47,7 +56,7 @@ module.exports = function (app) {
 
             new Arquivos({
               nome: req.file.originalname,
-              url: '/imganuncio/' + req.file.filename,
+              path: '/imganuncio/' + req.file.filename,
               formato: req.file.mimetype,
               anuncio: req.params._id,
               usuario: req.user._id
@@ -55,18 +64,28 @@ module.exports = function (app) {
             .save()
             .then(function (img) {
 
+              console.log(req.params._id);
+
               Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
                 .then(function (anuncio) {
                   if(anuncio){
                     anuncio.listaArquivos.push(img);
                     anuncio.save()
                       .then(function (anuncio) {
-                        res.status(200).json(anuncio);
+                        Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
+                          .populate('listaArquivos')
+                          .then(function (anuncio) {
+                            res.status(200).json(anuncio).end();;
+                          }).catch(function (err) {
+                            console.log(err);
+                            res.sendStatus(412).end();
+                          });
                       }).catch(function (err) {
                         console.log(err);
                         res.sendStatus(412).end();
                       })
                   }else{
+                    console.log(anuncio);
                     res.sendStatus(412).end();
                   }
                 })
@@ -75,7 +94,7 @@ module.exports = function (app) {
                   res.sendStatus(412).end();
                 });
 
-              res.status(200).json({_id: img._id}).end();
+              // res.status(200).json({}).end();
             }).catch(function (err) {
               console.log(err);
               res.sendStatus(412).end();
@@ -107,11 +126,31 @@ module.exports = function (app) {
         .then(function (imagem) {
 
           if(imagem){
-            fs.unlink(imagem.path, function (err) {
+            fs.unlink('./public'+imagem.path, function (err) {
               if(err){
+                console.log(err);
                 res.sendStatus(500).end();
               }else{
-                res.sendStatus(200).end();
+                Arquivos.remove({_id: req.params._idimagem, anuncio: req.params._idanuncio, usuario: req.user._id}, function(err){
+                  if(err){
+                    console.log(err);
+                    res.sendStatus(412).end();
+                  }else{
+
+                    Anuncios.update(
+                      {_id: req.params._idanuncio, usuario: req.user._id},
+                      { $pull: { listaArquivos: req.params._idimagem}},
+                      function (err) {
+                        if(err){
+                          console.log(err);
+                          res.sendStatus(412).end();
+                        }else{
+                          res.sendStatus(200).end();
+                        }
+                      }
+                    );
+                  }
+                });
               }
             });
 

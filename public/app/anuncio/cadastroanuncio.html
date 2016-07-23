@@ -391,8 +391,24 @@
 						</div>
 			    		<div class="form-group">
 			    			<div class="col-lg-2 col-md-2 col-sm-4 col-md-12">
-			    				<input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png">
+                  <button
+                  class="btn btn-primary"
+                  ngf-select="uploadFiles($files, $invalidFiles)"
+                  ngf-multiple="true"
+                  accept="image/*"
+                  ngf-max-height="1080"
+                  ngf-max-width="1920"
+                  ngf-max-size="4MB"
+                  >Adicionar</button>
+			    				<!-- <input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png"> -->
 			    			</div>
+                <div class="col-xs-12" style="margin-top: 2em;">
+                  <div class="col-xs-3" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
+                    <i ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%;"></i>
+                    <img class="img-responsive img-thumbnail" ng-src="{{file.path}}" style="height: 12em; display: block; margin-left: auto; margin-right: auto;">
+                  </div>
+                </div>
+                <!-- <p>{{$scope.files}}</p> -->
 			    		</div>
 			    		<div class="form-group" id="fotos-selecionadas">
 						<!-- 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div>

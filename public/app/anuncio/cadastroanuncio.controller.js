@@ -3,10 +3,10 @@
   angular.module('campohouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
 
   // CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster'];
-  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options'];
+  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options', 'Upload', '$timeout', 'Config', '$http'];
 
   // function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster) {
-  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options) {
+  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http) {
 
     $scope.anuncio = {
       sobreTitulo: '',
@@ -18,13 +18,16 @@
       oquelevar: '',
       oquenaolevar: '',
       listaComodidades: [],
-      listaOfertaValores: []
+      listaOfertaValores: [],
+      listaArquivos: []
     };
 
     $scope.tipoImovelOptions = [];
     $scope.numAcomodaOptions = [];
     $scope.comodidades = [];
     $scope.ofertaValores = [];
+
+    // $scope.files = [];
 
     Options.getTipoImovel()
       .then(function (res) {
@@ -115,12 +118,9 @@
 
     $scope.salvarAnuncio = function (next) {
 
-      // if($scope.formGeral.$valid){
-        // console.log($scope.anuncio);
         Anuncio.save($scope.anuncio)
           .then(function (res) {
 
-            // if(anuncio._id)
             $("#tabs-anuncio a[aria-controls='"+ next + "']").tab('show');
 
             $scope.anuncio = res.data;
@@ -141,9 +141,7 @@
               showCloseButton: true
             });
 
-          })
-
-      // }
+          });
 
     };
 
@@ -191,7 +189,94 @@
 
     };
 
+    $scope.uploadFiles = function(files, errFiles) {
 
+      $scope.errFiles = errFiles;
+      angular.forEach(files, function(file) {
+
+
+        if($scope.anuncio.listaArquivos.length < 12){
+          // $scope.files.push(file);
+          if(!file.result){
+
+            file.up = true;
+
+            file.upload = Upload.upload({
+              url: Config.getUrlApi() + '/anuncios/'+$scope.anuncio._id+'/imagens',
+              data: {file: file}
+            });
+
+            file.upload.then(function (response) { // success
+
+              $timeout(function () {
+                file.result = response.data;
+                $scope.anuncio = response.data;
+                // file.success = true;
+                // file.up = false;
+              });
+
+            }, function (response) { // error
+
+              $timeout(function () {
+
+                toaster.pop({
+                  type:'error',
+                  title: 'Anúncio',
+                  body: "Erro ao carregar a imagem.",
+                  showCloseButton: true
+                });
+                // file.err = true;
+                // file.up = false;
+              });
+
+            }, function (evt) { // upload
+              file.progress = Math.min(100, parseInt(100.0 *
+                                       evt.loaded / evt.total));
+              // console.log(JSON.stringify(file));
+            });
+
+          }
+        }else{
+          toaster.pop({
+            type:'warning',
+            title: 'Anúncio',
+            body: "São permitidas 12 imagens por anúncio.",
+            showCloseButton: true
+          });
+        }
+      });
+    };
+
+    $scope.deleteImagem = function(file){
+        $http.delete(Config.getUrlApi() + '/anuncios/'+ file.anuncio +'/imagens/' + file._id)
+          .then(function (res) {
+
+            var aux = [];
+
+            for (var i = 0; i < $scope.anuncio.listaArquivos.length; i++) {
+              if($scope.anuncio.listaArquivos[i]._id != file._id){
+                aux.push($scope.anuncio.listaArquivos[i]);
+              }
+            }
+
+            $scope.anuncio.listaArquivos = aux;
+
+            toaster.pop({
+              type:'info',
+              title: 'Anúncio',
+              body: "Imagem apagada com sucesso.",
+              showCloseButton: true
+            });
+
+          }).catch(function (err) {
+            toaster.pop({
+              type:'error',
+              title: 'Anúncio',
+              body: "Erro ao deletar a imagem.",
+              showCloseButton: true
+            });
+          });
+    };
 
   	$scope.eventsWizard = function() {
 

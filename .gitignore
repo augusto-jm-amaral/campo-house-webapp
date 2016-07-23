@@ -35,6 +35,8 @@ jspm_packages
 # remove libs
 public/lib/
 
+public/imganuncio/*
+
 build/
 
 node_modules
