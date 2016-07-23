@@ -1,0 +1,25 @@
+.fotos-meus-anuncios {
+    background-position: center center;
+    background-size: cover;
+    max-height: 200px;
+    min-height: 200px;
+    position: relative;
+}
+
+.btn-editar-anuncio {
+    margin-left: -15px;
+}
+
+@media (max-width: 767px) {
+  .btn-editar-anuncio {
+      margin-left: -inherit;
+      margin-top: inherit;
+  }
+  .pull-right-custom {
+    float: none !important;
+    margin-bottom: 15px;
+  }
+  .fotos-meus-anuncios {
+    margin-bottom: 15px;
+  }
+}

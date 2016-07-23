@@ -8,10 +8,6 @@
     position: relative;
 }
 
-.carousel-custom {
-  margin-top: 70px;
-}
-
 .carousel-control-custom {
   width: 5%;
 }
@@ -55,8 +51,9 @@
 }
 
 .div-preco {
-    position: absolute;
-    right: 94px;
+    /*position: absolute;
+    right: 94px;*/
+		float: right;
 }
 
 .text-justify-padding-right {
@@ -65,6 +62,10 @@
 
 .row-space-bottom {
   padding-bottom: 20px;
+}
+
+.navbar {
+	margin-bottom: 0 !important;
 }
 
 @media (max-width: 767px) {
