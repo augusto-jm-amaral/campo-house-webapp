@@ -1,7 +1,7 @@
 .navbar-bottom-custom {
-    background-color: rgba(140, 131, 98, 1) !important;
+    /*background-color: rgba(140, 131, 98, 1) !important;
     background-color: rgba(227, 206, 129, 1) !important;
-    background-color: rgba(89, 79, 44, 1) !important;
+    background-color: rgba(89, 79, 44, 1) !important;*/
     background-position: center bottom;
     background-size: cover;
     max-height: 40px;
@@ -10,6 +10,7 @@
     border-radius: 0;
     margin-bottom: 0;
     margin-top: 15px;
+    border-top: 1px solid #8c8362;
 }
 
 .logo-rodape {
@@ -26,7 +27,7 @@
 }
 
 .texto-rodape {
-  color: white;
+  color: #8c8362;
   left: 0;
   margin: auto;
   position: absolute;

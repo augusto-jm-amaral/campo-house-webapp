@@ -8,12 +8,9 @@
       }
     </style>
 
-<div ng-include src="'app/menu/menu2.html'"/>
-<ol class="breadcrumb-custom">
-  <li><span>Anúncio</span></li>
-</ol>
+<div ng-include src="'app/menu/menu2.html'"></div>
 
-<div id="carousel-example-generic" class="carousel slide carousel-custom" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -46,126 +43,106 @@
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-    </div>
-
 </div>
-<div class="container container-anuncio">
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
-        <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
-        <p>Camponesa, Lins, SP</p>
-        <div class="container-icons">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
-                <p>{{anuncio.tipoImovel.nome}}</p>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
-                <p>Acomoda {{anuncio.numAcomoda.num}}</p>
-            </div>
-            <div ng-show="anuncio.numCamas" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-              <p>{{anuncio.numCamas}} Camas</p>
-            </div>
-            <div ng-show="anuncio.numQuartos" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-              <p>{{anuncio.numQuartos}} Quartos</p>
-            </div>
-            <div ng-show="anuncio.numBanheiros" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-              <p>{{anuncio.numBanheiros}} Banheiros</p>
-            </div>
-        </div>
-        <!-- <div class="container-icons"> -->
-            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-            </div> -->
-            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-            </div>
-            <div ng-show="anuncio.numCamas"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              {{anuncio.numCamas}} Camas
-            </div>
-            <div ng-show="anuncio.numQuartos"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              {{anuncio.numQuartos}} Quartos
-            </div> -->
-            <!-- <div ng-show="anuncio.numBanheiros"class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-              {{anuncio.numBanheiros}} Quartos
-            </div> -->
-        <!-- </div> -->
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title"><strong>R$ 500,00</strong> <span class="text-right">por dia</span></h3>
-              </div>
-              <div class="panel-body">
-                  <p class="anuncio-nome-dono">Carlos Augusto</p>
-                  <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> (18) 99132-5698</p>
-                  <form class="form-horizontal form-custom-mensagem">
-                      <div class="form-group">
-                          <label>Deixe uma mensagem:</label>
-                          <textarea class="form-control no-resize" rows="3"></textarea>
-                      </div>
-                      <div class="form-group">
-                          <button type="button" class="btn btn-success form-control">ENVIAR</button>
-                      </div>
-                  </form>
 
-              </div>
+
+
+
+<div class="container container-anuncio">
+
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title"><strong>R$ 500,00</strong> <span class="text-right">por dia</span></h3>
+
+          </div>
+          <div class="panel-body">
+              <p class="anuncio-nome-dono">Carlos Augusto</p>
+              <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> (18) 99132-5698</p>
+              <form class="form-horizontal form-custom-mensagem">
+                  <div class="form-group">
+                      <label>Deixe uma mensagem:</label>
+                      <textarea class="form-control no-resize" rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <button type="button" class="btn btn-success form-control">ENVIAR</button>
+                  </div>
+              </form>
+          </div>
+        </div>
+  </div>
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
+
+    <div class="row row-space-bottom">
+      <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
+      <p>Camponesa, Lins, SP</p>
+      <div class="container-icons">
+          <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+              <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
+              <p>{{anuncio.tipoImovel.nome}}</p>
+          </div>
+          <div ng-show="anuncio.numAcomoda.num" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+              <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
+              <p>Acomoda {{anuncio.numAcomoda.num}}</p>
+          </div>
+          <div ng-show="anuncio.numCamas" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+            <p>{{anuncio.numCamas}} Camas</p>
+          </div>
+          <div ng-show="anuncio.numQuartos" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+            <p>{{anuncio.numQuartos}} Quartos</p>
+          </div>
+          <div ng-show="anuncio.numBanheiros" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+            <p>{{anuncio.numBanheiros}} Banheiros</p>
           </div>
       </div>
-  </div>
+    </div>
 
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-          <h4 class="text-title-2">Sobre o imóvel</h4>
-          <p class="text-justify text-justify-padding-right">
-            {{anuncio.sobreDescricao}}
-            <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
-          </p>
-      </div>
-  </div>
+    <div class="row row-space-bottom">
+        <h4 class="text-title-2">Sobre o imóvel</h4>
+        <p class="text-justify text-justify-padding-right">
+          {{anuncio.sobreDescricao}}
+          <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
+        </p>
+    </div>
 
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-          <h4 class="text-title-2">Comodidades</h4>
-          <ul>
-            <li>TV a Cabo</li>
-            <li>Ar Condicionado</li>
-            <li>Cozinha</li>
-            <li>Internet</li>
-            <li>Estacionamento</li>
-            <li>Piscina</li>
-            <li>Ar Condicionado</li>
-            <li>Quadra de Esportes</li>
-          </ul>
-      </div>
-  </div>
+    <div class="row row-space-bottom">
+        <h4 class="text-title-2">Comodidades</h4>
+        <ul>
+          <li>TV a Cabo</li>
+          <li>Ar Condicionado</li>
+          <li>Cozinha</li>
+          <li>Internet</li>
+          <li>Estacionamento</li>
+          <li>Piscina</li>
+          <li>Ar Condicionado</li>
+          <li>Quadra de Esportes</li>
+        </ul>
+    </div>
 
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-          <h4 class="text-title-2">O que levar</h4>
-          <p class="text-justify text-justify-padding-right">
-              Levar roupas de cama.
-          </p>
-      </div>
-  </div>
+    <div class="row row-space-bottom">
+        <h4 class="text-title-2">O que levar</h4>
+        <p class="text-justify text-justify-padding-right">
+            Levar roupas de cama.
+        </p>
+    </div>
 
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-          <h4 class="text-title-2">O que NÃO levar</h4>
-          <p class="text-justify text-justify-padding-right">
-              Não é permitida a entrada de animais de estimação.
-          </p>
-      </div>
-  </div>
+    <div class="row row-space-bottom">
+      <h4 class="text-title-2">O que NÃO levar</h4>
+      <p class="text-justify text-justify-padding-right">
+          Não é permitida a entrada de animais de estimação.
+      </p>
+    </div>
 
-  <div class="row row-space-bottom">
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-          <h4 class="text-title-2">Oferta de Valor</h4>
-          <p class="text-justify text-justify-padding-right">
-              Este imóvel é perfeito para pescarias.
-          </p>
-      </div>
+    <div class="row row-space-bottom">
+        <h4 class="text-title-2">Oferta de Valor</h4>
+        <p class="text-justify text-justify-padding-right">
+            Este imóvel é perfeito para pescarias.
+        </p>
+    </div>
+
   </div>
 
   <div class="row row-space-bottom">
