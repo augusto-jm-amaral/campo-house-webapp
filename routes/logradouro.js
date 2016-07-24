@@ -73,7 +73,31 @@ module.exports = function (app) {
     // app.route(cfg.urlRaizApi + '/anuncios/:_idanuncio/logradouros')
     // .all(app.auth.authenticate('usuario'))
     .get(function (req, res) {
-      //implementar
+
+      req.checkParams('_id','').notEmpty().isMongoId();
+
+      var erros = req.validationErrors();
+
+      if(!erros){
+
+        Logradouros.findOne({anuncio: req.params._id})
+          .then(function (anuncio) {
+            if(anuncio){
+              res.status(200).json(anuncio).end();
+            }else{
+              // res.sendStatus(404).end();
+              res.sendStatus(412).end();
+            }
+          }).catch(function (err) {
+            console.log(err);
+            res.sendStatus(412).end();
+          });
+
+      }else{
+        console.log(erros);
+        res.sendStatus(400).end();
+      }
+
     })
     .put(function (req, res) {
 
