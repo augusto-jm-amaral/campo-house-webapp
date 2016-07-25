@@ -25,15 +25,15 @@
 
        var getUrl = url;
 
-       if(_id){
-         getUrl += '/' + _id + '/logradouros';
+       if(_idanuncio){
+         getUrl += '/' + _idanuncio + '/logradouros';
        }
 
        if(query){
           getUrl += query;
        }
 
-       return $http.get(url);
+       return $http.get(getUrl);
      };
 
      function saveLogradouro(_idanuncio, logradouro) {
