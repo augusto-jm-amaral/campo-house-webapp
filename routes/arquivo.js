@@ -40,7 +40,7 @@ module.exports = function (app) {
      limits: {
        fields: 1,
        files: 1,
-       fileSize: 512000
+       fileSize: 51200000000
      }
    }).single('file');
 
