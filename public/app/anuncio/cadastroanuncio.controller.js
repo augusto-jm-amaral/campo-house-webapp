@@ -3,10 +3,10 @@
   angular.module('campohouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
 
   // CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster'];
-  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options', 'Upload', '$timeout', 'Config', '$http'];
+  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options', 'Upload', '$timeout', 'Config', '$http','$routeParams'];
 
   // function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster) {
-  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http) {
+  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http, $routeParams) {
 
     $scope.anuncio = {
       sobreTitulo: '',
@@ -27,6 +27,120 @@
     $scope.comodidades = [];
     $scope.ofertaValores = [];
 
+    $scope.logradouro = {
+      localCep: '',
+      localRua: '',
+      localNumero: '',
+      localBairro: '',
+      localCidade: '',
+      localEstado: 'São Paulo',
+      localPais: 'Brazil',
+      localInfoProximidades: '',
+      localComplemento: ''
+    };
+
+    if($routeParams._id){
+
+      Anuncio.getEdit($routeParams._id,'')
+      .then(function (res) {
+        $scope.anuncio = res.data;
+
+        Options.getComodidades()
+          .then(function (res) {
+            $scope.comodidades = res.data;
+
+            if($scope.anuncio.listaComodidades.length){
+
+              for (var i = 0; i < $scope.anuncio.listaComodidades.length; i++) {
+                for (var j = 0; j < $scope.comodidades.length; j++) {
+                  if($scope.anuncio.listaComodidades[i] == $scope.comodidades[j]._id){
+                    $scope.comodidades[j].checked = true;
+                  }
+                }
+              }
+
+            }
+            // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+          }).catch(function (err) {
+            console.log(err);
+          });
+
+          Options.getOfertaValores()
+            .then(function (res) {
+              $scope.ofertaValores = res.data;
+
+              if($scope.anuncio.listaOfertaValores.length){
+
+                for (var i = 0; i < $scope.anuncio.listaOfertaValores.length; i++) {
+                  for (var j = 0; j < $scope.ofertaValores.length; j++) {
+                    if($scope.anuncio.listaOfertaValores[i] == $scope.ofertaValores[j]._id){
+                      $scope.ofertaValores[j].checked = true;
+                    }
+                  }
+                }
+
+              }
+
+            }).catch(function (err) {
+              console.log(err);
+            });
+
+      }).catch(function (err) {
+        toaster.pop({
+          type:'error',
+          title: 'Anúncio',
+          body: "Erro ao carregar o anúncio, tente novamente.",
+          showCloseButton: true
+        });
+      });
+
+      Logradouro.get($routeParams._id,'')
+        .then(function (res) {
+          if(res.data)
+            $scope.logradouro = res.data;
+        }).catch(function (err) {
+          // toaster.pop({
+          //   type:'error',
+          //   title: 'Anúncio',
+          //   body: "Erro ao carregar o endereço, tente novamente.",
+          //   showCloseButton: true
+          // });
+
+        });
+
+    }else{
+
+      Options.getComodidades()
+        .then(function (res) {
+          $scope.comodidades = res.data;
+
+          if($scope.anuncio.listaComodidades.length){
+
+            for (var i = 0; i < $scope.anuncio.listaComodidades.length; i++) {
+              for (var j = 0; j < $scope.comodidades.length; j++) {
+                if($scope.anuncio.listaComodidades[i] == $scope.comodidades[j]._id){
+                  $scope.comodidades[j].checked = true;
+                }
+              }
+            }
+
+          }
+          // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+        }).catch(function (err) {
+          console.log(err);
+        });
+
+      Options.getOfertaValores()
+        .then(function (res) {
+          $scope.ofertaValores = res.data;
+          // $scope.ofertaValores[0].checked = true;
+          // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
+        }).catch(function (err) {
+          console.log(err);
+        });
+
+    }
+
     // $scope.files = [];
 
     Options.getTipoImovel()
@@ -42,23 +156,6 @@
       .then(function (res) {
         $scope.numAcomodaOptions = res.data;
         $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
-      }).catch(function (err) {
-        console.log(err);
-      });
-
-    Options.getComodidades()
-      .then(function (res) {
-        $scope.comodidades = res.data;
-        // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
-      }).catch(function (err) {
-        console.log(err);
-      });
-
-    Options.getOfertaValores()
-      .then(function (res) {
-        $scope.ofertaValores = res.data;
-        // $scope.ofertaValores[0].checked = true;
-        // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
       }).catch(function (err) {
         console.log(err);
       });
@@ -104,17 +201,6 @@
     };
 
 
-    $scope.logradouro = {
-      localCep: '',
-      localRua: '',
-      localNumero: '',
-      localBairro: '',
-      localCidade: '',
-      localEstado: 'São Paulo',
-      localPais: 'Brasil',
-      localInfoProximidades: '',
-      localComplemento: ''
-    };
 
     $scope.salvarAnuncio = function (next) {
 

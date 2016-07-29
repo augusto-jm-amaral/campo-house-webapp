@@ -17,6 +17,29 @@ module.exports = function (app) {
 
       });
 
+  app.route(cfg.urlRaizApi + '/anuncios/meusanuncios')
+    .all(app.auth.authenticate('usuario'))
+    .get(function get(req, res){
+
+        Anuncios.find({usuario: req.user._id})
+          .populate([
+            {path: 'usuario', model: 'Usuarios', select: {nome: 1, sobreNome: 1, telefone: 1}},
+            {path: 'numAcomoda', model: 'NumAcomodaOption'},
+            {path: 'tipoImovel', model: 'TipoImovelOption'},
+            {path: 'listaArquivos', model: 'Arquivos'},
+            {path: 'listaComentarios', model: 'Comentarios'},
+            {path: 'listaComodidades', model: 'Comodidades'},
+            {path: 'listaOfertaValores', model: 'AnuncioOfertaValores'}
+          ])
+          .then(function (anuncios) {
+            res.status(200).json(anuncios).end();
+          }).catch(function (err) {
+            console.log(err);
+            res.sendStatus(412).end();
+          });
+
+      });
+
   app.route(cfg.urlRaizApi + '/anuncios/:_id')
     .get(function get(req, res){
 
@@ -48,6 +71,40 @@ module.exports = function (app) {
         });
 
       }else{
+        console.log(erros);
+        res.sendStatus(400).end();
+      }
+
+    });
+
+  app.route(cfg.urlRaizApi + '/anuncios/:_id/edit')
+    .all(app.auth.authenticate('usuario'))
+    .get(function get(req, res){
+
+      req.checkParams('_id','').notEmpty().isMongoId();
+
+      var erros = req.validationErrors();
+
+      if(!erros){
+        Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
+        .populate([
+          {path: 'usuario', model: 'Usuarios', select: {nome: 1, sobreNome: 1, telefone: 1}},
+          {path: 'listaArquivos', model: 'Arquivos'}
+        ])
+        .then(function (anuncio) {
+          if(anuncio){
+            res.status(200).json(anuncio).end();
+          }else{
+            res.sendStatus(404).end();
+          }
+        })
+        .catch(function (err) {
+          console.log(err);
+          res.sendStatus(412).end();
+        });
+
+      }else{
+        console.log(erros);
         res.sendStatus(400).end();
       }
 
@@ -63,7 +120,7 @@ module.exports = function (app) {
 
       if(!erros){
 
-        Anuncios.findOne({_id: req.user._id})
+        Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
         .then(function (anuncio) {
           if(anuncio){
 
@@ -165,9 +222,16 @@ module.exports = function (app) {
                     console.log(err);
                     res.sendStatus(412);
                   }else{
-                    Anuncios.findOne({_id: req.params._id, usuario: req.user._id}, function (err, anuncio) {
-                      res.status(200).json(anuncio);
-                    });
+                    Anuncios.findOne({_id: req.params._id, usuario: req.user._id})
+                      .populate([
+                        {path: 'usuario', model: 'Usuarios', select: {nome: 1, sobreNome: 1, telefone: 1}},
+                        {path: 'listaArquivos', model: 'Arquivos'}
+                      ])
+                      .then(function (anuncio) {
+                        res.status(200).json(anuncio).end();
+                      }).catch(function (err) {
+                        res.sendStatus(412).end();
+                      });
                   }
               });
 

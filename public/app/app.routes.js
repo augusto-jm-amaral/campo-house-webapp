@@ -30,13 +30,13 @@
           loginRequerido: false
         }
       })
-      .when('/cadastrousuario', {
-        templateUrl: 'app/usuario/cadastrousuario.html',
-        controller: 'CadastroUsuarioCtrl',
-        access: {
-          loginRequerido: false
-        }
-      })
+      // .when('/cadastrousuario', {
+      //   templateUrl: 'app/usuario/cadastrousuario.html',
+      //   controller: 'CadastroUsuarioCtrl',
+      //   access: {
+      //     loginRequerido: false
+      //   }
+      // })
       .when('/buscaranuncio', {
         templateUrl: 'app/anuncio/buscaranuncio.html',
         controller: 'BuscarAnuncioCtrl',
@@ -52,6 +52,13 @@
         }
       })
       .when('/cadastroanuncio', {
+        templateUrl: 'app/anuncio/cadastroanuncio.html',
+        controller: 'CadastroAnuncioCtrl',
+        access: {
+          loginRequerido: true
+        }
+      })
+      .when('/cadastroanuncio/:_id', {
         templateUrl: 'app/anuncio/cadastroanuncio.html',
         controller: 'CadastroAnuncioCtrl',
         access: {

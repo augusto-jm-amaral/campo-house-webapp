@@ -14,7 +14,9 @@
       var service = {
         get: getAnuncio,
         save: saveAnuncio,
-        delete: deleteAnuncio
+        delete: deleteAnuncio,
+        getMeusAnuncio: getMeusAnuncio,
+        getEdit: getAnuncioEdit
       };
 
      return service;
@@ -32,6 +34,20 @@
        if(query){
           getUrl += query;
        }
+
+       return $http.get(getUrl);
+     };
+
+     function getMeusAnuncio() {
+
+       var getUrl = url;
+
+       return $http.get(getUrl + '/meusanuncios');
+     };
+
+     function getAnuncioEdit(_id) {
+
+       var getUrl = url + '/' + _id + '/edit';
 
        return $http.get(getUrl);
      };
