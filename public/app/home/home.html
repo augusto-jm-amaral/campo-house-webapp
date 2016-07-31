@@ -10,9 +10,9 @@
 			<form class="form-horizontal">
 				<div class="col-lg-6 collg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
     				<div class="input-group">
-      					<input type="text" class="form-control form-control-focus input-lg" placeholder="Busque pela cidade que deseja">
+      					<input type="text" ng-model="nomeCidade" class="form-control form-control-focus input-lg" placeholder="Busque pela cidade que deseja">
       					<span class="input-group-btn">
-        					<button class="btn btn-lg btn-success" type="button">Buscar</button>
+        					<a ng-href="#/buscaranuncio/{{nomeCidade}}" class="btn btn-lg btn-success" type="button">Buscar</a>
   						</span>
     				</div>
   				</div>

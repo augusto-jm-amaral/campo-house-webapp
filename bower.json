@@ -31,6 +31,7 @@
     "font-awesome": "fontawesome#^4.6.3",
     "AngularJS-Toaster": "angularjs-toaster#^2.0.0",
     "angular-ui-mask": "^1.8.6",
-    "angular-i18n": "^1.5.8"
+    "angular-i18n": "^1.5.8",
+    "angular-input-masks": "^2.4.0"
   }
 }

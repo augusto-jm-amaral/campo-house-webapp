@@ -44,6 +44,13 @@
           loginRequerido: false
         }
       })
+      .when('/buscaranuncio/:_nomeCidade', {
+        templateUrl: 'app/anuncio/buscaranuncio.html',
+        controller: 'BuscarAnuncioCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
       .when('/anuncio/:_id', {
         templateUrl: 'app/anuncio/anuncio.html',
         controller: 'AnuncioCtrl',

@@ -12,8 +12,107 @@ module.exports = function (app) {
   app.route(cfg.urlRaizApi + '/anuncios')
     .get(function get(req, res){
 
-        // A Implementar
-        res.sendStatus(200).end();
+        var limite = 9;
+        var pagina = req.query.pagina;
+        var skip = ((pagina - 1)*limite);
+
+        var busca = {};
+        var buscaEndereco = {};
+        var buscaNumAcomoda = {};
+
+        if(req.query.cidade){
+          eval('buscaEndereco.localCidade = /' + req.query.cidade + '/i;');
+          // buscaEndereco.localCidade = req.query.cidade;
+        }
+
+        if(req.query.numQuartos){
+          busca.numQuartos = {$gte: req.query.numQuartos};
+        }
+        if(req.query.valor){
+          busca.precoDiaria = {$lte: req.query.valor};
+        }
+        if(req.query.hospedes){
+          buscaNumAcomoda = {$or: [{num: {$gte: parseInt(req.query.hospedes)}}, {num: 99}]};
+        }
+
+        Logradouros.aggregate(
+          [
+            {$match:buscaEndereco},
+            {$group:{_id: null, id: {"$addToSet": "$anuncio"}}}
+          ]
+        ).exec(function (err, idsAnuncios) {
+
+          // console.log(idsAnuncios);
+
+          if(idsAnuncios.length){
+
+            busca._id = {$in: idsAnuncios[0].id};
+
+            console.log(buscaNumAcomoda);
+
+            NumAcomodaOption.aggregate(
+              [
+                {$match: buscaNumAcomoda},
+                {$group:{_id: null, id: {"$addToSet": "$_id"}}}
+              ]
+            ).exec(function (err, idsNumAcodoma) {
+
+              console.log(idsNumAcodoma);
+
+              if(idsNumAcodoma){
+
+                busca.numAcomoda = {$in: idsNumAcodoma[0].id};
+
+                console.log(busca);
+
+                Anuncios.count(busca)
+                .then(function (c) {
+
+                  if(c){
+
+                    Anuncios.find(busca)
+                    .sort('sobreTitulo')
+                    .skip(skip)
+                    .limit(limite)
+                    .populate(['listaArquivos', 'numAcomoda'])
+                    .then(function (anuncios) {
+                      res.status(200).json({count: c, anuncios: anuncios}).end();
+                    })
+                    .catch(function (err) {
+                      console.log(err);
+                      res.sendStatus(412).end();
+                    });
+
+                  }else{
+                    res.json({count: 0, anuncios: []});
+                  }
+
+                }).catch(function (err) {
+                  console.log(err);
+                  res.sendStatus(412).end();
+                });
+
+              }else{
+                console.log(err);
+                res.sendStatus(412).end();
+              }
+
+            });
+
+          }else{
+            res.json({count: 0, anuncios: []});
+              // console.log(err);
+              // res.sendStatus(412).end();
+          }
+
+        });
+        // }).catch(function (err) {
+        //   console.log(err);
+        //   res.sendStatus(412).end();
+        // });
+
+
+        // res.sendStatus(200).end();
 
       });
 
