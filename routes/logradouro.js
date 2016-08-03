@@ -86,6 +86,7 @@ module.exports = function (app) {
               res.status(200).json(anuncio).end();
             }else{
               // res.sendStatus(404).end();
+              // console.log('aki');
               res.sendStatus(412).end();
             }
           }).catch(function (err) {
@@ -134,8 +135,8 @@ module.exports = function (app) {
               localPais: inexact[0].country,
               localInfoProximidades: req.body.localInfoProximidades,
               dataAtualizacao: new Date(),
-              usuario: req.user._id,
-              anuncio: req.params._idanuncio,
+              // usuario: req.user._id,
+              // anuncio: req.params._id,
               loc: {type:'Point', coordinates: [inexact[0].location.lon, inexact[0].location.lat]}
             })
             .then(function (logradouro) {

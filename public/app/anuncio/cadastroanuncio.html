@@ -83,7 +83,7 @@
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">País</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localPais.$invalid && formLogradouro.localPais.$touched }">
 			    				<select name="localPais" ng-model="logradouro.localPais" class="form-control" data-model="localPais" required="required">
-			    					<option value="Brasil">Brasil</option>
+			    					<option value="Brazil">Brasil</option>
 			    				</select>
 			    				<p ng-show="formLogradouro.localPais.$invalid && formLogradouro.localPais.$touched" class="text-danger" data-for="localPais">Campo obrigatório</p>
 			    			</div>
@@ -263,7 +263,7 @@
               <div ng-repeat="comodidade in comodidades">
                 <div ng-show="comodidade.categoria.tipo=='checkbox'" class="checkbox">
                   <label>
-                    <input type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkComodidade(comodidade._id)">
+                    <input ng-checked="{{comodidade.checked}}" type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkComodidade(comodidade._id)">
                     {{comodidade.descComodidade}}
                   </label>
                 </div>
@@ -317,7 +317,7 @@
               <div ng-repeat="oferta in ofertaValores">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkOfertaValor(oferta._id)">
+                    <input ng-checked="{{oferta.checked}}" type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkOfertaValor(oferta._id)">
                     {{oferta.nome}}
                   </label>
                 </div>
@@ -403,9 +403,9 @@
 			    				<!-- <input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png"> -->
 			    			</div>
                 <div class="col-xs-12" style="margin-top: 2em;">
-                  <div class="col-xs-3" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
+                  <div class="col-xs-6 col-md-3" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
                     <i ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%;"></i>
-                    <img class="img-responsive img-thumbnail" ng-src="{{file.path}}" style="height: 12em; display: block; margin-left: auto; margin-right: auto;">
+										<img class="img-responsive img-thumbnail" ng-src="{{file.path}}" style="height: 12em; display: block; margin-left: auto; margin-right: auto;">
                   </div>
                 </div>
                 <!-- <p>{{$scope.files}}</p> -->
