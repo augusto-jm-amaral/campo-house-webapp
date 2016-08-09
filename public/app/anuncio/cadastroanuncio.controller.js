@@ -3,10 +3,10 @@
   angular.module('campohouse').controller('CadastroAnuncioCtrl', CadastroAnuncioCtrl);
 
   // CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster'];
-  CadastroAnuncioCtrl.$inject = ['$scope', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options', 'Upload', '$timeout', 'Config', '$http','$routeParams'];
+  CadastroAnuncioCtrl.$inject = ['$scope', '$timeout', '$location', 'Anuncio', 'toaster', 'Logradouro', 'Options', 'Upload', '$timeout', 'Config', '$http','$routeParams'];
 
   // function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster) {
-  function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http, $routeParams) {
+  function CadastroAnuncioCtrl($scope, $timeout, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http, $routeParams) {
 
     $scope.anuncio = {
       sobreTitulo: '',
@@ -27,17 +27,23 @@
     $scope.comodidades = [];
     $scope.ofertaValores = [];
 
-    $scope.logradouro = {
-      localCep: '',
-      localRua: '',
-      localNumero: '',
-      localBairro: '',
-      localCidade: '',
-      localEstado: 'São Paulo',
-      localPais: 'Brazil',
-      localInfoProximidades: '',
-      localComplemento: ''
-    };
+    //Localizacao
+    $scope.map = null;
+    $scope.autocomplete = null;
+    $scope.marker = null;
+    $scope.localizacao = {exibir: true};
+
+    // $scope.logradouro = {
+    //   localCep: '',
+    //   localRua: '',
+    //   localNumero: '',
+    //   localBairro: '',
+    //   localCidade: '',
+    //   localEstado: 'São Paulo',
+    //   localPais: 'Brazil',
+    //   localInfoProximidades: '',
+    //   localComplemento: ''
+    // };
 
     if($routeParams._id){
 
@@ -96,19 +102,17 @@
 
       Logradouro.get($routeParams._id,'')
         .then(function (res) {
-          if(res.data)
-            $scope.logradouro = res.data;
-        }).catch(function (err) {
-          // toaster.pop({
-          //   type:'error',
-          //   title: 'Anúncio',
-          //   body: "Erro ao carregar o endereço, tente novamente.",
-          //   showCloseButton: true
-          // });
 
+          $scope.localizacao = res.data;
+
+          // $scope.autoCompleteEndereco();
+        }).catch(function (err) {
+          $scope.localizacao = {exibir: true};
         });
 
     }else{
+
+      // $scope.autoCompleteEndereco();
 
       Options.getComodidades()
         .then(function (res) {
@@ -125,7 +129,6 @@
             }
 
           }
-          // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
         }).catch(function (err) {
           console.log(err);
         });
@@ -133,8 +136,6 @@
       Options.getOfertaValores()
         .then(function (res) {
           $scope.ofertaValores = res.data;
-          // $scope.ofertaValores[0].checked = true;
-          // $scope.anuncio.numAcomoda = $scope.numAcomodaOptions[0]._id;
         }).catch(function (err) {
           console.log(err);
         });
@@ -209,6 +210,12 @@
 
             $("#tabs-anuncio a[aria-controls='"+ next + "']").tab('show');
 
+            if(next=='localizacao'){
+              $timeout(function () {
+                $scope.autoCompleteEndereco();
+              }, 500);
+            }
+
             $scope.anuncio = res.data;
 
             toaster.pop({
@@ -228,50 +235,6 @@
             });
 
           });
-
-    };
-
-    $scope.salvarLogradouro = function () {
-
-      $("#tabs-anuncio a[aria-controls='espaco']").tab('show');
-
-      if($scope.formLogradouro.$valid && $scope.anuncio._id){
-
-
-        Logradouro.save($scope.anuncio._id ,$scope.logradouro)
-          .then(function (res) {
-
-            $scope.logradouro = res.data;
-
-
-            toaster.pop({
-              type:'success',
-              title: 'Anúncio',
-              body: "Salvo com sucesso.",
-              showCloseButton: true
-            });
-
-          }).catch(function (err) {
-
-            toaster.pop({
-              type:'error',
-              title: 'Anúncio',
-              body: "O Endereço não foi encontrado.",
-              showCloseButton: true
-            });
-
-          })
-
-      }else{
-
-        toaster.pop({
-          type:'warning',
-          title: 'Anúncio',
-          body: "Faltam dados na localização.",
-          showCloseButton: true
-        });
-
-      }
 
     };
 
@@ -362,6 +325,180 @@
           });
     };
 
+    $scope.autoCompleteEndereco = function () {
+
+
+      if($scope.localizacao.lat){
+        $scope.map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: {lat: $scope.localizacao.lat, lng: $scope.localizacao.lng},
+          zoom: 15
+        });
+
+        $('#enderecoLocal').val($scope.localizacao.endereco);
+
+      }else{
+        $scope.map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: {lat: -21.674179, lng: -49.747476},
+          zoom: 15
+        });
+      }
+      // console.log($scope.localizacao.lat);
+
+      google.maps.event.addListener($scope.map, 'click', function(event) {
+        //  placeMarker(event.latLng);
+        // console.log(event);
+        if(event.latLng){
+          $scope.marker.setPosition(event.latLng);
+          $timeout(function () {
+            // $scope.localizacao.endereco = $('#enderecoLocal').val();
+            $scope.localizacao.lat = event.latLng.lat();
+            $scope.localizacao.lng = event.latLng.lng();
+          }, 10);
+        }
+      });
+
+      $scope.autocomplete = new google.maps.places.Autocomplete(document.getElementById('enderecoLocal'));
+      $scope.autocomplete.bindTo('bounds', $scope.map);
+
+      if($scope.localizacao.lat){
+
+        $scope.marker = new google.maps.Marker({
+            map: $scope.map,
+            position: {lat: $scope.localizacao.lat, lng: $scope.localizacao.lng},
+            title: "Minha CampuHouse"
+          });
+
+          $scope.marker.setVisible(true);
+        // $scope.marker.setPosition({lat: $scope.localizacao.lat, lng: $scope.localizacao.lng});
+      }else{
+        $scope.marker = new google.maps.Marker({
+            map: $scope.map,
+            anchorPoint: new google.maps.Point(0, -29)
+          });
+
+          $scope.marker.setVisible(false);
+      }
+
+        $scope.autocomplete.addListener('place_changed', function() {
+          // infowindow.close();
+          $scope.marker.setVisible(false);
+          var place = $scope.autocomplete.getPlace();
+          if (!place.geometry) {
+            // window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+
+          $timeout(function () {
+            $scope.localizacao.endereco = $('#enderecoLocal').val();
+            $scope.localizacao.lat = place.geometry.location.lat();
+            $scope.localizacao.lng = place.geometry.location.lng();
+          }, 10);
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            $scope.map.fitBounds(place.geometry.viewport);
+          } else {
+            $scope.map.setCenter(place.geometry.location);
+            $scope.map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          $scope.marker.setIcon(/** @type {google.maps.Icon} */({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+          }));
+          $scope.marker.setPosition(place.geometry.location);
+          $scope.marker.setVisible(true);
+
+          // var address = '';
+          // if (place.address_components) {
+          //   address = [
+          //     (place.address_components[0] && place.address_components[0].short_name || ''),
+          //     (place.address_components[1] && place.address_components[1].short_name || ''),
+          //     (place.address_components[2] && place.address_components[2].short_name || '')
+          //   ].join(' ');
+          // }
+          //
+          // infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          // infowindow.open(map, marker);
+        });
+      // var autoCompleteInput = document.getElementById('enderecoTeste');
+      // var autoCompleteOpcoes = {
+      //   types: ['geocode']
+      // };
+      // autocomplete = new google.maps.places.Autocomplete(autoCompleteInput,autoCompleteOpcoes);
+      //
+      // google.maps.event.addListener(autocomplete, 'place_changed', function(e){
+      //   // console.log(e);
+      //   $timeout(function () {
+      //     var local = $('#enderecoTeste').val();
+      //     $scope.enderecoLocal = local;
+      //
+      //   }, 10);
+      // });
+
+    };
+
+    $scope.salvarLogradouro = function () {
+
+      $("#tabs-anuncio a[aria-controls='espaco']").tab('show');
+      
+      if($scope.localizacao.endereco){
+        $('#enderecoLocalLabel').removeClass('text-danger');
+        $('#enderecoLocal').parent().removeClass('has-error');
+      }else{
+        $('#enderecoLocalLabel').addClass('text-danger');
+        $('#enderecoLocal').parent().addClass('has-error');
+      }
+      if($scope.localizacao.lat){
+        $('#mapaa').removeClass('text-danger');
+      }else{
+        $('#mapaa').addClass('text-danger');
+      }
+
+
+      if($scope.localizacao.endereco && $scope.localizacao.lat && $scope.localizacao.lng){
+
+        Logradouro.save($scope.anuncio._id ,$scope.localizacao)
+          .then(function (res) {
+
+            // console.log(res.data);
+            // $scope.localizacao = res.data;
+
+
+            toaster.pop({
+              type:'success',
+              title: 'Anúncio',
+              body: "Salvo com sucesso.",
+              showCloseButton: true
+            });
+
+          }).catch(function (err) {
+
+            toaster.pop({
+              type:'error',
+              title: 'Anúncio',
+              body: "O Endereço não foi encontrado.",
+              showCloseButton: true
+            });
+
+          });
+
+      }else{
+
+        toaster.pop({
+          type:'warning',
+          title: 'Anúncio',
+          body: "Faltam dados na localização.",
+          showCloseButton: true
+        });
+
+      }
+
+    };
+    // $scope.gerarMapa();
+
   	$scope.eventsWizard = function() {
 
       // $('#btnGravarGeral').on('click', function(){
@@ -416,9 +553,9 @@
         $("#tabs-anuncio a[aria-controls='preco']").tab('show');
       });
 
+    };
 
 
-  	};
 
   	$scope.eventsWizard();
 

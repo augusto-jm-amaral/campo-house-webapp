@@ -27,22 +27,29 @@ var title = '';
 
     $scope.logradouro = {};
 
+    $scope.map = null;
+    $scope.marker = null;
+
     Logradouro.get($routeParams._id,'')
       .then(function (res) {
         $scope.logradouro = res.data;
 
         if($scope.logradouro){
 
-          lat = $scope.logradouro.loc.coordinates[1];
-          lng = $scope.logradouro.loc.coordinates[0];
+          // lat = $scope.logradouro.lat;
+          // lng = $scope.logradouro.lng;
 
-          // $scope.map = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyChWt-XyddUOqFe6LFUI-6GwhS7oGCPsDQ'
+          $scope.map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: $scope.logradouro.lat, lng: $scope.logradouro.lng},
+            zoom: 15
+          });
 
-          // var map = new google.maps.Map(document.getElementById('map'), {
-          //   center: {lat: $scope.logradouro.loc.coordinates[1], lng: $scope.logradouro.loc.coordinates[0]},
-          //   scrollwheel: false,
-          //   zoom: 14
-          // });
+          $scope.marker = new google.maps.Marker({
+              map: $scope.map,
+              position: {lat: $scope.logradouro.lat, lng: $scope.logradouro.lng},
+              title: "Minha CampuHouse"
+            });
+
         }
 
       })

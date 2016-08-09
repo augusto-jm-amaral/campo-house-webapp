@@ -4,6 +4,10 @@ var Schema = mongoose.Schema;
 module.exports = function () {
 
 var schema = new Schema({
+    endereco:{
+      type: String,
+      riquired: true
+    },
     localCep: {
       type: String
     },
@@ -47,6 +51,10 @@ var schema = new Schema({
     anuncio: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Anuncios'
+    },
+    exibir:{
+      type: Boolean,
+      riquired: true
     },
     loc: {
       // type: [Number],
