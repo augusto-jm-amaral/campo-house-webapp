@@ -11,6 +11,7 @@
     margin-bottom: 0;
     margin-top: 15px;
     border-top: 1px solid #8c8362;
+    padding-bottom: 20px;
 }
 
 .logo-rodape {
@@ -19,19 +20,21 @@
   position: relative;
 }
 
-.conteudo-rodape {
-  margin: auto;
-  left: 0;
-  right: 0;
-  position: absolute;
-}
-
 .texto-rodape {
   color: #8c8362;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  text-align: center;
   top: 11px;
+  padding: 15px
+}
+
+.row-rodape {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.font-color-rodape {
+  color: #594f2c;
+}
+
+.div-direitos {
+   margin-top: 15px;
 }

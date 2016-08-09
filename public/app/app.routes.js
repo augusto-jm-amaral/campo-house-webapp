@@ -79,6 +79,13 @@
           loginRequerido: true
         }
       })
+      .when('/quemsomos', {
+        templateUrl: 'app/sobrenos/quemsomos.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: true
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});
