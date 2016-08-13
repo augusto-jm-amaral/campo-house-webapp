@@ -45,6 +45,11 @@ var schema = new Schema({
     bloqueado: {
       type: Boolean,
       default: true
+    },
+    plano: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Planos',
+        required: true
     }
     // ,
     // anuncios: {

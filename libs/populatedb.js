@@ -8,6 +8,37 @@ module.exports = function (app) {
         const TipoImovelOption = app.db.models.TipoImovelOption;
         const NumAcomodaOption = app.db.models.NumAcomodaOption;
         const OfertaValores = app.db.models.OfertaValores;
+        const Planos = app.db.models.Planos;
+
+        Planos.find({nome: 'Gratuito'}, function(err, planos){
+          if(!planos.length){
+            new Planos({
+              nome: 'Gratuito',
+              ordem: 1,
+              showLocalizacao: false,
+              showContato: false,
+              showMensagem: true,
+              preco: 0,
+              duracao: 9999,
+              descricao: 'Plano Gratuito'
+            }).save();
+          }
+        });
+
+        Planos.find({nome: 'Vip'}, function(err, planos){
+          if(!planos.length){
+            new Planos({
+              nome: 'Vip',
+              ordem: 2,
+              showLocalizacao: true,
+              showContato: true,
+              showMensagem: true,
+              preco: 20,
+              duracao: 30,
+              descricao: 'Plano Vip'
+            }).save();
+          }
+        });
 
         Categorias.find({descCategoria: 'composta'}, function (err, categoria) {
             if(!categoria.length){

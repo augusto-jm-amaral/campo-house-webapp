@@ -5,6 +5,7 @@ module.exports = function (app) {
 
   const cfg = app.libs.config;
   const Usuarios = app.db.models.Usuarios;
+  const Planos = app.db.models.Planos;
 
   var	transporter	=	nodemailer.createTransport({
     service:	'Gmail',
@@ -105,31 +106,42 @@ module.exports = function (app) {
 
           req.body.chaveAcesso = bcrypt.hashSync(chaveHash, salt).replace(/\//g,'x').replace(/&/g,'l');
 
-          var usuario = new Usuarios(req.body);
-          usuario = usuario.encripitarSenha(usuario);
-          usuario.save(function (err) {
-            if(err){
-              res.sendStatus(412).end();
-            }else{
+          Planos.findOne({nome: 'Gratuito'})
+            .then(function (plano) {
 
-              var	mailOptions	=	{
-                from:	'CampuHouse	<appsossego@gmail.com>',
-                to:	req.body.email,
-                subject:	'Teste',
-                html:	'<b>Validar Autenticação: '+ cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso +'</b>'
-              };
+              req.body.plano = plano._id;
 
-              var	sendMail	=	transporter.sendMail(mailOptions,	function(error,	info){
-                  if(error){
-                    console.log(error);
-                  }else{
-                    console.log('Email	enviado:	'	+	info.response);
-                  }
+              var usuario = new Usuarios(req.body);
+              usuario = usuario.encripitarSenha(usuario);
+              usuario.save(function (err) {
+                if(err){
+                  console.log(err);
+                  res.sendStatus(412).end();
+                }else{
+
+                  var	mailOptions	=	{
+                    from:	'CampuHouse	<appsossego@gmail.com>',
+                    to:	req.body.email,
+                    subject:	'Teste',
+                    html:	'<b>Validar Autenticação: '+ cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso +'</b>'
+                  };
+
+                  var	sendMail	=	transporter.sendMail(mailOptions,	function(error,	info){
+                    if(error){
+                      console.log(error);
+                    }else{
+                      console.log('Email	enviado:	'	+	info.response);
+                    }
+                  });
+
+                  res.sendStatus(200).end();
+                }
               });
+            }).catch(function(err){
+              console.log(err);
+              res.sendStatus(412);
+            });
 
-              res.sendStatus(200).end();
-            }
-          });
         }else{
           console.log(erros);
           res.sendStatus(400).end();

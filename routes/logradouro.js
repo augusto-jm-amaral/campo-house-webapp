@@ -106,21 +106,24 @@ module.exports = function (app) {
 
             console.log(logradouro);
             if(logradouro){
-              res.status(200).json({
-                _id: logradouro._id,
-                endereco: logradouro.endereco,
-                complemento: logradouro.localComplemento,
-                lat: logradouro.loc.coordinates[1],
-                lng: logradouro.loc.coordinates[0],
-                exibir: logradouro.exibir
-              }).end();
+              if(logradouro.exibir){
+                res.status(200).json({
+                  _id: logradouro._id,
+                  endereco: logradouro.endereco,
+                  complemento: logradouro.localComplemento,
+                  lat: logradouro.loc.coordinates[1],
+                  lng: logradouro.loc.coordinates[0],
+                  exibir: logradouro.exibir
+                }).end();
+
+              }else{
+                res.status(200).json({exibir: true});
+              }
             }else{
-              // res.sendStatus(404).end();
-              // console.log('aki');
               res.status(200).json({exibir: true});
             }
           }).catch(function (err) {
-            console.log(1);
+            // console.log(1);
             console.log(err);
             res.sendStatus(412).end();
           });
@@ -182,7 +185,8 @@ module.exports = function (app) {
               localComplemento: (req.body.complemento ? req.body.complemento : ''),
               // usuario: req.user._id,
               // anuncio: req.params._id,
-              loc: {type:'Point', coordinates: [req.body.lng, req.body.lat]}
+              loc: {type:'Point', coordinates: [req.body.lng, req.body.lat]},
+              exibir: req.body.exibir
             })
             .then(function (n) {
               // console.log(logradouro);

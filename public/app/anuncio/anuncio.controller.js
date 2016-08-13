@@ -16,6 +16,7 @@ var title = '';
     // console.log($routeParams._id);
 
     $scope.anuncio = {};
+    $scope.showlocalizacao = true;
 
     $scope.fotoPrincipal = {};
 
@@ -36,19 +37,25 @@ var title = '';
 
         if($scope.logradouro){
 
-          // lat = $scope.logradouro.lat;
-          // lng = $scope.logradouro.lng;
+          if($scope.logradouro.lat && $scope.logradouro.lng){
 
-          $scope.map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: $scope.logradouro.lat, lng: $scope.logradouro.lng},
-            zoom: 15
-          });
+            $scope.map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: $scope.logradouro.lat, lng: $scope.logradouro.lng},
+              zoom: 15
+            });
 
-          $scope.marker = new google.maps.Marker({
+            $scope.marker = new google.maps.Marker({
               map: $scope.map,
               position: {lat: $scope.logradouro.lat, lng: $scope.logradouro.lng},
               title: "Minha CampuHouse"
             });
+
+
+          }else{
+            $scope.showlocalizacao = false;
+          }
+          // $scope.logradouro.lng;
+
 
         }
 
