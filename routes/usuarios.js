@@ -8,10 +8,15 @@ module.exports = function (app) {
   const Planos = app.db.models.Planos;
 
   var	transporter	=	nodemailer.createTransport({
-    service:	'Gmail',
+    host:	'smtp.mail.pawnmail.com',
+    port: 587,
+    // secure: false,
+    tls: {
+      rejectUnauthorized:false
+    },
     auth:	{
-      user:	'appsossego@gmail.com',
-      pass:	'Eq@@!VcA'
+      user:	'campohouse@campohouse.com.br',
+      pass:	'campohouse1'
     }
   });
 
@@ -120,9 +125,9 @@ module.exports = function (app) {
                 }else{
 
                   var	mailOptions	=	{
-                    from:	'CampuHouse	<appsossego@gmail.com>',
+                    from:	'CampuHouse	<campohouse@campohouse.com.br>',
                     to:	req.body.email,
-                    subject:	'Teste',
+                    subject:	'Bem Vindo a Campo House',
                     html:	'<b>Validar Autenticação: '+ cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso +'</b>'
                   };
 

@@ -1,11 +1,24 @@
-const addressValidator = require('address-validator');
-const Address = addressValidator.Address;
+const nodemailer = require('nodemailer');
 
 module.exports = function (app) {
 
   const cfg = app.libs.config;
   const Anuncios = app.db.models.Anuncios;
   const Mensagens = app.db.models.Mensagens;
+  const Usuarios = app.db.models.Usuarios;
+
+  var	transporter	=	nodemailer.createTransport({
+    host:	'smtp.mail.pawnmail.com',
+    port: 587,
+    // secure: false,
+    tls: {
+      rejectUnauthorized:false
+    },
+    auth:	{
+      user:	'campohouse@campohouse.com.br',
+      pass:	'campohouse1'
+    }
+  });
 
   app.route(cfg.urlRaizApi + '/anuncios/:_id/mensagem')
     .all(app.auth.authenticate('usuario'))
@@ -28,7 +41,39 @@ module.exports = function (app) {
                 de: req.user._id,
                 para: anuncio.usuario,
                 anuncio: anuncio._id
-              }).save(function (err) {});
+              }).save(function (err) {
+
+                Usuarios.findOne({_id: anuncio.usuario})
+                  .then(function (usuario) {
+
+                    if(usuario){
+
+                      console.log(usuario.email);
+
+                      var	mailOptions	=	{
+                        from:	'CampuHouse	<campohouse@campohouse.com.br>',
+                        to:	usuario.email,
+                        subject:	'Teste Mensagem',
+                        html:	'<b>Você tem uma mensagem</b>'
+                      };
+
+                      var	sendMail	=	transporter.sendMail(mailOptions,	function(error,	info){
+                        if(error){
+                          console.log(error);
+                        }else{
+                          console.log('Email	enviado:	'	+	info.response);
+                        }
+                      });
+                    }else{
+                      res.sendStatus(200).end();
+                    }
+
+                  }).catch(function (err) {
+                    console.log(err);
+                    res.sendStatus(412).end();
+                  })
+
+              });
 
               res.sendStatus(200).end();
             }else{
