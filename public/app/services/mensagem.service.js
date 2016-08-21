@@ -12,7 +12,7 @@
       var url = Config.getUrlApi() + '/anuncios';
 
       var service = {
-        // get: getAnuncio,
+        get: getAnuncio,
         save: saveMensagem
         // delete: deleteAnuncio
       };
@@ -21,20 +21,11 @@
 
      ///////////////
 
-    //  function getAnuncio(_id, query) {
-    //
-    //    var getUrl = url;
-    //
-    //    if(_id){
-    //      getUrl += '/' + _id;
-    //    }
-    //
-    //    if(query){
-    //       getUrl += query;
-    //    }
-    //
-    //    return $http.get(getUrl);
-    //  };
+     function getAnuncio(_id, query) {
+
+       var getUrl = Config.getUrlApi() + '/mensagens';    
+       return $http.get(getUrl);
+     };
 
      function saveMensagem(mensagem) {
 

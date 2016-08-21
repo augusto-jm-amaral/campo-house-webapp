@@ -96,13 +96,61 @@ module.exports = function (app) {
       Mensagens.aggregate(
         [
           {$match: {para: req.user._id}},
-          {$group:{_id: null, id: {"$addToSet": "$_id"}, nummsg: {$sum: "$see"}}},
-          {$sort: {see: 1}}
+          {$sort: {see: -1, data: 1}},
+          // {$group:{_id: null, id: {"$addToSet": "$_id"}, nummsg: {$sum: "$see"}}},
+          {$group:{_id: '$de', nummsg: {$sum: "$see"}, lastmessage: {$last: '$_id'}}},
+          // {$sort: {see: 1}}
         ]
       ).exec(function (err, msgs) {
 
         if(!err){
-          res.status(200).json(msgs).end();
+
+          var aux = [];
+
+          for (var i = 0; i < msgs.length; i++) {
+            aux.push(msgs[i].lastmessage);
+          }
+
+          if(aux.length){
+
+            Mensagens.find({_id: {$in: aux}})
+            .populate('de', 'nome sobreNome')
+            .populate({path:'anuncio', populate:{path: 'listaArquivos', model: 'Arquivos'}})
+            // .populate('anuncio.listaArquivos')
+            .then(function (mensagens) {
+
+              //Melhorar depois
+              var mensagens = JSON.parse(JSON.stringify(mensagens));
+
+              for (var i = 0; i < mensagens.length; i++) {
+                for (var j = 0; j < msgs.length; j++) {
+                  if(('' + mensagens[i]._id) == (msgs[j].lastmessage+'')){
+                    // console.log(1);
+                    // console.log(mensagens[i].nummsg);
+                    // console.log(msgs[i].nummsg);
+                    mensagens[i].nummsg = msgs[j].nummsg;
+
+                    // msgs[j].nummsg;
+                    // console.log(mensagens);
+                  }
+                }
+              }
+
+              // console.log(mensagens[0].nummsg);
+
+              res.status(200).json(mensagens).end();
+
+            }).catch(function (err) {
+              console.log(err);
+              res.sendStatus(412).end();
+            })
+
+          }else{
+
+
+            res.status(200).json([]).end();
+          }
+
         }else{
           res.sendStatus(412).end();
         }

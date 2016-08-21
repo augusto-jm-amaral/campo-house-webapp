@@ -86,6 +86,13 @@
           loginRequerido: true
         }
       })
+      .when('/caixademensagens', {
+        templateUrl: 'app/mensagem/mensagens.html',
+        controller: 'MensagensCtrl',
+        access: {
+          loginRequerido: true
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});
