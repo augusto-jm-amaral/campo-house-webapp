@@ -87,9 +87,27 @@ module.exports = function (app) {
         res.sendStatus(400).end();
       }
 
-    })
+    });
+
+    app.route(cfg.urlRaizApi + '/mensagens')
+    .all(app.auth.authenticate('usuario'))
     .get(function (req, res) {
-      //implementar
+
+      Mensagens.aggregate(
+        [
+          {$match: {para: req.user._id}},
+          {$group:{_id: null, id: {"$addToSet": "$_id"}, nummsg: {$sum: "$see"}}},
+          {$sort: {see: 1}}
+        ]
+      ).exec(function (err, msgs) {
+
+        if(!err){
+          res.status(200).json(msgs).end();
+        }else{
+          res.sendStatus(412).end();
+        }
+      });
+
     });
 
 };

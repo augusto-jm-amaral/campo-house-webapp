@@ -23,6 +23,11 @@ var schema = new Schema({
       ref: 'Anuncios',
       required: true
     },
+    see: {
+      type: Number,
+      required:true,
+      default: 1
+    },
     data:{
       type: Date,
       default: new Date(),
