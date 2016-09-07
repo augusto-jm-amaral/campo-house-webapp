@@ -37,6 +37,13 @@
       //     loginRequerido: false
       //   }
       // })
+      .when('/home2', {
+        templateUrl: 'app/home/home2.html',
+        controller: '',
+        access: {
+          loginRequerido: false
+        }
+      })
       .when('/buscaranuncio', {
         templateUrl: 'app/anuncio/buscaranuncio.html',
         controller: 'BuscarAnuncioCtrl',
@@ -83,7 +90,7 @@
         templateUrl: 'app/sobrenos/quemsomos.html',
         // controller: 'QCtrl',
         access: {
-          loginRequerido: true
+          loginRequerido: false
         }
       })
       .when('/caixademensagens', {
@@ -91,6 +98,34 @@
         controller: 'MensagensCtrl',
         access: {
           loginRequerido: true
+        }
+      })
+      .when('/privacidade', {
+        templateUrl: 'app/sobrenos/politicaprivacidade.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
+      .when('/termos', {
+        templateUrl: 'app/sobrenos/termos.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
+      .when('/comofunciona', {
+        templateUrl: 'app/sobrenos/comofunciona.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
+      .when('/faleconosco', {
+        templateUrl: 'app/faleconosco/faleconosco.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: false
         }
       })
       ;

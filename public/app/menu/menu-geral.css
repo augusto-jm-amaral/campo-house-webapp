@@ -1,0 +1,9 @@
+.about-bg {
+    background: rgba(0, 0, 0, 0) url("../../images/home-sabino.jpg") no-repeat scroll 0 0 / cover ;
+    min-height: 125px;
+    position: inherit;
+}
+
+.container-menu {
+  padding-top: 25px;
+}

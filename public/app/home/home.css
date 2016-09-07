@@ -10,15 +10,16 @@
 
 .tarja-busca{
 	background-color: rgba(0, 0, 0, 0.6);
-	height: 100px;
+	height: 180px;
 	left: 0;
 	position: absolute;
 	right: 0;
-	top: 300px;
+	top: 469px;
+	z-index: 999;
 }
 
 .tarja-busca > .container-fluid {
-    margin-top: 30px;
+    margin-top: 75px;
 }
 
 .input-lg{
@@ -34,8 +35,9 @@
   margin: auto;
   position: absolute;
   right: 0;
-  /*text-shadow: 0.1em 0.1em 0.2em black;*/
-  top: 120px;
+  top: 240px;
+	z-index: 999;
+	color: white;
 }
 
 .texto-principal > h1 {
