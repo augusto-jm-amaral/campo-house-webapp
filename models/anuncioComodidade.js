@@ -1,31 +1,31 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-module.exports = function () {
+module.exports = function() {
 
-var schema = new Schema({
-    descricao: {
-      type: String
-    },
-    valor:{
-      type: Number
-    },
-    comodidade: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comodidades',
-      required: true
-    },
-    anuncio: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Anuncios',
-      required: true
-    },
-    usuario: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Usuarios',
-      required: true
-    }
-});
+    var schema = new Schema({
+        descricao: {
+            type: String
+        },
+        valor: {
+            type: Number
+        },
+        comodidade: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comodidades',
+            required: true
+        },
+        anuncio: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Anuncios',
+            required: true
+        },
+        usuario: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Usuarios',
+            required: true
+        }
+    });
 
-return mongoose.model('AnuncioComodidades', schema);
+    return mongoose.model('AnuncioComodidades', schema);
 };
