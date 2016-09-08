@@ -24,7 +24,7 @@
       $httpProvider.interceptors.push('TokenInterceptor');
 
       $routeProvider.when('/home', {
-        templateUrl: 'app/home/home.html',
+        templateUrl: 'app/home/home2.html',
         controller: 'HomeCtrl',
         access: {
           loginRequerido: false
@@ -123,7 +123,7 @@
       })
       .when('/faleconosco', {
         templateUrl: 'app/faleconosco/faleconosco.html',
-        // controller: 'QCtrl',
+        controller: 'FaleConoscoCtrl',
         access: {
           loginRequerido: false
         }
