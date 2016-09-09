@@ -8,22 +8,27 @@
             <p>Ficaremos felizes em lhe ajudar</p>
         </div>
         <div class="agile-contact-form">
-  				<div class="col-md-offset-3 col-md-6 contact-form-right">
-  					<div class="contact-form-top">
-  						<h3 class="text-center">Nos envie uma mensagem</h3>
-  					</div>
-  					<div class="contact-form-grid">
-  						<form action="#" method="post">
-  							<input type="text" name="nome" placeholder="Seu nome completo" required="">
-  							<input type="email" name="email" placeholder="Seu melhor email" required="">
-  							<input type="text" name="telefone" placeholder="Seu número de contato (pode ser celular)" required="">
-  							<textarea name="mensagem" placeholder="Escreva aqui sua mensagem" required=""></textarea>
-  							<button class="btn1">Enviar</button>
-  						</form>
-  					</div>
-  				</div>
-  				<div class="clearfix"> </div>
-  			</div>
+            <div class="col-md-offset-3 col-md-6 contact-form-right">
+                <div class="contact-form-top">
+                    <h3 class="text-center">Nos envie uma mensagem</h3>
+                </div>
+                <div class="contact-form-grid">
+                    <form name="formFaleConosco" novalidate>
+                        <input ng-model="mensagem.nome" type="text" name="nome" placeholder="Seu nome completo" ng-required="true" ng-class="{ 'erro' : formFaleConosco.nome.$invalid && formFaleConosco.nome.$touched }">
+                        <p ng-show="formFaleConosco.nome.$invalid && formFaleConosco.nome.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                        <input ng-model="mensagem.email" type="email" name="email" placeholder="Seu melhor email" ng-required="true" ng-class="{ 'erro' : formFaleConosco.email.$invalid && formFaleConosco.email.$touched }">
+                        <p ng-show="formFaleConosco.email.$invalid && formFaleConosco.email.$touched && formFaleConosco.email.$error.required" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                        <p ng-show="formFaleConosco.email.$invalid && formFaleConosco.email.$touched && formFaleConosco.email.$error.email" class="text-danger" style="margin-top: -1em;">E-mail inválido</p>
+                        <input ng-model="mensagem.telefone" type="text" name="telefone" ui-mask="(99) 99999-9999" ng-required="true" ng-class="{ 'erro' : formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched }">
+                        <p ng-show="formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                        <textarea ng-model="mensagem.mensagem" name="mensagem" placeholder="Escreva aqui sua mensagem" ng-required="true" ng-class="{ 'erro' : formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched }"></textarea>
+                        <p ng-show="formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                        <button class="btn1" ng-click="enviarMensagem();">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     </div>
 </div>
 <div ng-include src="'app/rodape/rodape.html'" />
