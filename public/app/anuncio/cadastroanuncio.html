@@ -1,85 +1,92 @@
-<link rel="stylesheet" href="app/menu/menu2.css" charset="utf-8">
-<div ng-include src="'app/menu/menu2.html'"/>
+<link rel="stylesheet" href="app/menu/menu-home.css" charset="utf-8">
+<link rel="stylesheet" href="app/menu/menu-geral.css" charset="utf-8">
+<div ng-include src="'app/menu/menu3.html'" />
 <!-- <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}" ></toaster-container> -->
 <!-- <ol class="breadcrumb-custom">
   <li><span>Anunciar</span></li>
 </ol> -->
-<div class="container container-custom">
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<ul class="nav nav-pills nav-justified" role="tablist" id="tabs-anuncio">
-				<li role="presentation" class="active-custom active"><a class="a-nav-custom" href="javascript(0);" data-target="#geral" aria-controls="geral" role="tab" data-toggle="tab">Geral</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#localizacao" aria-controls="localizacao" role="tab" data-toggle="tab">Localização</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#espaco" aria-controls="espaco" role="tab" data-toggle="tab">O Espaço</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#comodidade" aria-controls="comodidade" role="tab" data-toggle="tab">Comodidades</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#ofertavalor" aria-controls="ofertavalor" role="tab" data-toggle="tab">Oferta de Valor</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#preco" aria-controls="preco" role="tab" data-toggle="tab">Preço</a></li>
-			    <li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
-			</ul>
-		</div>
 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="tab-content">
-			    <div role="tabpanel" class="tab-pane fade in active" id="geral" style="margin-top: 6em;">
-			    <!-- <div role="tabpanel" class="tab-pane fade" id="geral" style="margin-top: 6em;"> -->
-			    	<fieldset>
-			    		<legend>
-			    			<h3>
-					    		Conte sobre seu Imóvel<br>
+	<div class="container">
+		<div class="w3l-about-heading w3l-about-heading-custom">
+				<h2>ANUNCIAR</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				<ul class="nav nav-pills nav-stacked" role="tablist" id="tabs-anuncio">
+					<li role="presentation" class="active"><a class="a-nav-custom" href="javascript(0);" data-target="#geral" aria-controls="geral" role="tab" data-toggle="tab">Geral</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#localizacao" aria-controls="localizacao" role="tab" data-toggle="tab">Localização</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#espaco" aria-controls="espaco" role="tab" data-toggle="tab">O Espaço</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#comodidade" aria-controls="comodidade" role="tab" data-toggle="tab">Comodidades</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#ofertavalor" aria-controls="ofertavalor" role="tab" data-toggle="tab">Oferta de Valor</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#preco" aria-controls="preco" role="tab" data-toggle="tab">Preço</a></li>
+					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
+				</ul>
+			</div>
+
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="geral">
+						<!-- <div role="tabpanel" class="tab-pane fade" id="geral" style="margin-top: 6em;"> -->
+						<fieldset>
+							<legend>
+								<h3>
+					    		Conte sobre seu Imóvel
+									<p></p>
 					    		<small>
 					    			Descreva aqui o que seu imóvel tem de mais incrível, quais são seus atrativos e o que o torna tão especial.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
+							</legend>
+						</fieldset>
 
-            <!-- FORM GERAL -->
-			    	<form name="formGeral" class="form-horizontal" id="form-cad-anuncio-geral" novalidate>
+						<!-- FORM GERAL -->
+						<form name="formGeral" class="form-horizontal" id="form-cad-anuncio-geral" novalidate>
 
-            	<div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Título do Anúncio</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formGeral.sobreTitulo.$invalid && formGeral.sobreTitulo.$touched }">
-			    				<input ng-model="anuncio.sobreTitulo" name="sobreTitulo" type="text" class="form-control" placeholder="Seja claro e objetivo, este será o título do seu anúncio." data-model="sobreTitulo" ng-required="true" maxlength="50">
-			    				<p ng-show="formGeral.sobreTitulo.$invalid && formGeral.sobreTitulo.$touched" class="text-danger" data-for="sobreTitulo">Campo obrigatório</p>
-                  <!-- <p>{{formGeral.sobreTitulo}}</p> -->
-			    			</div>
-			    		</div>
+							<div class="form-group">
+								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Título do Anúncio</label>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formGeral.sobreTitulo.$invalid && formGeral.sobreTitulo.$touched }">
+									<input ng-model="anuncio.sobreTitulo" name="sobreTitulo" type="text" class="form-control" placeholder="Seja claro e objetivo, este será o título do seu anúncio." data-model="sobreTitulo" ng-required="true" maxlength="50">
+									<p ng-show="formGeral.sobreTitulo.$invalid && formGeral.sobreTitulo.$touched" class="text-danger" data-for="sobreTitulo">Campo obrigatório</p>
+									<!-- <p>{{formGeral.sobreTitulo}}</p> -->
+								</div>
+							</div>
 
-			    		<div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Descrição</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formGeral.sobreDescricao.$invalid && formGeral.sobreDescricao.$touched }">
-			    				<textarea ng-model="anuncio.sobreDescricao" name="sobreDescricao" id="geral-descricao" class="form-control" rows="5" placeholder="Inclua detalhes positivos de seu imóvel, fale sobre o espaço, opções de lazer, descanso, itens para eventos, etc. Seja criativo." data-model="sobreDescricao" ng-required="true" maxlength="500"></textarea>
-			    				<p ng-show="formGeral.sobreDescricao.$invalid && formGeral.sobreDescricao.$touched" class="text-danger" data-for="sobreDescricao">Campo obrigatório</p>
-			    			</div>
-			    		</div>
+							<div class="form-group">
+								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Descrição</label>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formGeral.sobreDescricao.$invalid && formGeral.sobreDescricao.$touched }">
+									<textarea ng-model="anuncio.sobreDescricao" name="sobreDescricao" id="geral-descricao" class="form-control" rows="5" placeholder="Inclua detalhes positivos de seu imóvel, fale sobre o espaço, opções de lazer, descanso, itens para eventos, etc. Seja criativo."
+													data-model="sobreDescricao" ng-required="true" maxlength="500"></textarea>
+									<p ng-show="formGeral.sobreDescricao.$invalid && formGeral.sobreDescricao.$touched" class="text-danger" data-for="sobreDescricao">Campo obrigatório</p>
+								</div>
+							</div>
 
-			    		<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<!-- <hr> -->
-			    				<button ng-disabled="formGeral.sobreDescricao.$invalid" ng-click="salvarAnuncio('localizacao');" id="btnGravarGeral" type="button" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<!-- <hr> -->
+									<button ng-disabled="formGeral.sobreDescricao.$invalid" ng-click="salvarAnuncio('localizacao');" id="btnGravarGeral" type="button" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
 
-			    	</form>
+						</form>
 
-			    </div>
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="localizacao" style="margin-top: 2em;"> -->
-			    <div role="tabpanel" class="tab-pane fade" id="localizacao" style="margin-top: 2em;">
-			    	<fieldset>
-			    		<legend>
-			    			<h3>
-					    		Localização do Imóvel<br>
+					</div>
+					<!-- <div role="tabpanel" class="tab-pane fade in active" id="localizacao" style="margin-top: 2em;"> -->
+					<div role="tabpanel" class="tab-pane fade" id="localizacao">
+						<fieldset>
+							<legend>
+								<h3>
+					    		Localização do Imóvel<p></p>
 					    		<small>
 					    			Marque no mapa a localização de seu imóvel, será assim que as pessoas o encontrarão
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
+							</legend>
+						</fieldset>
 
-            <!-- FORM LOGRADOURO -->
-			    	<form name="formLogradouro" class="form-horizontal" id="form-cad-anuncio-localizacao">
+						<!-- FORM LOGRADOURO -->
+						<form name="formLogradouro" class="form-horizontal" id="form-cad-anuncio-localizacao">
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">País</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localPais.$invalid && formLogradouro.localPais.$touched }">
 			    				<select name="localPais" ng-model="logradouro.localPais" class="form-control" data-model="localPais" required="required">
@@ -89,7 +96,7 @@
 			    			</div>
 			    		</div> -->
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Logradouro</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched }">
 			    				<input name="localRua" ng-model="logradouro.localRua" type="text" class="form-control" placeholder="ex. Rua das Andorinhas, 15. ou Estrada do Bambú, 258" data-model="localLogradouro" ng-required="true" maxlength="255">
@@ -99,36 +106,36 @@
 
 							<div class="form-group">
 								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Deseja exibir seu endereço?</label>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<input ng-model="localizacao.exibir" type="checkbox" data-toggle="toggle">
 									<!-- <input id="enderecoLocal" type="text" class="form-control" maxlength="255" placeholder="Rio Dourados, Lins - SP, Brasil"> -->
 									<!-- <p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p> -->
 									<!-- <p>Escreva pelo Menos a cidade.</p> -->
 								</div>
 							</div>
-			    		<div class="form-group">
-			    			<label id="enderecoLocalLabel" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Endereço*</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-			    				<input id="enderecoLocal" type="text" class="form-control" maxlength="255" placeholder="Rio Dourados, Lins - SP, Brasil">
-			    				<!-- <p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p> -->
+							<div class="form-group">
+								<label id="enderecoLocalLabel" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Endereço*</label>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<input id="enderecoLocal" type="text" class="form-control" maxlength="255" placeholder="Rio Dourados, Lins - SP, Brasil">
+									<!-- <p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p> -->
 									<!-- <p>{{localizacao}}</p> -->
-			    			</div>
-			    		</div>
+								</div>
+							</div>
 
-			    		<div class="form-group">
-			    			<label id="mapaa"class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Marque no mapa a localização*</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+							<div class="form-group">
+								<label id="mapaa" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Marque no mapa a localização*</label>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div id="map_canvas" style="width:100%; height: 500px;"></div>
-			    			</div>
-			    		</div>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Complemento</label>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<textarea ng-model="localizacao.complemento" type="text" class="form-control" style="resize: vertical;" maxlength="255"></textarea>
 								</div>
 							</div>
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Cidade</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localCidade.$invalid && formLogradouro.localCidade.$touched }">
 			    				<input name="localCidade" ng-model="logradouro.localCidade" type="text" class="form-control" placeholder="ex. Lins" data-model="localCidade" ng-required="true" maxlength="255">
@@ -136,7 +143,7 @@
 			    			</div>
 			    		</div> -->
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Estado</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localEstado.$invalid && formLogradouro.localEstado.$touched }">
                   <select name="localEstado" ng-model="logradouro.localEstado" class="form-control" data-model="localEstado" ng-required="true">
@@ -146,7 +153,7 @@
 			    			</div>
 			    		</div> -->
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">CEP</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localCep.$invalid && formLogradouro.localCep.$touched }">
 			    				<input name="localCep" ng-model="logradouro.localCep" type="text" class="form-control icep" placeholder="ex. 12543-000" data-model="localCep" ng-required="true" maxlength="10">
@@ -154,7 +161,7 @@
 			    			</div>
 			    		</div> -->
 
-			    		<!-- <div class="form-group">
+							<!-- <div class="form-group">
 			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Complemento</label>
 			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			    				<textarea ng-model="logradouro.localComplemento" class="form-control" row="3" placeholder="Dê mais informações que ajudem localizar o imóvel" data-model="localComplemento" maxlength="255"></textarea>
@@ -168,293 +175,285 @@
 			    			</div>
 			    		</div> -->
 
-			    		<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarLocal" class="btn btn-default pull-left">Voltar</button>
-			    				<button type="button" id="btnGravarLocal" ng-click="salvarLogradouro();" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarLocal" class="btn btn-default pull-left">Voltar</button>
+									<button type="button" id="btnGravarLocal" ng-click="salvarLogradouro();" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
 
-			    	</form>
-			    </div>
+						</form>
+					</div>
 
-          <!-- FORM ESPACOS -->
-			    <div role="tabpanel" class="tab-pane fade" id="espaco">
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="espaco"> -->
-			    	<fieldset style="margin-top: 2em;">
-			    		<legend>
-			    			<h3>
-					    		Sobre o Espaço<br>
+					<!-- FORM ESPACOS -->
+					<div role="tabpanel" class="tab-pane fade" id="espaco">
+						<!-- <div role="tabpanel" class="tab-pane fade in active" id="espaco"> -->
+						<fieldset>
+							<legend>
+								<h3>
+					    		Sobre o Espaço<p></p>
 					    		<small>
 					    			Informe detalhes sobre o espaço do seu imóvel. Assim as pessoas poderão encontrar um lugar ideal para aproveitarem.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
-			    	<form class="form-horizontal" id="form-cad-anuncio-espaco">
+							</legend>
+						</fieldset>
+						<form class="form-horizontal" id="form-cad-anuncio-espaco">
 
-			    		<div class="form-group">
-				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Número de Quartos</label>
-                  <div class="input-group">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = (anuncio.numQuartos > 0 ? anuncio.numQuartos - 1 : anuncio.numQuartos);">
+							<div class="form-group">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="label-form">Número de Quartos</label>
+									<div class="input-group">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = (anuncio.numQuartos > 0 ? anuncio.numQuartos - 1 : anuncio.numQuartos);">
                         <strong>-</strong>
                       </button>
-                    </div>
-                    <input ng-model="anuncio.numQuartos" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = anuncio.numQuartos + 1;">
+										</div>
+										<input ng-model="anuncio.numQuartos" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numQuartos = anuncio.numQuartos + 1;">
                         <strong>+</strong>
                       </button>
-                    </div>
-                  </div>
-				    			<!-- <select ng-model="anuncio.numQuartos" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
-				    		</div>
-				    	</div>
-			    		<div class="form-group">
-				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Número de Camas</label>
-                  <div class="input-group">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numCamas = (anuncio.numCamas > 0 ? anuncio.numCamas - 1 : anuncio.numQuartos);">
+										</div>
+									</div>
+									<!-- <select ng-model="anuncio.numQuartos" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="label-form">Número de Camas</label>
+									<div class="input-group">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numCamas = (anuncio.numCamas > 0 ? anuncio.numCamas - 1 : anuncio.numQuartos);">
                         <strong>-</strong>
                       </button>
-                    </div>
-                    <input ng-model="anuncio.numCamas" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numCamas = anuncio.numCamas + 1;">
+										</div>
+										<input ng-model="anuncio.numCamas" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numCamas = anuncio.numCamas + 1;">
                         <strong>+</strong>
                       </button>
-                    </div>
-                  </div>
-				    			<!-- <select ng-model="anuncio.numCamas" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
-				    		</div>
-				    	</div>
-			    		<div class="form-group">
-				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Número de Banheiros</label>
-                  <div class="input-group">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = (anuncio.numBanheiros > 0 ? anuncio.numBanheiros - 1 : anuncio.numBanheiros);">
+										</div>
+									</div>
+									<!-- <select ng-model="anuncio.numCamas" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="label-form">Número de Banheiros</label>
+									<div class="input-group">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = (anuncio.numBanheiros > 0 ? anuncio.numBanheiros - 1 : anuncio.numBanheiros);">
                         <strong>-</strong>
                       </button>
-                    </div>
-                    <input ng-model="anuncio.numBanheiros" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = anuncio.numBanheiros + 1;">
+										</div>
+										<input ng-model="anuncio.numBanheiros" style="background-color: #fff; text-align: center;" type="text" disabled class="form-control" aria-label="...">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="anuncio.numBanheiros = anuncio.numBanheiros + 1;">
                         <strong>+</strong>
                       </button>
-                    </div>
-                  </div>
-				    			<!-- <select ng-model="anuncio.numBanheiros" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
-				    		</div>
-				    	</div>
-			    		<div class="form-group">
-				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Número de pessoas que acomoda</label>
-				    			<select ng-model="anuncio.numAcomoda" ng-options="item._id as item.nome for item in numAcomodaOptions" class="form-control input-sm"></select>
-				    		</div>
-				    	</div>
-			    		<div class="form-group">
-				    		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				    			<label class="label-form">Tipo de Imóvel</label>
-				    			<select ng-model="anuncio.tipoImovel" ng-options="item._id as item.nome for item in tipoImovelOptions" class="form-control input-sm"></select>
-				    		</div>
-				    	</div>
+										</div>
+									</div>
+									<!-- <select ng-model="anuncio.numBanheiros" ng-options="item.value as item.name for item in optionsEspacos" class="form-control input-sm"></select> -->
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="label-form">Número de pessoas que acomoda</label>
+									<select ng-model="anuncio.numAcomoda" ng-options="item._id as item.nome for item in numAcomodaOptions" class="form-control input-sm"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="label-form">Tipo de Imóvel</label>
+									<select ng-model="anuncio.tipoImovel" ng-options="item._id as item.nome for item in tipoImovelOptions" class="form-control input-sm"></select>
+								</div>
+							</div>
 
-			    		<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarEspaco" class="btn btn-default pull-left">Voltar</button>
-			    				<button ng-click="salvarAnuncio('comodidade');" type="button" id="btnGravarEspaco" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarEspaco" class="btn btn-default pull-left">Voltar</button>
+									<button ng-click="salvarAnuncio('comodidade');" type="button" id="btnGravarEspaco" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
 
-			    	</form>
+						</form>
 
-			    </div>
-			    <div role="tabpanel" class="tab-pane fade" id="comodidade">
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="comodidade"> -->
-			    	<fieldset>
-			    		<legend>
-			    			<h3>
-					    		Comodidades<br>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="comodidade">
+						<!-- <div role="tabpanel" class="tab-pane fade in active" id="comodidade"> -->
+						<fieldset>
+							<legend>
+								<h3>
+					    		Comodidades<p></p>
 					    		<small>
 					    			Destaque aqui quais são os itens que seu imóvel oferece para que os hospedes tenham a melhor experiência possível.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
-			    	<form class="form-horizontal" id="form-cad-anuncio-comodidade">
-			    		<h4>Itens Comuns</h4>
+							</legend>
+						</fieldset>
+						<form class="form-horizontal" id="form-cad-anuncio-comodidade">
+							<h4>Itens Comuns</h4>
 
-              <div ng-repeat="comodidade in comodidades">
-                <div ng-show="comodidade.categoria.tipo=='checkbox'" class="checkbox">
-                  <label>
+							<div ng-repeat="comodidade in comodidades">
+								<div ng-show="comodidade.categoria.tipo=='checkbox'" class="checkbox">
+									<label>
                     <input ng-checked="{{comodidade.checked}}" type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkComodidade(comodidade._id)">
                     {{comodidade.descComodidade}}
                   </label>
-                </div>
-                <!-- <div ng-show="comodidade.categoria.tipo=='textArea'">
+								</div>
+								<!-- <div ng-show="comodidade.categoria.tipo=='textArea'">
                   <label>
                     {{comodidade.descComodidade}}
                   </label>
                   <textarea class="form-control" rows="3"></textarea>
                 </div> -->
-              </div>
+							</div>
 
-              <h4 style="margin-top: 1em;">Outros</h4>
-			    		<!-- <div class="checkbox">
+							<h4 style="margin-top: 1em;">Outros</h4>
+							<!-- <div class="checkbox">
 			    			<label>
 			    				<input type="checkbox" value="">
 			    				Toalha de banho
 			    			</label>
 			    		</div> -->
-              <!-- <div class="form-group"> -->
-                <label style="font-weight: 500;">O que levar:</label>
-                <textarea ng-model="anuncio.oquelevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
-                <div style="padding: 1em;"></div>
-                <label style="font-weight: 500;">O que não levar:</label>
-                <textarea ng-model="anuncio.oquenaolevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
-              <!-- </div> -->
+							<!-- <div class="form-group"> -->
+							<label style="font-weight: 500;">O que levar:</label>
+							<textarea ng-model="anuncio.oquelevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
+							<div style="padding: 1em;"></div>
+							<label style="font-weight: 500;">O que não levar:</label>
+							<textarea ng-model="anuncio.oquenaolevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
+							<!-- </div> -->
 
-				    	<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarComodidade" class="btn btn-default pull-left">Voltar</button>
-			    				<button ng-click="salvarAnuncio('ofertavalor');" type="button" id="btnGravarComodidade" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
-					</form>
-				</div>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarComodidade" class="btn btn-default pull-left">Voltar</button>
+									<button ng-click="salvarAnuncio('ofertavalor');" type="button" id="btnGravarComodidade" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
+						</form>
+					</div>
 
-			    <div role="tabpanel" class="tab-pane fade" id="ofertavalor">
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="ofertavalor"> -->
-			    	<fieldset style="margin-top: 2em;">
-			    		<legend>
-			    			<h3>
-					    		Oferta de Valor<br>
+					<div role="tabpanel" class="tab-pane fade" id="ofertavalor">
+						<!-- <div role="tabpanel" class="tab-pane fade in active" id="ofertavalor"> -->
+						<fieldset>
+							<legend>
+								<h3>
+					    		Oferta de Valor<p></p>
 					    		<small>
 					    			A oferta de valor é uma característica única, ou seja, diga para qual finalidade seu imóvel é perfeito. Esta informação também ajudará as pessoas encontrarem o lugar ideal.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
+							</legend>
+						</fieldset>
 
-			    	<form class="form-horizontal" id="form-cad-anuncio-oferta-valor">
-              <div ng-repeat="oferta in ofertaValores">
-                <div class="checkbox">
-                  <label>
+						<form class="form-horizontal" id="form-cad-anuncio-oferta-valor">
+							<div ng-repeat="oferta in ofertaValores">
+								<div class="checkbox">
+									<label>
                     <input ng-checked="{{oferta.checked}}" type="checkbox" value="" ng-checked="oferta.checked" ng-click="checkOfertaValor(oferta._id)">
                     {{oferta.nome}}
                   </label>
-                </div>
-              </div>
-			    		<!-- <div class="checkbox">
+								</div>
+							</div>
+							<!-- <div class="checkbox">
 			    			<label>
 			    				<input type="checkbox" value="">
 			    				Reunião em família
 			    			</label>
 			    		</div> -->
-						<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarOfertaValor" class="btn btn-default pull-left">Voltar</button>
-			    				<button type="button" id="btnGravarOfertaValor" ng-click="salvarAnuncio('preco');" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
-			    	</form>
-			    </div>
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="preco"> -->
-			    <div role="tabpanel" class="tab-pane fade" id="preco">
-			    	<fieldset style="margin-top: 2em;">
-			    		<legend>
-			    			<h3>
-					    		Preço<br>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarOfertaValor" class="btn btn-default pull-left">Voltar</button>
+									<button type="button" id="btnGravarOfertaValor" ng-click="salvarAnuncio('preco');" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- <div role="tabpanel" class="tab-pane fade in active" id="preco"> -->
+					<div role="tabpanel" class="tab-pane fade" id="preco">
+						<fieldset>
+							<legend>
+								<h3>
+					    		Preço<p></p>
 					    		<small>
 					    			Defina o preço que será cobrado por dia.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
-			    	<h4>Defina o Preço Padrão</h4>
-			    	<form class="form-horizontal" id="form-cad-anuncio-preco">
-			    		<div class="form-group">
-			    			<div class="row">
-				    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				    				<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Diária (R$)</label>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<input type="number" class="form-control idouble" ng-model="anuncio.precoDiaria" maxlength="17">
+							</legend>
+						</fieldset>
+						<h4>Defina o Preço Padrão</h4>
+						<form class="form-horizontal" id="form-cad-anuncio-preco">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+										<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Diária (R$)</label>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<input type="number" class="form-control idouble" ng-model="anuncio.precoDiaria" maxlength="17">
+										</div>
 									</div>
-				    			</div>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarPreco" class="btn btn-default pull-left">Voltar</button>
-			    				<button ng-click="salvarAnuncio('fotos');" type="button" id="btnGravarPreco" class="btn btn-success pull-right">Avançar</button>
-			    			</div>
-			    		</div>
-			    	</form>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarPreco" class="btn btn-default pull-left">Voltar</button>
+									<button ng-click="salvarAnuncio('fotos');" type="button" id="btnGravarPreco" class="btn btn-success pull-right">Avançar</button>
+								</div>
+							</div>
+						</form>
 
-			    </div>
-			    <!-- <div role="tabpanel" class="tab-pane fade in active" id="fotos"> -->
-			    <div role="tabpanel" class="tab-pane fade" id="fotos">
+					</div>
+					<!-- <div role="tabpanel" class="tab-pane fade in active" id="fotos"> -->
+					<div role="tabpanel" class="tab-pane fade" id="fotos">
 
-			    	<fieldset style="margin-top: 2em;">
-			    		<legend>
-			    			<h3>
-					    		Escolha as melhores fotos para que as pessoas fiquem impressionadas<br>
+						<fieldset>
+							<legend>
+								<h3>
+					    		Escolha as melhores fotos para que as pessoas fiquem impressionadas<p></p>
 					    		<small>
-					    			São permitidas no máximo 12 fotos.
+					    			São permitidas no máximo 20 fotos.
 					    		</small>
 					    	</h3>
-			    		</legend>
-			    	</fieldset>
-			    	<form class="form-horizontal" id="form-cad-anuncio-fotos">
-			    		<div class="progress">
-							<div id="progressBarFotos" class="progress-bar progress-bar-striped active"
-								role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
-						</div>
-			    		<div class="form-group">
-			    			<div class="col-lg-2 col-md-2 col-sm-4 col-md-12">
-                  <button
-                  class="btn btn-primary"
-                  ngf-select="uploadFiles($files, $invalidFiles);"
-                  ngf-multiple="true"
-                  accept="image/*"
-                  ngf-max-height="10000"
-                  ngf-max-width="10000"
-                  ngf-max-size="10MB"
-                  >Adicionar</button>
-			    				<!-- <input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png"> -->
-			    			</div>
-                <div class="col-xs-12" style="margin-top: 2em;">
-                  <div class="col-xs-6 col-md-3" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
-                    <i ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%;"></i>
+							</legend>
+						</fieldset>
+						<form class="form-horizontal" id="form-cad-anuncio-fotos">
+							<div class="progress">
+								<div id="progressBarFotos" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-md-12">
+									<button class="btn btn-primary" ngf-select="uploadFiles($files, $invalidFiles);" ngf-multiple="true" accept="image/*" ngf-max-height="10000" ngf-max-width="10000" ngf-max-size="10MB">Adicionar</button>
+									<!-- <input id="files" type="file" multiple="multiple" accept="image/jpeg, image/png"> -->
+								</div>
+								<div class="col-xs-12" style="margin-top: 2em;">
+									<div class="col-xs-6 col-md-3" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
+										<i ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%;"></i>
 										<img class="img-responsive img-thumbnail" ng-src="{{file.path}}" style="height: 12em; display: block; margin-left: auto; margin-right: auto;">
-                  </div>
-                </div>
-                <!-- <p>{{$scope.files}}</p> -->
-			    		</div>
-			    		<div class="form-group" id="fotos-selecionadas">
-						<!-- 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div>
+									</div>
+								</div>
+								<!-- <p>{{$scope.files}}</p> -->
+							</div>
+							<div class="form-group" id="fotos-selecionadas">
+								<!-- 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div>
 							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 divFoto"></div> -->
-						</div>
-			    		<div class="form-group">
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<hr>
-			    				<button type="button" id="btnVoltarFotos" class="btn btn-default pull-left">Voltar</button>
-			    				<a ng-href="#/meusanuncios" class="btn btn-success pull-right">Finalizar Anúncio</a>
-			    			</div>
-			    		</div>
-			    	</form>
-			    </div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<hr>
+									<button type="button" id="btnVoltarFotos" class="btn btn-default pull-left">Voltar</button>
+									<a ng-href="#/meusanuncios" class="btn btn-success pull-right">Finalizar Anúncio</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
 
-</div>
+	</div>
+<div ng-include src="'app/rodape/rodape.html'" />

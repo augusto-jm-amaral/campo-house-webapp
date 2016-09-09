@@ -23,7 +23,7 @@
                         <p ng-show="formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                         <textarea ng-model="mensagem.mensagem" name="mensagem" placeholder="Escreva aqui sua mensagem" ng-required="true" ng-class="{ 'erro' : formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched }"></textarea>
                         <p ng-show="formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
-                        <button class="btn1" ng-click="enviarMensagem();">Enviar</button>
+                        <button class="btn1 pull-right" ng-click="enviarMensagem();">Enviar</button>
                     </form>
                 </div>
             </div>
