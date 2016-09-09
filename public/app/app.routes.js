@@ -128,6 +128,13 @@
           loginRequerido: false
         }
       })
+      .when('/entrar', {
+        templateUrl: 'app/entrar/entrar.html',
+        // controller: 'QCtrl',
+        access: {
+          loginRequerido: false
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});

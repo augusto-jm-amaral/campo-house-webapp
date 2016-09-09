@@ -1326,7 +1326,8 @@ h2.typoh2{
 .contact-form-grid {
     margin: 2em 0 0 0;
 }
-.contact-form-grid input[type="text"] {
+.contact-form-grid input[type="text"],
+.contact-form-grid input[type="password"] {
     display: inline-block;
     background: none;
     border: 1.5px solid #BBBBBB;
@@ -1375,13 +1376,21 @@ button.btn1{
     -o-border-radius: 5px;
 }
 button.btn1:hover{
-    color: #fd5c63;
-    border: solid 2px #fd5c63;
+    color: #00ffcc;
+    border: solid 2px #00ffcc;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+}
+.btn-success{
+  background-color: #00ffcc !important;
+  border-color: #0ed19e !important;
+}
+.btn-success:hover{
+  background-color: #00aad4 !important;
+  border-color: #0088aa !important;
 }
 .w3agile-map{
     padding: 2em;
