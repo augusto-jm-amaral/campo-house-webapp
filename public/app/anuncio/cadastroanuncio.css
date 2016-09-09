@@ -1,4 +1,4 @@
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
 	.nav-stacked > li {
 	  float: left;
 	}
@@ -39,23 +39,21 @@
     z-index: 99;
 }
 
-.nav-pills > li.active > a.a-nav-custom, 
-.nav-pills > li.active > a.a-nav-custom:focus, 
+.nav-pills > li.active > a.a-nav-custom,
+.nav-pills > li.active > a.a-nav-custom:focus,
 .nav-pills > li.active > a.a-nav-custom:hover {
     background-color: transparent;
-    color: #594f2c;
+    color: #fd5c63;
     font-weight: 700;
 }
 
 .a-nav-custom {
-    color: #f2e1a2;
-    cursor: default;
-    pointer-events: none;
+    color: #ccc;
 }
 
 .a-nav-custom:focus,
 .a-nav-custom:hover {
-    color: #736945;
+    color: #fd5c63;
 }
 
 .nav > li > a:hover {
@@ -66,7 +64,16 @@
 	padding-top: 10px;
 }
 
-@media (max-width: 767px) { 
+fieldset legend h3 {
+	margin-top: 0;
+}
+
+.w3l-about-heading-custom {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+@media (max-width: 767px) {
 	.nav-justified > li.active-custom {
     	display: none;
 	}
