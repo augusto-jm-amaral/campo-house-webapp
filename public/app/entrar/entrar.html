@@ -8,41 +8,50 @@
             <p>Não tem uma conta Campo House? Cadastre-se é rápido.</p>
         </div>
         <div class="col-md-6">
-          <div class="agile-contact-form">
-    				<div class="col-md-12 contact-form-right">
-    					<div class="contact-form-top">
-    						<h3 class="text-center">Entrar</h3>
-    					</div>
-    					<div class="contact-form-grid">
-    						<form action="#" method="post">
-    							<input type="email" name="emailLogin" placeholder="Email" required>
-                  <input type="password" name="senhaLogin" placeholder="Senha" required>
-    							<button class="btn1 pull-right">Entrar</button>
-    						</form>
-    					</div>
-    				</div>
-    				<div class="clearfix"> </div>
-    			</div>
+            <div class="agile-contact-form">
+                <div class="col-md-12 contact-form-right">
+                    <div class="contact-form-top">
+                        <h3 class="text-center">Entrar</h3>
+                    </div>
+                    <div class="contact-form-grid">
+                        <form name="loginForm" novalidate="true">
+                            <input type="email" name="emailLogin" ng-model="login.emailLogin" placeholder="Email" ng-required="true" ng-class="{ 'erro' : loginForm.emailLogin.$invalid && loginForm.emailLogin.$touched }">
+                            <input type="password" name="senhaLogin" ng-model="login.senhaLogin" placeholder="Senha" ng-required="true" ng-class="{ 'erro' : loginForm.senhaLogin.$invalid && loginForm.senhaLogin.$touched }">
+                            <button ng-click="logar();" class="btn1 pull-right">Entrar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
         <div class="col-md-6">
-          <div class="agile-contact-form">
-            <div class="col-md-12 contact-form-right">
-    					<div class="contact-form-top">
-    						<h3 class="text-center">Cadastre-se</h3>
-    					</div>
-    					<div class="contact-form-grid">
-    						<form action="#" method="post">
-    							<input type="text" name="nome" placeholder="Seu nome completo" required>
-    							<input type="email" name="email" placeholder="Seu melhor email" required>
-    							<input type="text" name="telefone" placeholder="Seu número de contato (pode ser celular)" required>
-                  <input type="password" name="senhaCadastro" placeholder="Senha" required>
-                  <input type="password" name="repetirSenhaCadastro" placeholder="Digite novamente sua Senha" required>
-    							<button class="btn1 pull-right">Enviar</button>
-    						</form>
-    					</div>
-    				</div>
-    				<div class="clearfix"> </div>
-          </div>
+            <div class="agile-contact-form">
+                <div class="col-md-12 contact-form-right">
+                    <div class="contact-form-top">
+                        <h3 class="text-center">Cadastre-se</h3>
+                    </div>
+                    <div class="contact-form-grid">
+                        <form name="formCadastro" novalidate="">
+                            <input type="text" ng-model="cadastro.nomeCadastro" name="nome" placeholder="Seu nome completo" ng-required="true" ng-class="{ 'erro' : formCadastro.nome.$invalid && formCadastro.nome.$touched }">
+                            <p ng-show="formCadastro.nome.$invalid && formCadastro.nome.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <input type="email" ng-model="cadastro.emailCadastro" name="email" placeholder="Seu melhor email" ng-required="true" ng-class="{ 'erro' : formCadastro.email.$invalid && formCadastro.email.$touched }">
+                            <p ng-show="formCadastro.email.$invalid && formCadastro.email.$touched && formCadastro.email.$error.required" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <p ng-show="formCadastro.email.$invalid && formCadastro.email.$touched && formCadastro.email.$error.email" class="text-danger" style="margin-top: -1em;">E-mail inválido</p>
+                            <input type="text" ng-model="cadastro.telefoneCadastro" name="telefone" placeholder="Seu número de contato (pode ser celular)" ng-required="true" ng-class="{ 'erro' : formCadastro.telefone.$invalid && formCadastro.telefone.$touched }">
+                            <p ng-show="formCadastro.telefone.$invalid && formCadastro.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <input type="password" ng-model="cadastro.senhaCadastro" name="senhaCadastro" placeholder="Senha" ng-required="true" ng-minlength="6" ng-maxlength="20" ng-class="{ 'erro' : formCadastro.senhaCadastro.$invalid && formCadastro.senhaCadastro.$touched }">
+                            <p ng-show="formCadastro.senhaCadastro.$error.minlength" class="text-danger"  style="margin-top: -1em;">Muito pequena</p>
+                            <p ng-show="formCadastro.senhaCadastro.$error.maxlength" class="text-danger" style="margin-top: -1em;">Muito grande</p>
+                            <p ng-show="!formCadastro.senhaCadastro.$error.minlength && !formCadastro.senhaCadastro.$error.maxlength && formCadastro.senhaCadastro.$invalid && formCadastro.senhaCadastro.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <input type="password" ng-model="cadastro.repetirSenhaCadastro" name="repetirSenhaCadastro" placeholder="Digite novamente sua Senha" ng-required="true" ng-class="{ 'erro' : formCadastro.repetirSenhaCadastro.$invalid && formCadastro.repetirSenhaCadastro.$touched }">
+                            <p ng-show="formCadastro.repetirSenhaCadastro.$invalid && formCadastro.repetirSenhaCadastro.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <p ng-hide="cadastro.repetirSenhaCadastro === cadastro.senhaCadastro" class="text-danger" style="margin-top: -1em;">Senha não confirmada</p>
+                            <button class="btn1 pull-right" ng-disabled="cadastro.repetirSenhaCadastro != cadastro.senhaCadastro" ng-click="cadastrar();">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
 
     </div>

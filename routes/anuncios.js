@@ -371,6 +371,50 @@ module.exports = function(app) {
 
         });
 
+    app.route(cfg.urlRaizApi + '/anunciosrecentes')
+        // .all(app.auth.authenticate('usuario'))
+        .get(function get(req, res) {
+
+            Anuncios.aggregate(
+                    [{
+                        $sort: {
+                            dataCadastro: 1
+                        }
+                    }, {
+                        $limit: 3
+                    }, {
+                        $group: {
+                            _id: null,
+                            ids: {
+                                "$addToSet": "$_id"
+                            }
+                        }
+                    }]
+                )
+                .exec(function(err, anuncios) {
+                  Anuncios.find({_id : {$in: anuncios[0].ids}})
+                  .populate([{
+                      path: 'usuario',
+                      model: 'Usuarios',
+                      select: {
+                          nome: 1,
+                          sobreNome: 1,
+                          telefone: 1
+                      }
+                  }, {
+                      path: 'listaArquivos',
+                      model: 'Arquivos'
+                  }])
+                  .then(function (anuncios) {
+                    res.status(200).json(anuncios).end();
+                  }).catch(function (err) {
+                    console.log(err);
+                    res.sendStatus(412).end();
+                  });
+                });
+
+        });
+
     app.route(cfg.urlRaizApi + '/anuncios/:_id')
         .all(app.auth.authenticate('usuario'))
         .put(function get(req, res) {

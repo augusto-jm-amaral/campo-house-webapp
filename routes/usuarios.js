@@ -101,7 +101,7 @@ module.exports = function(app) {
         .post(function get(req, res) {
 
             req.checkBody('nome', '').notEmpty().isName();
-            req.checkBody('sobreNome', '').notEmpty().isName();
+            // req.checkBody('sobreNome', '').notEmpty().isName();
             req.checkBody('email', '').notEmpty().isEmail();
             req.checkBody('senha', '').notEmpty().isPassword();
             // req.checkBody('telefone','').notEmpty().isMobilePhone();

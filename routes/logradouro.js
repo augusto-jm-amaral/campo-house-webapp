@@ -15,13 +15,6 @@ module.exports = function(app) {
         .post(function(req, res) {
 
             req.checkParams('_id', '').notEmpty().isMongoId();
-            // req.checkBody('localNumero','').notEmpty().isNumeric();
-            // req.checkBody('localCep','').notEmpty().isNumeric();
-            // req.checkBody('localBairro','').notEmpty().isName();
-            // req.checkBody('localCidade','').notEmpty().isName();
-            // req.checkBody('localEstado','').notEmpty().isName();
-            // req.checkBody('localPais','').notEmpty().isName();
-            // req.checkBody('localRua','').notEmpty();
             req.checkBody('endereco', '').notEmpty();
             req.checkBody('exibir', '').notEmpty();
             req.checkBody('lat', '').notEmpty();
@@ -277,6 +270,32 @@ module.exports = function(app) {
                 console.log(erros);
                 res.sendStatus(404).end();
             }
+
+        });
+
+    app.route(cfg.urlRaizApi + '/cidades')
+        .get(function(req, res) {
+
+            Logradouros.aggregate(
+                [{
+                    $sort: {
+                        localCidade: 1
+                    }
+                }, {
+                    $group: {
+                        _id: null,
+                        nomes: {
+                            "$addToSet": "$localCidade"
+                        }
+                    }
+                }]
+            ).exec(function(err, cidades) {
+                if (!err) {
+                    res.status(200).json(cidades[0].nomes).end();
+                } else {
+                    res.sendStatus(400);
+                }
+            });
 
         });
 

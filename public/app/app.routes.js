@@ -37,7 +37,7 @@
       //     loginRequerido: false
       //   }
       // })
-      .when('/home2', {
+      .when('/home', {
         templateUrl: 'app/home/home2.html',
         controller: '',
         access: {
@@ -130,7 +130,7 @@
       })
       .when('/entrar', {
         templateUrl: 'app/entrar/entrar.html',
-        // controller: 'QCtrl',
+        controller: 'EntrarCtrl',
         access: {
           loginRequerido: false
         }
