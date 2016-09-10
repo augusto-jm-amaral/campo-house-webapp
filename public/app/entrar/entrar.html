@@ -37,7 +37,7 @@
                             <input type="email" ng-model="cadastro.emailCadastro" name="email" placeholder="Seu melhor email" ng-required="true" ng-class="{ 'erro' : formCadastro.email.$invalid && formCadastro.email.$touched }">
                             <p ng-show="formCadastro.email.$invalid && formCadastro.email.$touched && formCadastro.email.$error.required" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                             <p ng-show="formCadastro.email.$invalid && formCadastro.email.$touched && formCadastro.email.$error.email" class="text-danger" style="margin-top: -1em;">E-mail inválido</p>
-                            <input type="text" ng-model="cadastro.telefoneCadastro" name="telefone" placeholder="Seu número de contato (pode ser celular)" ng-required="true" ng-class="{ 'erro' : formCadastro.telefone.$invalid && formCadastro.telefone.$touched }">
+                            <input type="text" ng-model="cadastro.telefoneCadastro" ui-br-phone-number name="telefone" ng-required="true" ng-class="{ 'erro' : formCadastro.telefone.$invalid && formCadastro.telefone.$touched }">
                             <p ng-show="formCadastro.telefone.$invalid && formCadastro.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                             <input type="password" ng-model="cadastro.senhaCadastro" name="senhaCadastro" placeholder="Senha" ng-required="true" ng-minlength="6" ng-maxlength="20" ng-class="{ 'erro' : formCadastro.senhaCadastro.$invalid && formCadastro.senhaCadastro.$touched }">
                             <p ng-show="formCadastro.senhaCadastro.$error.minlength" class="text-danger"  style="margin-top: -1em;">Muito pequena</p>
