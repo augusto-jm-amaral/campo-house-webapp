@@ -136,19 +136,11 @@ module.exports = function(app) {
                     res.json({
                         count: 0,
                         anuncios: []
-                    });
-                    // console.log(err);
-                    // res.sendStatus(412).end();
+                    }).end();
                 }
 
             });
-            // }).catch(function (err) {
-            //   console.log(err);
-            //   res.sendStatus(412).end();
-            // });
 
-
-            // res.sendStatus(200).end();
 
         });
 
@@ -378,7 +370,8 @@ module.exports = function(app) {
             Anuncios.aggregate(
                     [{
                         $sort: {
-                            dataCadastro: 1
+                            listaArquivos: -1,
+                            dataCadastro: -1
                         }
                     }, {
                         $limit: 3

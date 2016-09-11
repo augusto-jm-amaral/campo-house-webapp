@@ -21,7 +21,7 @@
               <li ng-hide="logged" ><a ng-href="#/entrar">Entrar</a></li>
               <li ng-show="logged" ><a ng-href="#/meusanuncios">Meus Anúncios</a></li>
               <li ng-show="logged"><a ng-click="logout();" ng-href="">Sair</a></li>
-              <li ng-show="logged"><a href="">Olá, {{usuario.nome}}</a></li>
+              <li ng-show="logged"><a href="">Olá, {{ usuario.nome.split(' ')[0] }}</a></li>
               <div class="clearfix"></div>
             </ul>
           </div>

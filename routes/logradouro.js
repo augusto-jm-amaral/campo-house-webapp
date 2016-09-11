@@ -37,7 +37,8 @@ module.exports = function(app) {
 
                     if (!err && inexact.length) {
 
-                        // console.log(inexact);
+                        console.log(inexact);
+                        console.log(exact);
                         new Logradouros({
                                 endereco: req.body.endereco,
                                 // localCep: inexact[0].postalCode,

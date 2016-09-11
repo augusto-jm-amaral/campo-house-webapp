@@ -345,19 +345,23 @@
       // console.log($scope.localizacao.lat);
 
       google.maps.event.addListener($scope.map, 'click', function(event) {
-        //  placeMarker(event.latLng);
-        // console.log(event);
         if(event.latLng){
+          $scope.marker.setVisible(true);
           $scope.marker.setPosition(event.latLng);
           $timeout(function () {
-            // $scope.localizacao.endereco = $('#enderecoLocal').val();
             $scope.localizacao.lat = event.latLng.lat();
             $scope.localizacao.lng = event.latLng.lng();
           }, 10);
         }
       });
 
-      $scope.autocomplete = new google.maps.places.Autocomplete(document.getElementById('enderecoLocal'));
+      var optionsAutoComplete = {
+       language: 'pt-BR',
+       types: ['(cities)'],
+       componentRestrictions: { country: "br" }
+     }
+
+      $scope.autocomplete = new google.maps.places.Autocomplete(document.getElementById('enderecoLocal'), optionsAutoComplete);
       $scope.autocomplete.bindTo('bounds', $scope.map);
 
       if($scope.localizacao.lat){
@@ -383,12 +387,30 @@
           // infowindow.close();
           $scope.marker.setVisible(false);
           var place = $scope.autocomplete.getPlace();
+          console.log(place);
           if (!place.geometry) {
             // window.alert("Autocomplete's returned place contains no geometry");
             return;
           }
 
           $timeout(function () {
+
+            // for (var i = 0; i < place.address_components.length; i++) {
+            //   if(place.address_components[i].types[0] == "locality"){ //CIDADE
+            //
+            //     $scope.localizacao.cidade = place.address_components[i].long_name;
+            //     $scope.localizacao.cidadeAbr = place.address_components[i].short_name;
+            //
+            //   }else if(place.address_components[i].types[0] == "administrative_area_level_1"){ //ESTADO
+            //
+            //     $scope.localizacao.cidade = place.address_components[i].long_name;
+            //     $scope.localizacao.cidadeAbr = place.address_components[i].short_name;
+            //
+            //   }else if(place.address_components[i].types[0] == "country"){ //PAIS
+            //
+            //   }
+            // }
+
             $scope.localizacao.endereco = $('#enderecoLocal').val();
             $scope.localizacao.lat = place.geometry.location.lat();
             $scope.localizacao.lng = place.geometry.location.lng();
@@ -443,7 +465,7 @@
     $scope.salvarLogradouro = function () {
 
       $("#tabs-anuncio a[aria-controls='espaco']").tab('show');
-      
+
       if($scope.localizacao.endereco){
         $('#enderecoLocalLabel').removeClass('text-danger');
         $('#enderecoLocal').parent().removeClass('has-error');

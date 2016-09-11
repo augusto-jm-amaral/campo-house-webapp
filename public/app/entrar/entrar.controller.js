@@ -3,9 +3,9 @@
 
     angular.module('campohouse').controller('EntrarCtrl', EntrarCtrl);
 
-    EntrarCtrl.$inject = ['$scope', '$location', '$http', 'Config', 'Usuario', 'toaster', 'Login', '$window'];
+    EntrarCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'Config', 'Usuario', 'toaster', 'Login', '$window'];
 
-    function EntrarCtrl($scope, $location, $http, Config, Usuario, toaster, Login, $window) {
+    function EntrarCtrl($scope, $rootScope, $location, $http, Config, Usuario, toaster, Login, $window) {
 
         $scope.cadastro = {};
         $scope.login = {};
@@ -79,6 +79,8 @@
                         });
 
                         $scope.login = {};
+
+                        $rootScope.nome = res.data.nome;
 
                         $window.sessionStorage.token = res.data.token;
                         $window.sessionStorage.nome = res.data.nome;

@@ -3,12 +3,12 @@
 
   angular.module('campohouse').controller('MenuCtrl', MenuCtrl);
 
-  MenuCtrl.$inject = ['$scope', '$location', '$window', 'Login', 'Usuario', 'toaster'];
+  MenuCtrl.$inject = ['$scope', '$rootScope', '$location', '$window', 'Login', 'Usuario', 'toaster'];
 
-  function MenuCtrl($scope, $location, $window, Login, Usuario, toaster) {
+  function MenuCtrl($scope, $rootScope, $location, $window, Login, Usuario, toaster) {
 
     $scope.logged = true;
-    $scope.usuario = {nome: 'Augusto'};
+    $scope.usuario = {nome: $window.sessionStorage.nome};
     //
     // $scope.nomeUsuario = '';
     // $scope._id = 0;
@@ -30,6 +30,8 @@
 
     $scope.logout = function () {
       Login.logout();
+
+      $rootScope.nome = '';
       // toaster.pop({
       //   type:'success',
       //   title: 'Logout',
@@ -55,7 +57,7 @@
         $location.path('/cadastroanuncio');
       }else{
         // go to login/create
-        // $('#modalCadLogin').modal('show');
+        $location.path('/cadastrar');
       }
     };
     //
