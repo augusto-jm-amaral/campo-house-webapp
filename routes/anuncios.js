@@ -444,7 +444,7 @@ module.exports = function(app) {
                             listaComentarios: req.body.listaComentarios,
                             listaOfertaValores: req.body.listaOfertaValores,
                             anuncioEspacos: req.body.anuncioOfertaValores,
-                            dataAtualizacao: new Date()
+                            dataAtualizacao: new Date().toISOString()
                         }
                     },
                     function(err) {

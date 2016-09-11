@@ -101,10 +101,10 @@
 					<div class="news-grid-info-bottom">
 						<div class="date-grid">
 							<div class="admin">
-								<a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{anuncio.usuario.nome}}</a>
+								<a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{anuncio.usuario.nome.split(' ')[0];}}</a>
 							</div>
 							<div class="time">
-								<p><i class="fa fa-calendar" aria-hidden="true"></i> {{obterData(anuncio.dataCadastro)}}</p>
+								<p style="font-size: 11px;"><i class="fa fa-calendar" aria-hidden="true"></i> {{ dataformatada(anuncio.dataCadastro);  }}</p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

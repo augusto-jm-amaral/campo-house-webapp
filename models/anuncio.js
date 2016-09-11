@@ -30,12 +30,12 @@ module.exports = function() {
         dataCadastro: {
             type: Date,
             required: true,
-            default: new Date()
+            default: new Date().toISOString()
         },
         dataAtualizacao: {
             type: Date,
             required: true,
-            default: new Date()
+            default: new Date().toISOString()
         },
         localComplemento: {
             type: String,

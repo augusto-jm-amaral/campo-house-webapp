@@ -26,22 +26,36 @@
 
             });
 
-            $scope.obterData = function (data) {
-              var data = new Date(data);
-              var tempo = new Date(new Date().getTime() - data.getTime());
+       $scope.dataformatada = function (date) {
+         var d = new Date(date);
 
-              var minutos = tempo.getMinutes();
-              var horas = tempo.getHours();
-              var dias = tempo.getDate();
+         return [ (d.getMonth()+1).padLeft(),
+                    d.getDate().padLeft(),
+                    d.getFullYear()].join('/')+
+                    ' ' +
+                  [ d.getHours().padLeft(),
+                    d.getMinutes().padLeft()].join(':');
+                    // d.getSeconds().padLeft()].join(':');
+       };
 
-              var dataFormat = '';
-
-              dataFormat += (dias ? dias + 'd' : '');
-              dataFormat += (horas ? ' ' + horas + 'h' : '');
-              dataFormat += (minutos ? ' ' + minutos + 'm' : '');
-
-              return dataFormat;
-            }
+            // $scope.obterData = function (data) {
+            //
+            //   var data = new Date(data);
+            //   // console.log(data);
+            //   var tempo = new Date(new Date().getTime() - data.getTime());
+            //
+            //   var minutos = tempo.getMinutes();
+            //   var horas = tempo.getHours();
+            //   var dias = tempo.getDate();
+            //
+            //   var dataFormat = '';
+            //
+            //   dataFormat += (dias ? dias + 'd' : '');
+            //   dataFormat += (horas ? ' ' + horas + 'h' : '');
+            //   dataFormat += (minutos ? ' ' + minutos + 'm' : '');
+            //
+            //   return dataFormat;
+            // }
 
     };
 

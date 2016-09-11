@@ -280,7 +280,7 @@ module.exports = function(app) {
             Logradouros.aggregate(
                 [{
                     $sort: {
-                        localCidade: 1
+                        localCidade: -1
                     }
                 }, {
                     $group: {

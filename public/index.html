@@ -1,5 +1,6 @@
 <html ng-app="campohouse">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,6 +81,12 @@
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script>
+        Number.prototype.padLeft = function(base, chr) {
+            var len = (String(base || 10).length - String(this).length) + 1;
+            return len > 0 ? new Array(len).join(chr || '0') + this : this;
+        }
+    </script>
 
     <!-- Interceptor -->
     <!-- <script src="js/interceptor/TokenInterceptor.js" type="text/javascript" charset="utf-8"></script> -->
@@ -87,15 +94,17 @@
     <!-- Directives -->
     <!-- <script src="js/directive/CurrencyInput.js" type="text/javascript" charset="utf-8"></script> -->
 
-  </head>
-  <!-- <base  href = "/" > -->
-  <body>
+</head>
+<!-- <base  href = "/" > -->
+
+<body>
     <div ng-view></div>
-    <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}" ></toaster-container>
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></toaster-container>
 
     <!-- <script>
       new WOW().init();
     </script> -->
 
-  </body>
+</body>
+
 </html>
