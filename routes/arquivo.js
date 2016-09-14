@@ -141,7 +141,7 @@ module.exports = function(app) {
 
                         if (imagem) {
                             // fs.unlink('./public' + imagem.path, function(err) {
-                            fs.unlink('/imgs' + imagem.path, function(err) {
+                            fs.unlink('/imgs/' + imagem.path, function(err) {
                                 if (err) {
                                     console.log(err);
                                     res.sendStatus(500).end();
