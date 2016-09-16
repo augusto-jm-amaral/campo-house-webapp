@@ -17,11 +17,11 @@
               <li><a ng-href="#/quemsomos">Quem Somos</a></li>
               <li><a ng-href="#/comofunciona">Como Funciona</a></li>
               <li><a ng-href="#faleconosco">Fale Conosco</a></li>
-              <li><a ng-click="anunciar();" ng-href="" >Anunciar</a></li>
+              <li><a href="javascript:void(0);" ng-click="anunciar();">Anunciar</a></li>
               <li ng-hide="logged" ><a ng-href="#/entrar">Entrar</a></li>
               <li ng-show="logged" ><a ng-href="#/meusanuncios">Meus Anúncios</a></li>
-              <li ng-show="logged"><a ng-click="logout();" ng-href="">Sair</a></li>
-              <li ng-show="logged"><a href="">Olá, {{ usuario.nome.split(' ')[0] }}</a></li>
+              <li ng-show="logged"><a href="javascript:void(0);" ng-click="logout();">Sair</a></li>
+              <li ng-show="logged"><a href="javascript:void(0);">Olá, {{ usuario.nome.split(' ')[0] }}</a></li>
               <div class="clearfix"></div>
             </ul>
           </div>
