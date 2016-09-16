@@ -52,6 +52,14 @@ module.exports = function() {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Planos',
             required: true
+        },
+        planoIni: {
+            type: Date,
+            required: true
+        },
+        planoFin: {
+            type: Date,
+            required: true
         }
     });
 

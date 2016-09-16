@@ -22,13 +22,23 @@ module.exports = function() {
         },
         duracao: {
             type: Number,
-            required: true,
-            default: 30
+            required: true
+        },
+        parcelas:{
+          type: Number,
+          required: true
+        },
+        valorParcela:{
+          type: Number,
+          required: true
+        },
+        economia:{
+          type: Number,
+          required: true
         },
         dataCadastro: {
             type: Date,
             required: true,
-            default: new Date()
         }
     });
 

@@ -10,39 +10,57 @@ module.exports = function(app) {
             const OfertaValores = app.db.models.OfertaValores;
             const Planos = app.db.models.Planos;
 
-            // Planos.find({
-            //     nome: 'Gratuito'
-            // }, function(err, planos) {
-            //     if (!planos.length) {
-            //         new Planos({
-            //             nome: 'Gratuito',
-            //             ordem: 1,
-            //             showLocalizacao: false,
-            //             showContato: false,
-            //             showMensagem: true,
-            //             preco: 0,
-            //             duracao: 9999,
-            //             descricao: 'Plano Gratuito'
-            //         }).save();
-            //     }
-            // });
-            //
-            // Planos.find({
-            //     nome: 'Vip'
-            // }, function(err, planos) {
-            //     if (!planos.length) {
-            //         new Planos({
-            //             nome: 'Vip',
-            //             ordem: 2,
-            //             showLocalizacao: true,
-            //             showContato: true,
-            //             showMensagem: true,
-            //             preco: 20,
-            //             duracao: 30,
-            //             descricao: 'Plano Vip'
-            //         }).save();
-            //     }
-            // });
+            Planos.find({
+                nome: 'Mensal'
+            }, function(err, planos) {
+                if (!planos.length) {
+                    new Planos({
+                        nome: 'Mensal',
+                        ordem: 1,
+                        preco: 44.9,
+                        duracao: (86400000 * 30), // 1 dia x 30
+                        parcelas: 1,
+                        valorParcela: 44.9,
+                        economia: 0,
+                        descricao: 'Neste plano seu anúncio fica disponível por um prazo máximo de 30 dias a partir da data do cadastro.'
+                    }).save();
+                }
+            });
+
+            Planos.find({
+                nome: 'Semestral'
+            }, function(err, planos) {
+                if (!planos.length) {
+                    new Planos({
+                        nome: 'Semestral',
+                        ordem: 2,
+                        preco: 137.4,
+                        parcelas: 6,
+                        valorParcela: 22.9,
+                        economia: 48,
+                        duracao: (86400000 * 180),
+                        descricao: 'Neste plano seu anúncio fica disponível por um prazo máximo de 180 dias a partir da data do cadastro.'
+                    }).save();
+                }
+            });
+
+            Planos.find({
+                nome: 'Anual'
+            }, function(err, planos) {
+                if (!planos.length) {
+                    new Planos({
+                        nome: 'Anual',
+                        ordem: 3,
+                        preco: 178.8,
+                        parcelas: 12,
+                        valorParcela: 14.9,
+                        economia: 66,
+                        duracao: (86400000 * 365),
+                        descricao: 'Neste plano seu anúncio fica disponível por um prazo máximo de 365 dias a partir da data do cadastro.'
+                    }).save();
+                }
+            });
+
 
             Categorias.find({
                 descCategoria: 'composta'

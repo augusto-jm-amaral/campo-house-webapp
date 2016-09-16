@@ -101,10 +101,10 @@ module.exports = function(app) {
         .post(function get(req, res) {
 
             req.checkBody('nome', '').notEmpty().isName();
-            // req.checkBody('sobreNome', '').notEmpty().isName();
+            req.checkBody('plano', '').notEmpty().isNumeric();
             req.checkBody('email', '').notEmpty().isEmail();
             req.checkBody('senha', '').notEmpty().isPassword();
-            // req.checkBody('telefone','').notEmpty().isMobilePhone();
+            req.checkBody('telefone','').notEmpty().isNumeric();
 
             var erros = req.validationErrors();
 
@@ -116,11 +116,15 @@ module.exports = function(app) {
                 req.body.chaveAcesso = bcrypt.hashSync(chaveHash, salt).replace(/\//g, 'x').replace(/&/g, 'l');
 
                 Planos.findOne({
-                        nome: 'Gratuito'
+                        ordem: req.body.plano
                     })
                     .then(function(plano) {
 
+                        var data = new Date();
+
                         req.body.plano = plano._id;
+                        req.body.planoIni = data;
+                        req.body.planoFin = new Date((data.getTime() + plano.duracao));
 
                         var usuario = new Usuarios(req.body);
                         usuario = usuario.encripitarSenha(usuario);
