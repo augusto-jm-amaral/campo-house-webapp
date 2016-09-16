@@ -53,10 +53,6 @@ module.exports = function() {
             ref: 'Planos',
             required: true
         }
-        // ,
-        // anuncios: {
-        //   type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Anuncios'}],
-        // }
     });
 
     schema.method('encripitarSenha', function(usuario) {
