@@ -24,7 +24,7 @@ module.exports = function(app) {
             logradouro: "Endereço",
             valor: "Valores"
         },
-        numMaxFotos: 12
+        numMaxFotos: 20
 
         // populateDb: true
     };

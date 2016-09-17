@@ -12,6 +12,14 @@ module.exports = function() {
             type: String,
             required: true
         },
+        width:{
+          type: Number,
+          required: true
+        },
+        height:{
+          type: Number,
+          required: true
+        },
         formato: {
             type: String,
             required: true

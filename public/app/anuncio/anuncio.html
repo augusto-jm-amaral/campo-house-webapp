@@ -2,28 +2,41 @@
 <link rel="stylesheet" href="app/menu/menu-geral.css" charset="utf-8">
 <link rel="stylesheet" href="app/anuncio/anuncio.css" charset="utf-8">
 <style type="text/css">
-      html, body { height: 100%; margin: 0; padding: 0; }
-      #map {
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
         height: 100%;
         max-height: 500px;
-      }
-      /*.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    }
+
+    figure {
+        margin: 0;
+        width: 16.66666667%;
+        display: inline;
+        float: left;
+        padding: 3px;
+    }
+    /*.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
           background-color: #5cb85c;
           opacity: 1;
       }*/
-    </style>
+</style>
 
 <div ng-include src="'app/menu/menu3.html'"></div>
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+<!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
       <li ng-repeat="foto in anuncio.listaArquivos" data-target="#carousel-example-generic" data-slide-to="{{foto.num}}"></li>
-      <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+
     </ol>
 
-    <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
         <div class="foto-anuncio-carousel" style="background-image:url({{fotoPrincipal.path}})"></div>
@@ -33,17 +46,9 @@
         <div class="foto-anuncio-carousel" style="background-image:url({{foto.path}})"></div>
         <div class="carousel-caption"></div>
       </div>
-      <!-- <div class="item">
-        <div class="foto-anuncio-carousel" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
-        <div class="carousel-caption"></div>
-      </div>
-      <div class="item">
-        <div class="foto-anuncio-carousel" style="background-image:url('app/img/foto-rancho.jpeg')"></div>
-        <div class="carousel-caption"></div>
-      </div> -->
     </div>
 
-    <!-- Controls -->
+
     <a class="left carousel-control carousel-control-custom" href="javascript(0);" data-target="#carousel-example-generic" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -52,120 +57,233 @@
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-</div>
+</div> -->
 
-
-
+<!-- width: 33.4%; -->
 
 <div class="container container-anuncio">
 
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title"><strong>{{ anuncio.precoDiaria | currency:'R$'}}</strong> <span class="text-right">por dia</span></h3>
+    <div class="row" style="margin-bottom: 2em;">
+        <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 
-          </div>
-          <div class="panel-body">
-              <p class="anuncio-nome-dono">{{anuncio.usuario.nome + ' ' + anuncio.usuario.sobreNome}}</p>
-              <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
-              <form class="form-horizontal form-custom-mensagem">
-                  <div class="form-group">
-                      <label>Deixe uma mensagem:</label>
-                      <textarea ng-model="mensagem.texto" class="form-control no-resize" rows="3"></textarea>
-                  </div>
-                  <div class="form-group">
-                      <button ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-success btn-block">Enviar</button>
-                  </div>
-              </form>
-          </div>
+          <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="{{anuncio.listaArquivos[0].width + 'x' + anuncio.listaArquivos[0].height}}">
+                  <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
+              </a>
+          </figure> -->
+
+            <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin 0px; padding: 0px;">
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="700x450">
+                        <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
+                    </a>
+                </figure>
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="foto in anuncio.listaArquivos" style="margin 0px; padding: 5px;"> -->
+            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" itemscope itemtype="http://schema.org/ImageObject">
+                <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
+                    <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
+                </a>
+                <!-- <figcaption itemprop="caption description">Image caption  1</figcaption> -->
+            </figure>
+            <!-- </div> -->
         </div>
-  </div>
-  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
-
-    <div class="row row-space-bottom">
-      <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
-      <!-- <p>Camponesa, Lins, SP</p> -->
-      <p>{{logradouro.endereco }}</p>
-      <div class="container-icons">
-          <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-              <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
-              <p>{{anuncio.tipoImovel.nome}}</p>
-          </div>
-          <div ng-show="anuncio.numAcomoda.num" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-              <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
-              <p>Acomoda {{anuncio.numAcomoda.num}}</p>
-          </div>
-          <div ng-show="anuncio.numCamas" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-            <p>{{anuncio.numCamas}} Camas</p>
-          </div>
-          <div ng-show="anuncio.numQuartos" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-            <p>{{anuncio.numQuartos}} Quartos</p>
-          </div>
-          <div ng-show="anuncio.numBanheiros" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-            <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-            <p>{{anuncio.numBanheiros}} Banheiros</p>
-          </div>
-      </div>
+        <!-- END GALLERY -->
     </div>
 
-    <div class="row row-space-bottom">
-        <h4 class="text-title-2">Sobre o imóvel</h4>
-        <p class="text-justify text-justify-padding-right">
-          {{anuncio.sobreDescricao}}
-          <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
-        </p>
-    </div>
+    <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="contentUrl" data-size="964x1024">
+          <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg" itemprop="thumbnail" alt="Image description" />
+        </a>
+      </figure>
 
-    <div class="row row-space-bottom">
-        <h4 class="text-title-2">Comodidades</h4>
-        <ul>
-          <div ng-repeat="comodidade in anuncio.listaComodidades">
-            <li>{{comodidade.descComodidade}}</li>
-          </div>
-          <!-- <li>Ar Condicionado</li>
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg" itemprop="contentUrl" data-size="1024x683">
+          <img src="https://farm7.staticflickr.com/6175/6176698785_7dee72237e_m.jpg" itemprop="thumbnail" alt="Image description" />
+        </a>
+      </figure>
+
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_b.jpg" itemprop="contentUrl" data-size="1024x768">
+          <img src="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_m.jpg" itemprop="thumbnail" alt="Image description" />
+        </a>
+      </figure> -->
+
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>{{ anuncio.precoDiaria | currency:'R$'}}</strong> <span class="text-right">por dia</span></h3>
+
+            </div>
+            <div class="panel-body">
+                <p class="anuncio-nome-dono">{{anuncio.usuario.nome + ' ' + anuncio.usuario.sobreNome}}</p>
+                <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
+                <form class="form-horizontal form-custom-mensagem">
+                    <div class="form-group">
+                        <label>Deixe uma mensagem:</label>
+                        <textarea ng-model="mensagem.texto" class="form-control no-resize" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-success btn-block">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
+
+        <div class="row row-space-bottom">
+            <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
+            <!-- <p>Camponesa, Lins, SP</p> -->
+            <p>{{logradouro.endereco }}</p>
+            <div class="container-icons">
+                <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
+                    <p>{{anuncio.tipoImovel.nome}}</p>
+                </div>
+                <div ng-show="anuncio.numAcomoda.num" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
+                    <p>Acomoda {{anuncio.numAcomoda.num}}</p>
+                </div>
+                <div ng-show="anuncio.numCamas" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+                    <p>{{anuncio.numCamas}} Camas</p>
+                </div>
+                <div ng-show="anuncio.numQuartos" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+                    <p>{{anuncio.numQuartos}} Quartos</p>
+                </div>
+                <div ng-show="anuncio.numBanheiros" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
+                    <p>{{anuncio.numBanheiros}} Banheiros</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-space-bottom">
+            <h4 class="text-title-2">Sobre o imóvel</h4>
+            <p class="text-justify text-justify-padding-right">
+                {{anuncio.sobreDescricao}}
+                <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
+            </p>
+        </div>
+
+        <div class="row row-space-bottom">
+            <h4 class="text-title-2">Comodidades</h4>
+            <ul>
+                <div ng-repeat="comodidade in anuncio.listaComodidades">
+                    <li>{{comodidade.descComodidade}}</li>
+                </div>
+                <!-- <li>Ar Condicionado</li>
           <li>Cozinha</li>
           <li>Internet</li>
           <li>Estacionamento</li>
           <li>Piscina</li>
           <li>Ar Condicionado</li>
           <li>Quadra de Esportes</li> -->
-        </ul>
+            </ul>
+        </div>
+
+        <div class="row row-space-bottom">
+            <h4 class="text-title-2">O que levar</h4>
+            <p class="text-justify text-justify-padding-right">
+                {{anuncio.oquelevar}}
+            </p>
+        </div>
+
+        <div class="row row-space-bottom">
+            <h4 class="text-title-2">O que NÃO levar</h4>
+            <p class="text-justify text-justify-padding-right">
+                {{anuncio.oquenaolevar}}
+            </p>
+        </div>
+
+        <div class="row row-space-bottom">
+            <h4 class="text-title-2">Oferta de Valor</h4>
+            <p class="text-justify text-justify-padding-right">
+                Este imóvel é perfeito para pescarias.
+            </p>
+        </div>
+
     </div>
 
-    <div class="row row-space-bottom">
-        <h4 class="text-title-2">O que levar</h4>
-        <p class="text-justify text-justify-padding-right">
-            {{anuncio.oquelevar}}
-        </p>
+    <div ng-show="showlocalizacao" class="row row-space-bottom">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4 class="text-title-2">Localização</h4>
+            <div id="map" class=""></div>
+            <!-- <img ng-src="map"> -->
+        </div>
+        <!-- {{showlocalizacao}} -->
     </div>
-
-    <div class="row row-space-bottom">
-      <h4 class="text-title-2">O que NÃO levar</h4>
-      <p class="text-justify text-justify-padding-right">
-          {{anuncio.oquenaolevar}}
-      </p>
-    </div>
-
-    <div class="row row-space-bottom">
-        <h4 class="text-title-2">Oferta de Valor</h4>
-        <p class="text-justify text-justify-padding-right">
-            Este imóvel é perfeito para pescarias.
-        </p>
-    </div>
-
-  </div>
-
-  <div ng-show="showlocalizacao" class="row row-space-bottom">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <h4 class="text-title-2">Localização</h4>
-          <div id="map" class=""></div>
-          <!-- <img ng-src="map"> -->
-      </div>
-      <!-- {{showlocalizacao}} -->
-  </div>
 
 </div>
-<div ng-include src="'app/rodape/rodape.html'"/>
-<script src="app/anuncio/anuncio.controller.js" type="text/javascript" charset="utf-8"></script>
+<div ng-include src="'app/rodape/rodape.html'" />
+<!-- <script src="app/anuncio/anuncio.controller.js" type="text/javascript" charset="utf-8"></script> -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -12,7 +12,13 @@ module.exports = function(app) {
     var storage = multer.diskStorage({
         fileFilter: function(req, file, cb) {
 
+            // console.log(file);
+            // console.log(req.query.width);
+            // console.log(req.query.height);
+
             req.checkParams('_id', '').notEmpty().isMongoId();
+            req.checkQuery('width', '').notEmpty().isNumeric();
+            req.checkQuery('height', '').notEmpty().isNumeric();
 
             var erros = req.validationErrors();
 
@@ -32,7 +38,9 @@ module.exports = function(app) {
         },
         filename: function(req, file, cb) {
             var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+            // console.log(JSON.stringify(file));
+            // console.log(file);
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.mimetype.split('/')[file.mimetype.split('/').length - 1]);
         }
     });
 
@@ -59,7 +67,8 @@ module.exports = function(app) {
 
                         new Arquivos({
                                 nome: req.file.originalname,
-                                // path: '/imganuncio/' + req.file.filename,
+                                width: req.query.width,
+                                height: req.query.height,
                                 path: req.file.filename,
                                 formato: req.file.mimetype,
                                 anuncio: req.params._id,
@@ -142,40 +151,40 @@ module.exports = function(app) {
                         if (imagem) {
                             // fs.unlink('./public' + imagem.path, function(err) {
                             fs.unlink('/imgs/' + imagem.path, function(err) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500).end();
-                                } else {
-                                    Arquivos.remove({
-                                        _id: req.params._idimagem,
-                                        anuncio: req.params._idanuncio,
-                                        usuario: req.user._id
-                                    }, function(err) {
-                                        if (err) {
-                                            console.log(err);
-                                            res.sendStatus(412).end();
-                                        } else {
+                                // if (err) {
+                                // console.log(err);
+                                // res.sendStatus(500).end();
+                                // } else {
+                                Arquivos.remove({
+                                    _id: req.params._idimagem,
+                                    anuncio: req.params._idanuncio,
+                                    usuario: req.user._id
+                                }, function(err) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.sendStatus(412).end();
+                                    } else {
 
-                                            Anuncios.update({
-                                                    _id: req.params._idanuncio,
-                                                    usuario: req.user._id
-                                                }, {
-                                                    $pull: {
-                                                        listaArquivos: req.params._idimagem
-                                                    }
-                                                },
-                                                function(err) {
-                                                    if (err) {
-                                                        console.log(err);
-                                                        res.sendStatus(412).end();
-                                                    } else {
-                                                        res.sendStatus(200).end();
-                                                    }
+                                        Anuncios.update({
+                                                _id: req.params._idanuncio,
+                                                usuario: req.user._id
+                                            }, {
+                                                $pull: {
+                                                    listaArquivos: req.params._idimagem
                                                 }
-                                            );
-                                        }
-                                    });
-                                }
+                                            },
+                                            function(err) {
+                                                if (err) {
+                                                    console.log(err);
+                                                    res.sendStatus(412).end();
+                                                } else {
+                                                    res.sendStatus(200).end();
+                                                }
+                                            }
+                                        );
+                                    }
+                                });
+                                // }
                             });
 
                         } else {

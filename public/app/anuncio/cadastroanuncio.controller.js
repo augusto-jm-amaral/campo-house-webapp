@@ -246,45 +246,71 @@
       $scope.errFiles = errFiles;
       angular.forEach(files, function(file) {
 
+        console.log(file);
 
         if($scope.anuncio.listaArquivos.length < 20){
 
           resize.photo(file, 1024, 'file', function(imagem) {
+            console.log(imagem);
             if(!file.result){
 
               file.up = true;
 
-              file.upload = Upload.upload({
-                url: Config.getUrlApi() + '/anuncios/'+$scope.anuncio._id+'/imagens',
-                data: {file: imagem}
-              });
+              // var fr = new FileReader;
+              //
+              // fr.onload = function() {
+              //     var img = new Image;
+              //
+              //     img.onload = function() {
+              //         alert(img.width);
+              //     };
+              //
+              //     img.src = fr.result;
+              // };
+              //
+              // fr.readAsDataURL(imagem);
 
-              file.upload.then(function (response) { // success
+              var urlImagem = URL.createObjectURL(imagem);
 
-                $timeout(function () {
-                  file.result = response.data;
-                  $scope.anuncio = response.data;
+              var i = new Image();
 
-                });
+              i.onload = function(){
 
-              }, function (response) { // error
+               file.upload = Upload.upload({
+                 url: Config.getUrlApi() + '/anuncios/'+$scope.anuncio._id+'/imagens?width='+i.width+'&height='+i.height,
+                 data: {file: imagem}
+               });
 
-                $timeout(function () {
+               file.upload.then(function (response) { // success
 
-                  toaster.pop({
-                    type:'error',
-                    title: 'Anúncio',
-                    body: "Erro ao carregar a imagem.",
-                    showCloseButton: true
-                  });
+                 $timeout(function () {
+                   file.result = response.data;
+                   $scope.anuncio = response.data;
 
-                });
+                 });
 
-              }, function (evt) { // upload
-                file.progress = Math.min(100, parseInt(100.0 *
-                                         evt.loaded / evt.total));
-                // console.log(JSON.stringify(file));
-              });
+               }, function (response) { // error
+
+                 $timeout(function () {
+
+                   toaster.pop({
+                     type:'error',
+                     title: 'Anúncio',
+                     body: "Erro ao carregar a imagem.",
+                     showCloseButton: true
+                   });
+
+                 });
+
+               }, function (evt) { // upload
+                 file.progress = Math.min(100, parseInt(100.0 *
+                   evt.loaded / evt.total));
+                   // console.log(JSON.stringify(file));
+                 });
+
+              };
+
+              i.src = urlImagem;
 
             }
       		});
