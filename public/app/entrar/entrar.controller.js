@@ -11,13 +11,28 @@
         $scope.login = {};
         $scope.autologin = false;
 
+        $scope.aceite = false;
+
+        $scope.planos = [{
+            value: 1,
+            label: 'Mensal'
+        }, {
+            value: 2,
+            label: 'Semestral'
+        }, {
+            value: 3,
+            label: 'Anual'
+        }];
+
+        $scope.cadastro.plano = $scope.planos[0].value;
+
         $scope.cadastrar = function() {
 
             if ($scope.formCadastro.$valid) {
 
                 Usuario.save({
                     nome: $scope.cadastro.nomeCadastro,
-                    // sobreNome: $scope.cadastro.emailCadastro,
+                    plano: $scope.cadastro.plano,
                     email: $scope.cadastro.emailCadastro,
                     telefone: $scope.cadastro.telefoneCadastro,
                     senha: $scope.cadastro.senhaCadastro
@@ -42,19 +57,20 @@
                     }
 
                     $scope.cadastro = {};
+                    $scope.cadastro.plano = $scope.planos[0].value;
 
                     $scope.autologin = true;
 
                     $scope.logar();
 
                 }).catch(function(err) {
-                    if(err.status==412){
-                      toaster.pop({
-                          type: 'info',
-                          title: 'Cadastro',
-                          body: "Este e-mail já está sendo utilizado",
-                          showCloseButton: true
-                      });
+                    if (err.status == 412) {
+                        toaster.pop({
+                            type: 'info',
+                            title: 'Cadastro',
+                            body: "Este e-mail já está sendo utilizado",
+                            showCloseButton: true
+                        });
                     }
                 });
             }
@@ -71,12 +87,12 @@
                         $scope.loginForm.emailLogin.$touched = false;
                         $scope.loginForm.senhaLogin.$touched = false;
 
-                        toaster.pop({
-                            type: 'success',
-                            title: 'Login',
-                            body: "Login realizado com sucesso",
-                            showCloseButton: true
-                        });
+                        // toaster.pop({
+                        //     type: 'success',
+                        //     title: 'Login',
+                        //     body: "Login realizado com sucesso",
+                        //     showCloseButton: true
+                        // });
 
                         $scope.login = {};
 

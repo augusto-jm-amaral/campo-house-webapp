@@ -22,10 +22,16 @@
         </div>
         <div class="social">
           <ul>
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-rss"></i></a></li>
-            <li><a href="#"><i class="fa fa-vk"></i></a></li>
+            <!-- <li><a href="#"><i class="fa fa-facebook" data-href="http://www.google.com" data-layout="button_count"></i></a></li> -->
+            <li>
+              <div class="fb-share-button"
+              		data-href="http://www.google.com"
+              		data-layout="button_count">
+              </div>
+            </li>
+            <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+            <!-- <li><a href="#"><i class="fa fa-rss"></i></a></li> -->
+            <!-- <li><a href="#"><i class="fa fa-vk"></i></a></li> -->
           </ul>
         </div>
       </div>
@@ -47,3 +53,13 @@
     </div>
   </div>
 </div>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

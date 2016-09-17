@@ -1,6 +1,19 @@
 <link rel="stylesheet" href="app/menu/menu-home.css" charset="utf-8">
 <link rel="stylesheet" href="app/menu/menu-geral.css" charset="utf-8">
 <div ng-include src="'app/menu/menu3.html'"></div>
+<style media="screen">
+select {
+  display: inline-block;
+  background: none;
+  border: 1.5px solid #BBBBBB;
+  width: 100%;
+  outline: none;
+  padding: 10px 15px 10px 15px;
+  font-size: .9em;
+  color: #BBBBBB;
+  margin-bottom: 1.5em;
+}
+</style>
 <div class="a-grid">
     <div class="container">
         <div class="w3l-about-heading">
@@ -46,7 +59,38 @@
                             <input type="password" ng-model="cadastro.repetirSenhaCadastro" name="repetirSenhaCadastro" placeholder="Digite novamente sua Senha" ng-required="true" ng-class="{ 'erro' : formCadastro.repetirSenhaCadastro.$invalid && formCadastro.repetirSenhaCadastro.$touched }">
                             <p ng-show="formCadastro.repetirSenhaCadastro.$invalid && formCadastro.repetirSenhaCadastro.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                             <p ng-hide="cadastro.repetirSenhaCadastro === cadastro.senhaCadastro" class="text-danger" style="margin-top: -1em;">Senha não confirmada</p>
-                            <button class="btn1 pull-right" ng-disabled="cadastro.repetirSenhaCadastro != cadastro.senhaCadastro" ng-click="cadastrar();">Enviar</button>
+
+                            <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                              <div class="col-xs-6" style="padding-left: 0px;">
+                                <select ng-model="cadastro.plano" ng-options="item.value as item.label for item in planos">
+                                </select>
+                              </div>
+
+                              <div class="col-xs-6" style="padding-left: 0px;">
+                                <p ng-show="cadastro.plano==1" style=" margin-top: 0.7em; font-size: 0.8em; text-align: center;">30 Dias por apenas R$ 44.90</p>
+                                <p ng-show="cadastro.plano==2" style=" margin-top: 0.7em; font-size: 0.8em; text-align: center;">180 Dias por apenas R$ 22.90/mês</p>
+                                <p ng-show="cadastro.plano==3" style=" margin-top: 0.7em; font-size: 0.8em; text-align: center;">365 Dias por apenas R$ 14.90/mês</p>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                              <a target="_blank" ng-href="#/comofunciona" style="font-size: 0.9em;">Saiba mais sobre nossos planos</a>
+                            </div>
+                            <div class="row" style="margin-right: 0px; margin-left: 0px; margin-top: 0.2em;">
+                              <a target="_blank"  ng-href="#/privacidade" style="font-size: 0.9em;">Política de Privacidade</a>
+                            </div>
+                            <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                              <a target="_blank"  ng-href="#/termos" style="font-size: 0.9em;">Termos de Uso</a>
+                            </div>
+                            <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                              <!-- <div class="col-xs-6" style="padding-left: 0px;"> -->
+                                <div class="checkbox" style="font-size: 0.9em;">
+                                  <label><input ng-model="aceite" type="checkbox" value="">Li e Aceito os Termos</label>
+                                </div>
+                              <!-- </div> -->
+                              <!-- <a ng-href="#" style="font-size: 0.9em;">Saiba mais sobre nossos planos</a> -->
+                            </div>
+
+                            <button class="btn1 pull-right" ng-disabled="cadastro.repetirSenhaCadastro != cadastro.senhaCadastro && aceite" ng-click="cadastrar();">Enviar</button>
                         </form>
                     </div>
                 </div>
