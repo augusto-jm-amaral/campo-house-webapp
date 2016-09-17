@@ -101,10 +101,10 @@ module.exports = function(app) {
         .post(function get(req, res) {
 
             req.checkBody('nome', '').notEmpty().isName();
-            req.checkBody('plano', '').notEmpty().isNumeric();
+            // req.checkBody('plano', '').notEmpty().isNumeric();
             req.checkBody('email', '').notEmpty().isEmail();
             req.checkBody('senha', '').notEmpty().isPassword();
-            req.checkBody('telefone','').notEmpty().isNumeric();
+            req.checkBody('telefone', '').notEmpty().isNumeric();
 
             var erros = req.validationErrors();
 
@@ -115,98 +115,98 @@ module.exports = function(app) {
 
                 req.body.chaveAcesso = bcrypt.hashSync(chaveHash, salt).replace(/\//g, 'x').replace(/&/g, 'l');
 
-                Planos.findOne({
-                        ordem: req.body.plano
-                    })
-                    .then(function(plano) {
+                // Planos.findOne({
+                //         ordem: req.body.plano
+                //     })
+                //     .then(function(plano) {
 
-                        var data = new Date();
+                // var data = new Date();
 
-                        req.body.plano = plano._id;
-                        req.body.planoIni = data;
-                        req.body.planoFin = new Date((data.getTime() + plano.duracao));
+                // req.body.plano = plano._id;
+                // req.body.planoIni = data;
+                // req.body.planoFin = new Date((data.getTime() + plano.duracao));
 
-                        var usuario = new Usuarios(req.body);
-                        usuario = usuario.encripitarSenha(usuario);
-                        usuario.save(function(err) {
-                            if (err) {
-                                console.log(err);
-                                res.sendStatus(412).end();
-                            } else {
-
-                                var mailOptions = {
-                                    from: 'CampuHouse	<campohouse@campohouse.com.br>',
-                                    to: req.body.email,
-                                    subject: 'Bem Vindo a Campo House',
-                                    html: '<b>Validar Autenticação: ' + cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso + '</b>'
-                                };
-
-                                var sendMail = transporter.sendMail(mailOptions, function(error, info) {
-                                    if (error) {
-                                        console.log(error);
-                                    } else {
-                                        console.log('Email	enviado:	' + info.response);
-                                    }
-                                });
-
-                                res.sendStatus(200).end();
-                            }
-                        });
-                    }).catch(function(err) {
-                        console.log(err);
-                        res.sendStatus(412);
-                    });
-
-            } else {
-                console.log(erros);
-                res.sendStatus(400).end();
-            }
-        });
-
-
-    app.route(cfg.urlRaizApi + '/usuarios')
-        .all(app.auth.authenticate('usuario'))
-        .put(function get(req, res) {
-
-            req.checkBody('_id', '').notEmpty().isMongoId();
-            req.checkBody('nome', '').notEmpty().isName();
-            req.checkBody('sobreNome', '').notEmpty().isName();
-            req.checkBody('email', '').notEmpty().isEmail();
-
-            if (req.body.dataNascimento) {
-                req.checkBody('dataNascimento', '').notEmpty().isNumeric();
-            }
-            if (req.body.telefone) {
-                req.checkBody('telefone', '').notEmpty().isMobilePhone();
-            }
-            if (req.body.sobre) {
-                req.checkBody('sobre', '').notEmpty();
-            }
-            if (req.body.senha) {
-                req.checkBody('senha', '').notEmpty().isPassword();
-            }
-
-            var erros = req.validationErrors();
-
-            if (!erros && req.user.validarUsuario(req.user, req.body)) {
-
-                Usuarios.findByIdAndUpdate(req.body._id, req.body, function(err, usuario) {
+                var usuario = new Usuarios(req.body);
+                usuario = usuario.encripitarSenha(usuario);
+                usuario.save(function(err) {
                     if (err) {
+                        console.log(err);
                         res.sendStatus(412).end();
                     } else {
+
+                        var mailOptions = {
+                            from: 'CampuHouse	<campohouse@campohouse.com.br>',
+                            to: req.body.email,
+                            subject: 'Bem Vindo a Campo House',
+                            html: '<b>Validar Autenticação: ' + cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso + '</b>'
+                        };
+
+                        var sendMail = transporter.sendMail(mailOptions, function(error, info) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                console.log('Email	enviado:	' + info.response);
+                            }
+                        });
+
                         res.sendStatus(200).end();
                     }
                 });
+                // }).catch(function(err) {
+                //     console.log(err);
+                //     res.sendStatus(412);
+                // });
 
             } else {
                 console.log(erros);
                 res.sendStatus(400).end();
             }
-        })
-        .delete(function get(req, res) {
-
-            res.sendStatus(200).end();
-
         });
+
+
+    // app.route(cfg.urlRaizApi + '/usuarios')
+    //     .all(app.auth.authenticate('usuario'))
+    //     .put(function get(req, res) {
+    //
+    //         req.checkBody('_id', '').notEmpty().isMongoId();
+    //         req.checkBody('nome', '').notEmpty().isName();
+    //         req.checkBody('sobreNome', '').notEmpty().isName();
+    //         req.checkBody('email', '').notEmpty().isEmail();
+    //
+    //         if (req.body.dataNascimento) {
+    //             req.checkBody('dataNascimento', '').notEmpty().isNumeric();
+    //         }
+    //         if (req.body.telefone) {
+    //             req.checkBody('telefone', '').notEmpty().isMobilePhone();
+    //         }
+    //         if (req.body.sobre) {
+    //             req.checkBody('sobre', '').notEmpty();
+    //         }
+    //         if (req.body.senha) {
+    //             req.checkBody('senha', '').notEmpty().isPassword();
+    //         }
+    //
+    //         var erros = req.validationErrors();
+    //
+    //         if (!erros && req.user.validarUsuario(req.user, req.body)) {
+    //
+    //             Usuarios.findByIdAndUpdate(req.body._id, req.body, function(err, usuario) {
+    //                 if (err) {
+    //                     res.sendStatus(412).end();
+    //                 } else {
+    //                     res.sendStatus(200).end();
+    //                 }
+    //             });
+    //
+    //         } else {
+    //             console.log(erros);
+    //             res.sendStatus(400).end();
+    //         }
+    //     })
+    //     .delete(function get(req, res) {
+    //
+    //         res.sendStatus(200).end();
+    //
+    //     });
 
 };

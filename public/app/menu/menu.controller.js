@@ -57,7 +57,7 @@
         $location.path('/cadastroanuncio');
       }else{
         // go to login/create
-        $location.path('/cadastrar');
+        $location.path('/entrar');
       }
     };
     //

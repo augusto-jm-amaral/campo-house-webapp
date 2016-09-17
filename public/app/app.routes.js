@@ -12,7 +12,7 @@
 
           if (nextRoute.access && nextRoute.access.loginRequerido) {
             if(!Login.islogin()){
-                //tratar quando não estiver logado
+                // $location.path('/entrar');
             }
           }
 

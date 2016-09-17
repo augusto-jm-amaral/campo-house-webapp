@@ -13,22 +13,22 @@
 
         $scope.aceite = false;
 
-        $scope.planos = [{
-            value: 1,
-            label: 'Mensal'
-        }, {
-            value: 2,
-            label: 'Semestral'
-        }, {
-            value: 3,
-            label: 'Anual'
-        }];
+        // $scope.planos = [{
+        //     value: 1,
+        //     label: 'Mensal'
+        // }, {
+        //     value: 2,
+        //     label: 'Semestral'
+        // }, {
+        //     value: 3,
+        //     label: 'Anual'
+        // }];
 
-        $scope.cadastro.plano = $scope.planos[0].value;
+        // $scope.cadastro.plano = $scope.planos[0].value;
 
         $scope.cadastrar = function() {
 
-            if ($scope.formCadastro.$valid) {
+            if ($scope.formCadastro.$valid && $scope.aceite && ($scope.cadastro.senhaCadastro === $scope.cadastro.repetirSenhaCadastro)) {
 
                 Usuario.save({
                     nome: $scope.cadastro.nomeCadastro,
@@ -57,7 +57,7 @@
                     }
 
                     $scope.cadastro = {};
-                    $scope.cadastro.plano = $scope.planos[0].value;
+                    // $scope.cadastro.plano = $scope.planos[0].value;
 
                     $scope.autologin = true;
 
@@ -73,6 +73,36 @@
                         });
                     }
                 });
+            }else{
+
+              if(!$scope.formCadastro.$valid){
+
+                toaster.pop({
+                  type: 'info',
+                  title: 'Cadastro',
+                  body: "Faltam alguns campos",
+                  showCloseButton: true
+                });
+
+              }else if($scope.cadastro.senhaCadastro != $scope.cadastro.repetirSenhaCadastro){
+
+                toaster.pop({
+                  type: 'info',
+                  title: 'Cadastro',
+                  body: "Falta confirmar sua senha",
+                  showCloseButton: true
+                });
+
+              }else{
+
+                toaster.pop({
+                  type: 'info',
+                  title: 'Cadastro',
+                  body: "Falta aceitar os termos de uso",
+                  showCloseButton: true
+                });
+
+              }
             }
         };
 

@@ -19,7 +19,7 @@
                         <input ng-model="mensagem.email" type="email" name="email" placeholder="Seu melhor email" ng-required="true" ng-class="{ 'erro' : formFaleConosco.email.$invalid && formFaleConosco.email.$touched }">
                         <p ng-show="formFaleConosco.email.$invalid && formFaleConosco.email.$touched && formFaleConosco.email.$error.required" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                         <p ng-show="formFaleConosco.email.$invalid && formFaleConosco.email.$touched && formFaleConosco.email.$error.email" class="text-danger" style="margin-top: -1em;">E-mail inválido</p>
-                        <input ng-model="mensagem.telefone" type="text" name="telefone" ui-mask="(99) 99999-9999" ng-required="true" ng-class="{ 'erro' : formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched }">
+                        <input ng-model="mensagem.telefone" type="text" name="telefone" placeholder="Telefone" ui-br-phone-number ng-required="true" ng-class="{ 'erro' : formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched }">
                         <p ng-show="formFaleConosco.telefone.$invalid && formFaleConosco.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
                         <textarea ng-model="mensagem.mensagem" name="mensagem" placeholder="Escreva aqui sua mensagem" ng-required="true" ng-class="{ 'erro' : formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched }"></textarea>
                         <p ng-show="formFaleConosco.mensagem.$invalid && formFaleConosco.mensagem.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
