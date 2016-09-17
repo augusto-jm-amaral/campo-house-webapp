@@ -63,7 +63,7 @@
 		background-position: center center;
     background-size: cover;
     max-height: 250px;
-    min-height: 250px;
+    min-height: 150px;
     position: relative;
 }
 
@@ -96,6 +96,16 @@
 	position: absolute;
 	text-align: center;
 	top: 30px;
+}
+
+.desc-encontra {
+	display: block;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translate(0px, -50%);
 }
 
 @media (max-width: 767px) {

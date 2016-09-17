@@ -8,6 +8,9 @@
   // function CadastroAnuncioCtrl($scope, $location, Anuncio, toaster) {
   function CadastroAnuncioCtrl($scope, $timeout, $location, Anuncio, toaster, Logradouro, Options, Upload, $timeout, Config, $http, $routeParams) {
 
+    var resize = new window.resize();
+  	resize.init();
+
     $scope.anuncio = {
       sobreTitulo: '',
       sobreDescricao: '',
@@ -244,45 +247,47 @@
       angular.forEach(files, function(file) {
 
 
-        if($scope.anuncio.listaArquivos.length < 12){
+        if($scope.anuncio.listaArquivos.length < 20){
 
-          if(!file.result){
+          resize.photo(file, 1024, 'file', function(imagem) {
+            if(!file.result){
 
-            file.up = true;
+              file.up = true;
 
-            file.upload = Upload.upload({
-              url: Config.getUrlApi() + '/anuncios/'+$scope.anuncio._id+'/imagens',
-              data: {file: file}
-            });
-
-            file.upload.then(function (response) { // success
-
-              $timeout(function () {
-                file.result = response.data;
-                $scope.anuncio = response.data;
-
+              file.upload = Upload.upload({
+                url: Config.getUrlApi() + '/anuncios/'+$scope.anuncio._id+'/imagens',
+                data: {file: imagem}
               });
 
-            }, function (response) { // error
+              file.upload.then(function (response) { // success
 
-              $timeout(function () {
+                $timeout(function () {
+                  file.result = response.data;
+                  $scope.anuncio = response.data;
 
-                toaster.pop({
-                  type:'error',
-                  title: 'Anúncio',
-                  body: "Erro ao carregar a imagem.",
-                  showCloseButton: true
                 });
 
+              }, function (response) { // error
+
+                $timeout(function () {
+
+                  toaster.pop({
+                    type:'error',
+                    title: 'Anúncio',
+                    body: "Erro ao carregar a imagem.",
+                    showCloseButton: true
+                  });
+
+                });
+
+              }, function (evt) { // upload
+                file.progress = Math.min(100, parseInt(100.0 *
+                                         evt.loaded / evt.total));
+                // console.log(JSON.stringify(file));
               });
 
-            }, function (evt) { // upload
-              file.progress = Math.min(100, parseInt(100.0 *
-                                       evt.loaded / evt.total));
-              // console.log(JSON.stringify(file));
-            });
-
-          }
+            }
+      		});
         }else{
           toaster.pop({
             type:'warning',

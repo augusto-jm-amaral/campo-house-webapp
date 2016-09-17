@@ -1,26 +1,12 @@
-<link rel="stylesheet" href="app/menu/menu2.css" charset="utf-8">
+<link rel="stylesheet" href="app/menu/menu-home.css" charset="utf-8">
+<link rel="stylesheet" href="app/menu/menu-geral.css" charset="utf-8">
 <link rel="stylesheet" href="app/anuncio/buscaranuncio.css" charset="utf-8">
-<div ng-include src="'app/menu/menu2.html'"/>
+<div ng-include src="'app/menu/menu3.html'"></div>
 
 <div class="div-pesquisa">
   <div class="container">
     <form class="form-horizontal form-pesquisa">
       <div class="row">
-        <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        </div>
-
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-          <i class="fa fa-users" aria-hidden="true"></i>
-        </div>
-
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-          <i class="fa fa-bed" aria-hidden="true"></i>
-        </div>
-
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-          <span>R$</span>
-        </div> -->
-
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
           <div class="col-xs-12" style="margin-bottom: 1em;">
             <i class="fa fa-home" style="display: table; margin: 0 auto; font-size: 2em;" aria-hidden="true"></i>
@@ -75,9 +61,7 @@
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-          <!-- <input type="text" class="input form-control form-control-focus" placeholder="Faixa Preço"> -->
           <div class="col-xs-12" style="margin-bottom: 1em;">
-            <!-- <i class="fa fa-users" style="display: table; margin: 0 auto; font-size: 2em;" aria-hidden="true"></i> -->
             <span style="display: table; margin: 0 auto; font-size: 1.4em;"><strong>R$</strong></span>
           </div>
           <div class="col-xs-12">
@@ -95,7 +79,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </form>
@@ -104,172 +87,36 @@
 </div>
 
 <div class="container container-anuncios">
-
-    <p class="text-success info">
-      Foram encontradas {{count}} Campo House's em sua pesquisa.
+    <p class="text-muted info" style="font-size:12px;">
+      Encontramos {{count}} Campo House(s) em sua pesquisa.
     </p>
-
-    <div ng-repeat="anuncio in anuncios" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a ng-href="#/anuncio/{{anuncio._id}}">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-3.jpg')"></div>
-        <span class="title-foto-home">{{anuncio.sobreTitulo}}</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>{{anuncio.precoDiaria | currency:'R$'}}</strong></span>
+    <div ng-repeat="anuncio in anuncios" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="img-thumbnail">
+        <div class="agile-news-grid-info">
+          <div class="news-grid-info-img">
+            <a href="#/anuncio/{{anuncio._id}}" target="_blank"><img ng-src="{{anuncio.listaArquivos[0].path}}" alt="" /></a>
           </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> {{anuncio.numAcomoda.num}}</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> {{anuncio.numCamas}}</span>
+          <div class="news-grid-info-bottom">
+            <div class="date-grid">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                <i class="fa fa-group" aria-hidden="true"></i> {{anuncio.numAcomoda.num}}
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                <i class="fa fa-bed" aria-hidden="true"></i> {{anuncio.numCamas}}
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                {{anuncio.precoDiaria | currency:'R$'}}
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="news-grid-info-bottom-text">
+              <a href="#/anuncio/{{anuncio._id}}" target="_blank">{{anuncio.sobreTitulo}}</a>
+              <p>{{anuncio.sobreDescricao}}</p>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
-
-    <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
-        <span class="title-foto-home">Recanto Encantado</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/918525019460993.jpg')"></div>
-        <span class="title-foto-home">Village Tiête</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-3.jpg')"></div>
-        <span class="title-foto-home">Rancho Dourado</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
-        <span class="title-foto-home">Recanto Encantado</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/918525019460993.jpg')"></div>
-        <span class="title-foto-home">Village Tiête</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-3.jpg')"></div>
-        <span class="title-foto-home">Rancho Dourado</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/foto-rancho-2.jpg')"></div>
-        <span class="title-foto-home">Recanto Encantado</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-anuncio">
-      <a href="#">
-        <div class="fotos-ranchos-home" style="background-image:url('app/img/918525019460993.jpg')"></div>
-        <span class="title-foto-home">Village Tiête</span>
-        <div class="detalhe-foto-anuncio">
-          <div class="item">
-              <span><strong>R$ 500</strong></span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-users fa-espaco" aria-hidden="true"></i> 15</span>
-          </div>
-          <div class="item">
-            <span><i class="fa fa-bed fa-espaco" aria-hidden="true"></i> 6</span>
-          </div>
-        </div>
-      </a>
-    </div> -->
 
     <!-- <div class="row">
       <uib-pagination

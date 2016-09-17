@@ -72,6 +72,10 @@ fieldset legend h3 {
 	padding-top: 30px;
 	padding-bottom: 20px;
 }
+.img-cadastro {
+	vertical-align: middle;
+	width: 100%
+}
 
 @media (max-width: 767px) {
 	.nav-justified > li.active-custom {
