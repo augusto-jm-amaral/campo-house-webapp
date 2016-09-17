@@ -2,7 +2,7 @@
   <div class="header">
     <div class="container container-menu">
       <div class="logo">
-          <a href="index.html">
+          <a ng-href="#/home">
             <img class="img-responsive img-logo" src="app/img/modelo1.png">
           </a>
       </div>
@@ -13,15 +13,21 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a ng-href="#/home2">Início</a></li>
+              <!-- <li><a ng-href="#/home2">Início</a></li> -->
               <li><a ng-href="#/quemsomos">Quem Somos</a></li>
               <li><a ng-href="#/comofunciona">Como Funciona</a></li>
               <li><a ng-href="#faleconosco">Fale Conosco</a></li>
               <li><a href="javascript:void(0);" ng-click="anunciar();">Anunciar</a></li>
               <li ng-hide="logged" ><a ng-href="#/entrar">Entrar</a></li>
-              <li ng-show="logged" ><a ng-href="#/meusanuncios">Meus Anúncios</a></li>
-              <li ng-show="logged"><a href="javascript:void(0);" ng-click="logout();">Sair</a></li>
-              <li ng-show="logged"><a href="javascript:void(0);">Olá, {{ usuario.nome.split(' ')[0] }}</a></li>
+              <li ng-show="logged">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Olá, {{ usuario.nome.split(' ')[0] }}
+                </a>
+                <ul class="dropdown-menu nav navbar-nav">
+                  <li ng-show="logged" ><a ng-href="#/meusanuncios">Meus Anúncios</a></li>
+                  <li ng-show="logged"><a href="javascript:void(0);" ng-click="logout();">Sair</a></li>
+                </ul>
+              </li>
               <div class="clearfix"></div>
             </ul>
           </div>
