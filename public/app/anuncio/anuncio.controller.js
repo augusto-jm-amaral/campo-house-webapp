@@ -18,7 +18,7 @@ var title = '';
     $scope.anuncio = {};
     $scope.showlocalizacao = true;
 
-    // $scope.fotoPrincipal = {};
+    $scope.fotoPrincipal = {};
 
     $scope.mensagem = {
       texto: ''
@@ -65,11 +65,11 @@ var title = '';
     Anuncio.get($routeParams._id,'')
       .then(function (res) {
 
-        $scope.fotoPrincipal = res.data.listaArquivos.shift();
-
-        for (var i = 0; i < res.data.listaArquivos.length; i++) {
-          res.data.listaArquivos[i].num = i + 1;
-        }
+        // $scope.fotoPrincipal = res.data.listaArquivos.shift();
+        //
+        // for (var i = 0; i < res.data.listaArquivos.length; i++) {
+        //   res.data.listaArquivos[i].num = i + 1;
+        // }
 
         $scope.anuncio = res.data;
         $scope.mensagem.anuncio = $scope.anuncio._id;

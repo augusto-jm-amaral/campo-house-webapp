@@ -26,7 +26,7 @@
        var getUrl = url;
 
        if(_idanuncio){
-         getUrl += '/' + _idanuncio + '/logradouros';
+         getUrl += '/' + _idanuncio + '/logradouro';
        }
 
        if(query){
