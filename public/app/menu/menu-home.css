@@ -5,3 +5,43 @@
 .container-menu {
   padding-top: 25px;
 }
+
+.dropdown-menu > li > a, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background: none !important;
+}
+
+/*ul.dropdown-menu {
+    float: right !important;
+}*/
+
+.dropdown-menu > .open > a, .dropdown-menu > .open > a:hover, .dropdown-menu > .open > a:focus {
+    background: none !important;
+    border-right: solid 1px #EFEFEF !important;
+    box-shadow: 1px 0px 0px 0px rgba(72, 72, 72, 0) !important;
+}
+
+/*media*/
+
+ul.dropdown-menu {
+  float: none !important;
+  background: rgba(0, 0, 0, 0.71) !important;
+  border-radius: 0 !important;
+  left: -31px;
+  border-top: 1px solid #e7e7e7;
+}
+
+.dropdown-menu > li > a {
+  text-align: center !important;
+  border: none !important;
+  box-shadow: 0 0 0 !important;
+  padding: 7px 0 !important;
+}
+
+.navbar-default .navbar-nav > .open > a {
+  border: none !important;
+}
+
+.dropdown-menu > li {
+  float: none !important;
+  display: block !important;
+}

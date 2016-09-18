@@ -63,25 +63,25 @@
 		<div class="about-grids">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 about-grid">
 				<div class="about-grid-info effect-1">
-					<img class="img-responsive img-rounded" src="../images/home-encontra-fut.png" alt="" />
+					<img class="img-responsive img-circle" src="../images/home-encontra-fut.jpg" alt="" />
 					<h4 class="desc-encontra">Mini campo</h4>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 about-grid">
 				<div class="about-grid-info effect-1">
-					<img class="img-responsive img-rounded" src="../images/home-encontra-swi.png" alt="" />
+					<img class="img-responsive img-circle" src="../images/home-encontra-swi.jpg" alt="" />
 					<h4 class="desc-encontra">Piscina</h4>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 about-grid">
 				<div class="about-grid-info effect-1">
-					<img class="img-responsive img-rounded" src="../images/home-encontra-pier.png" alt="" />
+					<img class="img-responsive img-circle" src="../images/home-encontra-pier.jpg" alt="" />
 					<h4 class="desc-encontra">Pier para pesca</h4>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 about-grid">
 				<div class="about-grid-info about-grid-info3 effect-1">
-					<img class="img-responsive img-rounded" src="../images/home-encontra-party.png" alt="" />
+					<img class="img-responsive img-circle" src="../images/home-encontra-party.jpg" alt="" />
 					<h4 class="desc-encontra">Locais para eventos</h4>
 				</div>
 			</div>
@@ -100,7 +100,9 @@
 			<div ng-repeat="anuncio in anuncioshome" class="col-md-4 news-grid">
 				<div class="agile-news-grid-info">
 					<div class="news-grid-info-img">
-						<a href="#/anuncio/{{anuncio._id}}" target="_blank"><img ng-src="{{anuncio.listaArquivos[0].path}}" alt="" /></a>
+						<a href="#/anuncio/{{anuncio._id}}" target="_blank">
+							<div class="fotos-ranchos-home" style="background-image:url('{{anuncio.listaArquivos[0].path}}')"></div>
+						</a>
 					</div>
 					<div class="news-grid-info-bottom">
 						<div class="date-grid">

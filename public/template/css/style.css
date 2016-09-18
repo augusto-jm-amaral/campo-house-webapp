@@ -229,17 +229,17 @@ ul.nav.navbar-nav {
     line-height: 7.5em;
 }
 .about-grid-info1{
-	background: url(../images/a1.png)no-repeat 0px 0px;
+	/*background: url(../images/a1.png)no-repeat 0px 0px;*/
 	background-size: cover;
     min-height: 255px;
 }
 .about-grid-info2{
-	background: url(../images/a2.png)no-repeat 0px 0px;
+	/*background: url(../images/a2.png)no-repeat 0px 0px;*/
 	background-size: cover;
     min-height: 255px;
 }
 .about-grid-info3{
-	background: url(../images/a3.png)no-repeat 0px 0px;
+	/*background: url(../images/a3.png)no-repeat 0px 0px;*/
 	background-size: cover;
     min-height: 255px;
 }
@@ -2313,20 +2313,20 @@ button.btn1:hover{
 		width: 100%;
 	}
 	.about-grid-info {
-		background: url(../images/a.png)no-repeat 50% 50%;
+		/*background: url(../images/a.png)no-repeat 50% 50%;*/
 		min-height: 175px;
 		background-size: 72%;
 	}
 	.about-grid-info1 {
-		background: url(../images/a1.png)no-repeat 50% 50%;
+		/*background: url(../images/a1.png)no-repeat 50% 50%;*/
 		background-size: 72%;
 	}
 	.about-grid-info2 {
-		background: url(../images/a2.png)no-repeat 50% 50%;
+		/*background: url(../images/a2.png)no-repeat 50% 50%;*/
 		background-size: 72%;
 	}
 	.about-grid-info3 {
-		background: url(../images/a3.png)no-repeat 50% 50%;
+		/*background: url(../images/a3.png)no-repeat 50% 50%;*/
 		background-size: 72%;
 	}
 	.about-grid-info h4 {

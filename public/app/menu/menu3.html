@@ -22,8 +22,9 @@
               <li ng-show="logged">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   Olá, {{ usuario.nome.split(' ')[0] }}
+                   <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu nav navbar-nav">
+                <ul class="dropdown-menu">
                   <li ng-show="logged" ><a ng-href="#/meusanuncios">Meus Anúncios</a></li>
                   <li ng-show="logged"><a href="javascript:void(0);" ng-click="logout();">Sair</a></li>
                 </ul>

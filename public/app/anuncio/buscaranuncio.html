@@ -94,7 +94,9 @@
       <div class="img-thumbnail">
         <div class="agile-news-grid-info">
           <div class="news-grid-info-img">
-            <a href="#/anuncio/{{anuncio._id}}" target="_blank"><img ng-src="{{anuncio.listaArquivos[0].path}}" alt="" /></a>
+            <a href="#/anuncio/{{anuncio._id}}" target="_blank">
+              <div class="fotos-ranchos-home" style="background-image:url('{{anuncio.listaArquivos[0].path}}')"></div>
+            </a>
           </div>
           <div class="news-grid-info-bottom">
             <div class="date-grid">
