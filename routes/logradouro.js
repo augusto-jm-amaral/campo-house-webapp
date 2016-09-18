@@ -11,7 +11,7 @@ module.exports = function(app) {
     const Logradouros = app.db.models.Logradouros;
 
     app.route(cfg.urlRaizApi + '/anuncios/:_id/logradouros')
-        // .all(app.auth.authenticate('usuario'))
+        .all(app.auth.authenticate('usuario'))
         .post(function(req, res) {
 
             req.checkParams('_id', '').notEmpty().isMongoId();
@@ -90,22 +90,8 @@ module.exports = function(app) {
         })
         .put(function(req, res) {
 
-          // req.checkParams('_id','').notEmpty().isMongoId();
-          // req.checkParams('_idlogradouro','').notEmpty().isMongoId();
-          // req.checkBody('localNumero','').notEmpty().isNumeric();
-          // req.checkBody('localBairro','').notEmpty().isName();
-          // req.checkBody('localCidade','').notEmpty().isName();
-          // req.checkBody('localEstado','').notEmpty().isName();
-          // req.checkBody('localPais','').notEmpty().isName();
-          // req.checkBody('localRua','').notEmpty();
+
           req.checkParams('_id', '').notEmpty().isMongoId();
-          // req.checkBody('localNumero','').notEmpty().isNumeric();
-          // req.checkBody('localCep','').notEmpty().isNumeric();
-          // req.checkBody('localBairro','').notEmpty().isName();
-          // req.checkBody('localCidade','').notEmpty().isName();
-          // req.checkBody('localEstado','').notEmpty().isName();
-          // req.checkBody('localPais','').notEmpty().isName();
-          // req.checkBody('localRua','').notEmpty();
           req.checkBody('endereco', '').notEmpty();
           req.checkBody('lat', '').notEmpty();
           req.checkBody('lng', '').notEmpty();
@@ -221,9 +207,9 @@ module.exports = function(app) {
             res.sendStatus(404).end();
           }
 
-        })
+        });
         // .all(app.auth.authenticate('usuario'))
-        // app.route(cfg.urlRaizApi + '/anuncios/:_idanuncio/logradouros')
+        app.route(cfg.urlRaizApi + '/anuncios/:_id/logradouro')
         .get(function(req, res) {
 
             req.checkParams('_id', '').notEmpty().isMongoId();

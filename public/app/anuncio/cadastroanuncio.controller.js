@@ -246,12 +246,12 @@
       $scope.errFiles = errFiles;
       angular.forEach(files, function(file) {
 
-        console.log(file);
+        // console.log(file);
 
         if($scope.anuncio.listaArquivos.length < 20){
 
           resize.photo(file, 1024, 'file', function(imagem) {
-            console.log(imagem);
+            // console.log(imagem);
             if(!file.result){
 
               file.up = true;
