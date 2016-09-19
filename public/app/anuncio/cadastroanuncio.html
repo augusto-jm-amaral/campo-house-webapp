@@ -14,12 +14,12 @@
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<ul class="nav nav-pills nav-stacked" role="tablist" id="tabs-anuncio">
 					<li role="presentation" class="active"><a class="a-nav-custom" href="javascript(0);" data-target="#geral" aria-controls="geral" role="tab" data-toggle="tab">Geral</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#localizacao" aria-controls="localizacao" role="tab" data-toggle="tab">Localização</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#espaco" aria-controls="espaco" role="tab" data-toggle="tab">O Espaço</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#comodidade" aria-controls="comodidade" role="tab" data-toggle="tab">Comodidades</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#ofertavalor" aria-controls="ofertavalor" role="tab" data-toggle="tab">Oferta de Valor</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#preco" aria-controls="preco" role="tab" data-toggle="tab">Preço</a></li>
-					<li role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#localizacao" aria-controls="localizacao" role="tab" data-toggle="tab">Localização</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#espaco" aria-controls="espaco" role="tab" data-toggle="tab">O Espaço</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#comodidade" aria-controls="comodidade" role="tab" data-toggle="tab">Comodidades</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#ofertavalor" aria-controls="ofertavalor" role="tab" data-toggle="tab">Oferta de Valor</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#preco" aria-controls="preco" role="tab" data-toggle="tab">Preço</a></li>
+					<li ng-show="anuncio._id" role="presentation" class="active-custom"><a class="a-nav-custom" href="javascript(0);" data-target="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
 				</ul>
 			</div>
 
@@ -294,7 +294,7 @@
 							</legend>
 						</fieldset>
 						<form class="form-horizontal" id="form-cad-anuncio-comodidade">
-							<h4>Itens Comuns</h4>
+							<!-- <h4>Itens Comuns</h4> -->
 
 							<div ng-repeat="comodidade in comodidades">
 								<div ng-show="comodidade.categoria.tipo=='checkbox'" class="checkbox">
@@ -311,7 +311,7 @@
                 </div> -->
 							</div>
 
-							<h4 style="margin-top: 1em;">Outros</h4>
+							<!-- <h4 style="margin-top: 1em;">Outros</h4> -->
 							<!-- <div class="checkbox">
 			    			<label>
 			    				<input type="checkbox" value="">
@@ -319,7 +319,7 @@
 			    			</label>
 			    		</div> -->
 							<!-- <div class="form-group"> -->
-							<label style="font-weight: 500;">O que levar:</label>
+							<label style="font-weight: 500; margin-top: 1em;">O que levar:</label>
 							<textarea ng-model="anuncio.oquelevar" class="form-control" rows="3" style="resize: vertical;"></textarea>
 							<div style="padding: 1em;"></div>
 							<label style="font-weight: 500;">O que não levar:</label>
