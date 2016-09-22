@@ -7,7 +7,7 @@
 
   function MenuCtrl($scope, $rootScope, $location, $window, Login, Usuario, toaster) {
 
-    $scope.logged = true;
+    $rootScope.logged = true;
     $scope.usuario = {nome: $window.sessionStorage.nome};
     //
     // $scope.nomeUsuario = '';
@@ -31,6 +31,8 @@
     $scope.logout = function () {
       Login.logout();
 
+      // $rootScope.$broadcast('sair');
+
       $rootScope.nome = '';
       // toaster.pop({
       //   type:'success',
@@ -43,7 +45,7 @@
 
     function isLogin() {
 
-      $scope.logged = Login.islogin();
+      $rootScope.logged = Login.islogin();
 
     };
 
