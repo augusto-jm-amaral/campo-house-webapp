@@ -135,6 +135,13 @@
           loginRequerido: false
         }
       })
+      .when('/planos', {
+        templateUrl: 'app/planos/planos.html',
+        // controller: '',
+        access: {
+          loginRequerido: false
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});
