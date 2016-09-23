@@ -29,40 +29,9 @@
 
 <div ng-include src="'app/menu/menu3.html'"></div>
 
-<!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li ng-repeat="foto in anuncio.listaArquivos" data-target="#carousel-example-generic" data-slide-to="{{foto.num}}"></li>
-
-    </ol>
-
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <div class="foto-anuncio-carousel" style="background-image:url({{fotoPrincipal.path}})"></div>
-        <div class="carousel-caption"></div>
-      </div>
-      <div ng-repeat="foto in anuncio.listaArquivos" class="item">
-        <div class="foto-anuncio-carousel" style="background-image:url({{foto.path}})"></div>
-        <div class="carousel-caption"></div>
-      </div>
-    </div>
-
-
-    <a class="left carousel-control carousel-control-custom" href="javascript(0);" data-target="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="javascript(0);" data-target="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div> -->
-
 <!-- width: 33.4%; -->
-
 <div class="container container-anuncio">
-
+    
     <div class="row" style="margin-bottom: 2em;">
         <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 
@@ -91,29 +60,10 @@
         <!-- END GALLERY -->
     </div>
 
-    <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="contentUrl" data-size="964x1024">
-          <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg" itemprop="thumbnail" alt="Image description" />
-        </a>
-      </figure>
-
-      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg" itemprop="contentUrl" data-size="1024x683">
-          <img src="https://farm7.staticflickr.com/6175/6176698785_7dee72237e_m.jpg" itemprop="thumbnail" alt="Image description" />
-        </a>
-      </figure>
-
-      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_b.jpg" itemprop="contentUrl" data-size="1024x768">
-          <img src="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_m.jpg" itemprop="thumbnail" alt="Image description" />
-        </a>
-      </figure> -->
-
-
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
+    <div id="div-preco" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><strong>{{ anuncio.precoDiaria | currency:'R$'}}</strong> <span class="text-right">por dia</span></h3>
+            <div class="panel-heading panel-heading-custom">
+                <h3 class="panel-title"><strong>{{ anuncio.precoDiaria | currency:'R$'}}</strong> <span class="text-right"> (diária)</span></h3>
 
             </div>
             <div class="panel-body">
@@ -121,12 +71,20 @@
                 <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
                 <form class="form-horizontal form-custom-mensagem">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label>Deixe uma mensagem:</label>
                         <textarea ng-disabled="!logged" ng-model="mensagem.texto" class="form-control no-resize" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <a ng-href="#/entrar" class="btn btn-success btn-block" target="_blank">Quer mandar uma mensagem?</a>
                         <button ng-show="logged" ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-success btn-block">Enviar</button>
+=======
+                        <p class="anuncio-nome-dono">Escreva uma mensagem:</p>
+                        <textarea ng-model="mensagem.texto" class="form-control no-resize" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-lg btn-danger btn-block">Enviar</button>
+>>>>>>> da2af39eeb6d2168674b3e899089aaf2ffc24cb6
                     </div>
                 </form>
             </div>
@@ -135,74 +93,70 @@
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
 
         <div class="row row-space-bottom">
-            <h3 class="text-title-2">{{anuncio.sobreTitulo}}</h3>
-            <!-- <p>Camponesa, Lins, SP</p> -->
-            <p>{{logradouro.endereco }}</p>
+            <h3 class="">{{anuncio.sobreTitulo}}</h3>
+            <p class="text-title-2">{{logradouro.endereco }}</p>
             <div class="container-icons">
                 <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                     <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
-                    <p>{{anuncio.tipoImovel.nome}}</p>
+                    <p class="p-espaco">{{anuncio.tipoImovel.nome}}</p>
                 </div>
                 <div ng-show="anuncio.numAcomoda.num" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                     <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
-                    <p>Acomoda {{anuncio.numAcomoda.num}}</p>
+                    <p class="p-espaco">Acomoda {{anuncio.numAcomoda.num}}</p>
                 </div>
                 <div ng-show="anuncio.numCamas" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                     <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p>{{anuncio.numCamas}} Camas</p>
+                    <p class="p-espaco">{{anuncio.numCamas}} Camas</p>
                 </div>
                 <div ng-show="anuncio.numQuartos" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                     <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p>{{anuncio.numQuartos}} Quartos</p>
+                    <p class="p-espaco">{{anuncio.numQuartos}} Quartos</p>
                 </div>
                 <div ng-show="anuncio.numBanheiros" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                     <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p>{{anuncio.numBanheiros}} Banheiros</p>
+                    <p class="p-espaco">{{anuncio.numBanheiros}} Banheiros</p>
                 </div>
             </div>
         </div>
 
         <div class="row row-space-bottom">
-            <h4 class="text-title-2">Sobre o imóvel</h4>
-            <p class="text-justify text-justify-padding-right">
+            <hr>
+            <h4 class="">Sobre o imóvel</h4>
+            <p class="text-justify text-title-2 text-justify-padding-right">
                 {{anuncio.sobreDescricao}}
-                <!-- Rancho Valfenda, localizado em um condomínio nobre de Rifaina /sp, com monitoramento 24 hrs, em frente a represa de furnas, a 1 km do centro da cidade de Rifaina no perímetro urbano com asfalto até a entrada do Rancho. o Rancho Valfenda, fica em uma avenida iluminada próximo a antiga estação de trem e em frente a Orla Marítima de Rifaina, Local Familiar, agradável e aconchegante para você curtir seu fim de semana, Natal, Reveillon, Férias e Feriados. -->
             </p>
         </div>
 
         <div class="row row-space-bottom">
-            <h4 class="text-title-2">Comodidades</h4>
+            <hr>
+            <h4 class="">Comodidades</h4>
             <ul>
                 <div ng-repeat="comodidade in anuncio.listaComodidades">
-                    <li>{{comodidade.descComodidade}}</li>
+                    <li class="text-title-2">{{comodidade.descComodidade}}</li>
                 </div>
-                <!-- <li>Ar Condicionado</li>
-          <li>Cozinha</li>
-          <li>Internet</li>
-          <li>Estacionamento</li>
-          <li>Piscina</li>
-          <li>Ar Condicionado</li>
-          <li>Quadra de Esportes</li> -->
             </ul>
         </div>
 
-        <div class="row row-space-bottom">
-            <h4 class="text-title-2">O que levar</h4>
-            <p class="text-justify text-justify-padding-right">
+        <div ng-show="anuncio.oquelevar" class="row row-space-bottom">
+            <hr>
+            <h4 class="">O que levar</h4>
+            <p class="text-justify text-title-2 text-justify-padding-right">
                 {{anuncio.oquelevar}}
             </p>
         </div>
 
-        <div class="row row-space-bottom">
-            <h4 class="text-title-2">O que NÃO levar</h4>
-            <p class="text-justify text-justify-padding-right">
+        <div ng-show="anuncio.oquenaolevar" class="row row-space-bottom">
+            <hr>
+            <h4 class="">O que NÃO levar</h4>
+            <p class="text-justify text-title-2 text-justify-padding-right">
                 {{anuncio.oquenaolevar}}
             </p>
         </div>
 
         <div class="row row-space-bottom">
-            <h4 class="text-title-2">Oferta de Valor</h4>
-            <p class="text-justify text-justify-padding-right">
+            <hr>
+            <h4 class="">Oferta de Valor</h4>
+            <p class="text-justify text-title-2 text-justify-padding-right">
                 Este imóvel é perfeito para pescarias.
             </p>
         </div>
@@ -211,11 +165,10 @@
 
     <div ng-show="showlocalizacao" class="row row-space-bottom">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h4 class="text-title-2">Localização</h4>
+            <hr>
+            <h4 class="">Localização</h4>
             <div id="map" class=""></div>
-            <!-- <img ng-src="map"> -->
         </div>
-        <!-- {{showlocalizacao}} -->
     </div>
 
 </div>
