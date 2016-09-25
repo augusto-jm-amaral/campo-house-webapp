@@ -83,6 +83,16 @@
 	border-radius: 0 !important;
 }
 
+.foto-principal {
+		background-position: center center;
+    background-size: cover;
+    max-height: 400px;
+    min-height: 400px;
+    position: relative;
+    width: 100%;
+		cursor: pointer;
+}
+
 @media (max-width: 767px) {
   .div-preco {
       position: static;

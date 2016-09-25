@@ -30,15 +30,34 @@
 
     <div class="row" style="margin-bottom: 2em;">
         <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="{{anuncio.listaArquivos[0].width + 'x' + anuncio.listaArquivos[0].height}}">
+                  <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
+              </a>
+          </figure> -->
 
-            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" itemscope itemtype="http://schema.org/ImageObject">
+            <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin 0px; padding: 0px;">
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="700x450">
+                        <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
+                    </a>
+                </figure>
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="foto in anuncio.listaArquivos" style="margin 0px; padding: 5px;"> -->
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"class="foto-principal" style="background-image: url('{{fotoPrincipal.path}}');">
+                <a ng-href="{{fotoPrincipal.path}}" itemprop="contentUrl" data-size="{{fotoPrincipal.width + 'x' + fotoPrincipal.height}}">
+                    <img ng-src="{{fotoPrincipal.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" style="display:none;" />
+                </a>
+            </figure>
+
+            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" style="width:10%;" itemscope itemtype="http://schema.org/ImageObject">
                 <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
                     <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
                 </a>
             </figure>
         </div>
     </div>
-
+    <hr>
     <div id="div-preco" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-custom">
@@ -50,20 +69,17 @@
                 <p ng-show="anuncio.usuario.telefone" class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
                 <form class="form-horizontal form-custom-mensagem">
                     <div class="form-group">
-<!-- <<<<<<< HEAD -->
                         <label>Deixe uma mensagem:</label>
                         <textarea ng-disabled="!logged" ng-model="mensagem.texto" class="form-control no-resize" rows="5"></textarea>
                     </div>
                     <div class="form-group">
                         <a ng-show="!logged" ng-href="#/entrar" class="btn btn-lg btn-danger btn-block" target="_blank">Quer mandar uma mensagem?</a>
                         <button ng-show="logged" ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-lg btn-danger btn-block">Enviar</button>
-<!-- ======= -->
                         <!-- <p class="anuncio-nome-dono">Escreva uma mensagem:</p>
                         <textarea ng-model="mensagem.texto" class="form-control no-resize" rows="5"></textarea>
                     </div>
                     <div class="form-group">
                         <button ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-lg btn-danger btn-block">Enviar</button> -->
-<!-- >>>>>>> da2af39eeb6d2168674b3e899089aaf2ffc24cb6 -->
                     </div>
                 </form>
             </div>
