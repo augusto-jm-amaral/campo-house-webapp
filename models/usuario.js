@@ -23,10 +23,10 @@ module.exports = function() {
             }
         },
         telefone: {
-            type: String,
+            type: String
         },
         sobre: {
-            type: String,
+            type: String
         },
         senha: {
             type: String,

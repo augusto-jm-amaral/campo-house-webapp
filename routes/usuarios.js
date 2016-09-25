@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt-nodejs');
+const fs = require('fs');
 
 module.exports = function(app) {
 
@@ -10,7 +11,7 @@ module.exports = function(app) {
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
-        // secure: false,
+        requireTLS: true,
         tls: {
             rejectUnauthorized: false
         },
@@ -115,43 +116,97 @@ module.exports = function(app) {
 
                 req.body.chaveAcesso = bcrypt.hashSync(chaveHash, salt).replace(/\//g, 'x').replace(/&/g, 'l');
 
-                // Planos.findOne({
-                //         ordem: req.body.plano
-                //     })
-                //     .then(function(plano) {
+                Usuarios.count({}, function(err, num) {
 
+                    var nomePlano = '';
+
+                    if (num > 50)
+                        nomePlano = 'Free';
+                    else
+                        nomePlano = 'Promo Lançamento';
+
+                    console.log(nomePlano);
+
+                    Planos.findOne({
+                        nome: nomePlano
+                    }, function(err, plano) {
+
+                        console.log(err);
+                        console.log(plano);
+
+                        var data = new Date();
+
+                        req.body.plano = plano._id;
+                        req.body.planoIni = data;
+
+                        if (nomePlano == 'Free')
+                            req.body.planoFin = new Date((data.getTime() + plano.duracao));
+                        else
+                            req.body.planoFin = new Date(plano.duracao);
+
+
+                        var usuario = new Usuarios(req.body);
+
+                        usuario = usuario.encripitarSenha(usuario);
+
+                        usuario.save(function(err) {
+                            if (err) {
+                                console.log(err);
+                                res.sendStatus(412).end();
+                            } else {
+
+                                var site = 'http://localhost';
+
+                                var textEmail = '<h1><span style="font-size:22px">Olá ' + usuario.nome + '! Seja bem-vindo(a).</span></h1>&nbsp;' +
+                                    '<h4>Seu cadastro foi realizado com sucesso.<br>' +
+                                    '<br>' +
+                                    'Por questões de segurança, pedimos que confirme seu cadastro clicando <a href="' + site + '" target="_blank">aqui</a>.<br>' +
+                                    '<br>' +
+                                    'Agora você já pode desfrutar de todos nossos recursos.<br>' +
+                                    '<br>' +
+                                    'A partir de agora você já ganhou 30 dias GRÁTIS para anunciar seu imóvel.<br>' +
+                                    'Clique <a href="' + site + '/#/anunciar" target="_blank" >aqui</a> e anuncie já, é rápido.<br>' +
+                                    '<br>' +
+                                    'Quaisquer dúvidas ou sugestões, "fale conosco", ficaremos honrados em atendê-lo.<br>' +
+                                    '<br>' +
+                                    'Grande abraço,<br>' +
+                                    'Equipe Campo House.</h4>';
+
+                                fs.readFile('./libs/template-email.html', 'utf8', function (err, data) {
+
+                                  var mailOptions = {
+                                    from: 'CampoHouse	<campohouse@campohouse.com.br>',
+                                    to: req.body.email,
+                                    subject: 'Bem Vindo a Campo House',
+                                    html: data.replace('*.&123456789*.&', textEmail)
+                                    // html: 'teste'
+                                  };
+
+                                  var sendMail = transporter.sendMail(mailOptions, function(error, info) {
+                                    if (error) {
+                                      console.log(error);
+                                    } else {
+                                      console.log('Email	enviado:	' + info.response);
+                                    }
+                                  });
+
+                                });
+
+                                // console.log(Email.gerarEmail(textEmail));
+
+                                res.sendStatus(200).end();
+                            }
+                        });
+
+                    });
+
+                });
                 // var data = new Date();
 
                 // req.body.plano = plano._id;
                 // req.body.planoIni = data;
                 // req.body.planoFin = new Date((data.getTime() + plano.duracao));
 
-                var usuario = new Usuarios(req.body);
-                usuario = usuario.encripitarSenha(usuario);
-                usuario.save(function(err) {
-                    if (err) {
-                        console.log(err);
-                        res.sendStatus(412).end();
-                    } else {
-
-                        var mailOptions = {
-                            from: 'CampuHouse	<campohouse@campohouse.com.br>',
-                            to: req.body.email,
-                            subject: 'Bem Vindo a Campo House',
-                            html: '<b>Validar Autenticação: ' + cfg.urlServe + cfg.urlRaizApi + '/usuarios/validaremail/' + usuario.chaveAcesso + '</b>'
-                        };
-
-                        var sendMail = transporter.sendMail(mailOptions, function(error, info) {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                console.log('Email	enviado:	' + info.response);
-                            }
-                        });
-
-                        res.sendStatus(200).end();
-                    }
-                });
                 // }).catch(function(err) {
                 //     console.log(err);
                 //     res.sendStatus(412);
@@ -162,51 +217,5 @@ module.exports = function(app) {
                 res.sendStatus(400).end();
             }
         });
-
-
-    // app.route(cfg.urlRaizApi + '/usuarios')
-    //     .all(app.auth.authenticate('usuario'))
-    //     .put(function get(req, res) {
-    //
-    //         req.checkBody('_id', '').notEmpty().isMongoId();
-    //         req.checkBody('nome', '').notEmpty().isName();
-    //         req.checkBody('sobreNome', '').notEmpty().isName();
-    //         req.checkBody('email', '').notEmpty().isEmail();
-    //
-    //         if (req.body.dataNascimento) {
-    //             req.checkBody('dataNascimento', '').notEmpty().isNumeric();
-    //         }
-    //         if (req.body.telefone) {
-    //             req.checkBody('telefone', '').notEmpty().isMobilePhone();
-    //         }
-    //         if (req.body.sobre) {
-    //             req.checkBody('sobre', '').notEmpty();
-    //         }
-    //         if (req.body.senha) {
-    //             req.checkBody('senha', '').notEmpty().isPassword();
-    //         }
-    //
-    //         var erros = req.validationErrors();
-    //
-    //         if (!erros && req.user.validarUsuario(req.user, req.body)) {
-    //
-    //             Usuarios.findByIdAndUpdate(req.body._id, req.body, function(err, usuario) {
-    //                 if (err) {
-    //                     res.sendStatus(412).end();
-    //                 } else {
-    //                     res.sendStatus(200).end();
-    //                 }
-    //             });
-    //
-    //         } else {
-    //             console.log(erros);
-    //             res.sendStatus(400).end();
-    //         }
-    //     })
-    //     .delete(function get(req, res) {
-    //
-    //         res.sendStatus(200).end();
-    //
-    //     });
 
 };

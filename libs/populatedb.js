@@ -61,6 +61,42 @@ module.exports = function(app) {
                 }
             });
 
+            Planos.find({
+                nome: 'Free'
+            }, function(err, planos) {
+
+                if (!planos.length) {
+
+                    new Planos({
+                        nome: 'Free',
+                        ordem: 4,
+                        preco: 0,
+                        parcelas: 0,
+                        valorParcela: 0,
+                        economia: 0,
+                        duracao: (86400000 * 30),
+                        descricao: '30 dias a partir da data do cadastro do usuário no site. Este plano NÃO estará disponível para o usuário contratar, será vinculado automaticamente no momento do cadastro.'
+                    }).save(function (err) {
+                    });
+                }
+            });
+
+            Planos.find({
+                nome: 'Promo Lançamento'
+            }, function(err, planos) {
+                if (!planos.length) {
+                    new Planos({
+                        nome: 'Promo Lançamento',
+                        ordem: 5,
+                        preco: 0,
+                        parcelas: 0,
+                        valorParcela: 0,
+                        economia: 0,
+                        duracao: new Date(2016, 12, 31, 23, 59, 99).getTime(),
+                        descricao: 'até 31/12 para os 50 primeiros usuários que se cadastrarem e realizarem o anúncio no site. Este plano também não estará disponível para o usuário optar por sua contratação, será automatico para quem estiver dentro da regra citada acima'
+                    }).save();
+                }
+            });
 
             Categorias.find({
                 descCategoria: 'composta'

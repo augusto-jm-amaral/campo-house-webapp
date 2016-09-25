@@ -157,7 +157,10 @@ module.exports = function(app) {
                     select: {
                         nome: 1,
                         sobreNome: 1,
-                        telefone: 1
+                        telefone: 1,
+                        plano: 1,
+                        planoIni: 1,
+                        planoFin: 1
                     }
                 }, {
                     path: 'numAcomoda',
@@ -205,7 +208,10 @@ module.exports = function(app) {
                         select: {
                             nome: 1,
                             sobreNome: 1,
-                            telefone: 1
+                            telefone: 1,
+                            plano: 1,
+                            planoIni: 1,
+                            planoFin: 1
                         }
                     }, {
                         path: 'numAcomoda',
@@ -228,6 +234,15 @@ module.exports = function(app) {
                     }])
                     .then(function(anuncio) {
                         if (anuncio) {
+
+                            var dataAtual = new Date().getTime();
+                            var dataPlanoAnuncio = new Date(anuncio.usuario.planoFin).getTime();
+                            var timePlano = dataPlanoAnuncio - dataAtual;
+
+                            if (!timePlano) {
+                                anuncio.usuario.telefone = '';
+                            }
+
                             res.status(200).json(anuncio).end();
                         } else {
                             res.sendStatus(404).end();
@@ -385,25 +400,29 @@ module.exports = function(app) {
                     }]
                 )
                 .exec(function(err, anuncios) {
-                  Anuncios.find({_id : {$in: anuncios[0].ids}})
-                  .populate([{
-                      path: 'usuario',
-                      model: 'Usuarios',
-                      select: {
-                          nome: 1,
-                          sobreNome: 1,
-                          telefone: 1
-                      }
-                  }, {
-                      path: 'listaArquivos',
-                      model: 'Arquivos'
-                  }])
-                  .then(function (anuncios) {
-                    res.status(200).json(anuncios).end();
-                  }).catch(function (err) {
-                    console.log(err);
-                    res.sendStatus(412).end();
-                  });
+                    Anuncios.find({
+                            _id: {
+                                $in: anuncios[0].ids
+                            }
+                        })
+                        .populate([{
+                            path: 'usuario',
+                            model: 'Usuarios',
+                            select: {
+                                nome: 1,
+                                sobreNome: 1,
+                                telefone: 1
+                            }
+                        }, {
+                            path: 'listaArquivos',
+                            model: 'Arquivos'
+                        }])
+                        .then(function(anuncios) {
+                            res.status(200).json(anuncios).end();
+                        }).catch(function(err) {
+                            console.log(err);
+                            res.sendStatus(412).end();
+                        });
                 });
 
         });

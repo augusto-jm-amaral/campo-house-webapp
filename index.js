@@ -8,6 +8,7 @@ var app = express();
 //Injeção utilizando Consign
 consign({verbose: false})
   .then('./libs/config.js')
+  .then('./libs/email.js')
   .then('db.js')
   .then('models')
   .then('./libs/populatedb.js')

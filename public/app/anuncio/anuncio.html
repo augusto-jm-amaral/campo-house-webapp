@@ -47,7 +47,7 @@
             </div>
             <div class="panel-body">
                 <p class="anuncio-nome-dono">{{anuncio.usuario.nome + ' ' + anuncio.usuario.sobreNome}}</p>
-                <p class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
+                <p ng-show="anuncio.usuario.telefone" class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
                 <form class="form-horizontal form-custom-mensagem">
                     <div class="form-group">
 <!-- <<<<<<< HEAD -->

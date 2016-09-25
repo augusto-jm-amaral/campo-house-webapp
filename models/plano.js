@@ -39,6 +39,7 @@ module.exports = function() {
         dataCadastro: {
             type: Date,
             required: true,
+            default: new Date()
         }
     });
 
