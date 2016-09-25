@@ -142,6 +142,13 @@
           loginRequerido: false
         }
       })
+      .when('/validarcadastro', {
+        templateUrl: 'app/validarcadastro/validarcadastro.html',
+        // controller: '',
+        access: {
+          loginRequerido: false
+        }
+      })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});

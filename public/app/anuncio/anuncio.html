@@ -31,7 +31,7 @@
 
 <!-- width: 33.4%; -->
 <div class="container container-anuncio">
-    
+
     <div class="row" style="margin-bottom: 2em;">
         <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 
@@ -49,17 +49,22 @@
                 </figure>
             </div> -->
             <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="foto in anuncio.listaArquivos" style="margin 0px; padding: 5px;"> -->
-            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" itemscope itemtype="http://schema.org/ImageObject">
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"class="foto-principal" style="background-image: url('{{fotoPrincipal.path}}');">
+                <a ng-href="{{fotoPrincipal.path}}" itemprop="contentUrl" data-size="{{fotoPrincipal.width + 'x' + fotoPrincipal.height}}">
+                    <img ng-src="{{fotoPrincipal.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" style="display:none;" />
+                </a>
+            </figure>
+
+            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" style="width:10%;" itemscope itemtype="http://schema.org/ImageObject">
                 <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
                     <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
                 </a>
-                <!-- <figcaption itemprop="caption description">Image caption  1</figcaption> -->
             </figure>
             <!-- </div> -->
         </div>
         <!-- END GALLERY -->
     </div>
-
+    <hr>
     <div id="div-preco" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 div-preco">
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-custom">
