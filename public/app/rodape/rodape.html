@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer" ng-controller="RodapeCtrl as rodape">
   <div class="container">
     <div class="footer-grids">
       <div class="col-lg-4 col-md-4 footer-grid">
@@ -41,9 +41,9 @@
           <h4>Novidades</h4>
         </div>
         <div class="footer-grid-info">
-          <form action="#" method="post">
-            <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Coloque seu email aqui" required="">
-            <input type="submit" value="Enviar">
+          <form name="rodape.formnews" novalidate="true">
+            <input ng-model="rodape.email" type="email" id="mc4wp_email" name="EMAIL" placeholder="Coloque seu email aqui" ng-required="true">
+            <input type="submit" ng-click="rodape.cadastraEmail();" value="Enviar">
           </form>
         </div>
       </div>

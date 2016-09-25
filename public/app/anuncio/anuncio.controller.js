@@ -7,13 +7,10 @@ var title = '';
 
   angular.module('campohouse').controller('AnuncioCtrl',AnuncioCtrl);
 
-  AnuncioCtrl.$inject = ['$scope', '$location', '$routeParams', 'Anuncio', 'Mensagem', 'toaster', 'Logradouro', '$window', '$timeout'];
+  AnuncioCtrl.$inject = ['$scope', '$location', '$routeParams', 'Anuncio', 'Mensagem', 'toaster', 'Logradouro', '$window', '$timeout', 'Login'];
 
-  function AnuncioCtrl($scope, $location, $routeParams, Anuncio, Mensagem, toaster, Logradouro, $window, $timeout) {
+  function AnuncioCtrl($scope, $location, $routeParams, Anuncio, Mensagem, toaster, Logradouro, $window, $timeout, Login) {
 
-    // $('.carousel').carousel();
-
-    // console.log($routeParams._id);
     $scope.width = $window.screen.availWidth;
     $scope.anuncio = {};
     $scope.showlocalizacao = true;
@@ -24,6 +21,11 @@ var title = '';
     $scope.mensagem = {
       texto: ''
     };
+
+    // $scope.$on('sair', function(event, args) {
+    //
+    //
+    // });
 
     $scope.map = '';
 

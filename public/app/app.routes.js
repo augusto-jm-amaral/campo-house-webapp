@@ -30,13 +30,6 @@
           loginRequerido: false
         }
       })
-      // .when('/cadastrousuario', {
-      //   templateUrl: 'app/usuario/cadastrousuario.html',
-      //   controller: 'CadastroUsuarioCtrl',
-      //   access: {
-      //     loginRequerido: false
-      //   }
-      // })
       .when('/home', {
         templateUrl: 'app/home/home2.html',
         controller: '',
