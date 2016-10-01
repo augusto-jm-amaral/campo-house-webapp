@@ -44,17 +44,25 @@
                 </figure>
             </div> -->
             <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="foto in anuncio.listaArquivos" style="margin 0px; padding: 5px;"> -->
-            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"class="foto-principal" style="background-image: url('{{fotoPrincipal.path}}');">
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" style="width:100%">
                 <a ng-href="{{fotoPrincipal.path}}" itemprop="contentUrl" data-size="{{fotoPrincipal.width + 'x' + fotoPrincipal.height}}">
                     <img ng-src="{{fotoPrincipal.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" style="display:none;" />
                 </a>
+                <div class="foto-principal" style="background-image: url('{{fotoPrincipal.path}}');"></div>
             </figure>
-
-            <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" style="width:10%;" itemscope itemtype="http://schema.org/ImageObject">
+            <!-- <div ng-repeat="foto in anuncio.listaArquivos"> -->
+              <figure ng-repeat="foto in anuncio.listaArquivos" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" style="width:10%">
+                <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
+                    <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" style="display:none;"/>
+                </a>
+                <div class="foto-min" style="background-image: url('{{foto.path}}');"></div>
+              </figure>
+            <!-- </div> -->
+            <!-- <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" style="width:10%;" itemscope itemtype="http://schema.org/ImageObject">
                 <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
                     <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
                 </a>
-            </figure>
+            </figure> -->
         </div>
     </div>
     <hr>

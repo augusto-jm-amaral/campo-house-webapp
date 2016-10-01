@@ -93,6 +93,16 @@
 		cursor: pointer;
 }
 
+.foto-min {
+		background-position: center center;
+		background-size: cover;
+		cursor: pointer;
+		max-height: 80px;
+		min-height: 80px;
+		position: relative;
+		width: 100%;
+}
+
 @media (max-width: 767px) {
   .div-preco {
       position: static;
