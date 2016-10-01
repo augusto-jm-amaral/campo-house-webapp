@@ -13,7 +13,8 @@
 
       var service = {
         get: getAnuncio,
-        save: saveMensagem
+        save: saveMensagem,
+        getById: getById
         // delete: deleteAnuncio
       };
 
@@ -23,7 +24,12 @@
 
      function getAnuncio(_id, query) {
 
-       var getUrl = Config.getUrlApi() + '/mensagens';    
+       var getUrl = Config.getUrlApi() + '/mensagens';
+       return $http.get(getUrl);
+     };
+
+     function getById(_id) {
+       var getUrl = Config.getUrlApi() + '/mensagens/' + _id;    
        return $http.get(getUrl);
      };
 

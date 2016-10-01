@@ -1,6 +1,6 @@
-var nodemailer = require('nodemailer');
-var bcrypt = require('bcrypt-nodejs');
-const fs = require('fs');
+const nodemailer = require('nodemailer'),
+    bcrypt = require('bcrypt-nodejs'),
+    fs = require('fs');
 
 module.exports = function(app) {
 
@@ -155,7 +155,7 @@ module.exports = function(app) {
                                 res.sendStatus(412).end();
                             } else {
 
-                                var site = 'http://localhost';
+                                var site = 'http://www.campohouse.com.br';
 
                                 var textEmail = '<h1><span style="font-size:22px">Olá ' + usuario.nome + '! Seja bem-vindo(a).</span></h1>&nbsp;' +
                                     '<h4>Seu cadastro foi realizado com sucesso.<br>' +
@@ -172,23 +172,23 @@ module.exports = function(app) {
                                     'Grande abraço,<br>' +
                                     'Equipe Campo House.</h4>';
 
-                                fs.readFile('./libs/template-email.html', 'utf8', function (err, data) {
+                                fs.readFile('./libs/template-email.html', 'utf8', function(err, data) {
 
-                                  var mailOptions = {
-                                    from: 'CampoHouse	<campohouse@campohouse.com.br>',
-                                    to: req.body.email,
-                                    subject: 'Bem Vindo a Campo House',
-                                    html: data.replace('*.&123456789*.&', textEmail)
-                                    // html: 'teste'
-                                  };
+                                    var mailOptions = {
+                                        from: 'CampoHouse	<campohouse@campohouse.com.br>',
+                                        to: req.body.email,
+                                        subject: 'Bem Vindo a Campo House',
+                                        html: data.replace('*.&123456789*.&', textEmail)
+                                            // html: 'teste'
+                                    };
 
-                                  var sendMail = transporter.sendMail(mailOptions, function(error, info) {
-                                    if (error) {
-                                      console.log(error);
-                                    } else {
-                                      console.log('Email	enviado:	' + info.response);
-                                    }
-                                  });
+                                    var sendMail = transporter.sendMail(mailOptions, function(error, info) {
+                                        if (error) {
+                                            console.log(error);
+                                        } else {
+                                            console.log('Email	enviado:	' + info.response);
+                                        }
+                                    });
 
                                 });
 

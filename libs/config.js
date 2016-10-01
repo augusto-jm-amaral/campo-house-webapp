@@ -8,7 +8,20 @@ module.exports = function(app) {
                 // pass: 'C4W9UsH0uZe',
                 server: {
                     poolSize: 30,
-                    debug: true
+                    // debug: false
+                    // debug: function(coll, method, query, doc, options) {
+                    //     var set = {
+                    //         coll: coll,
+                    //         method: method,
+                    //         query: query,
+                    //         doc: doc,
+                    //         options: options
+                    //     };
+                    //     // console.log('AUHAHAU');
+                    //     console.log(set);
+                    //     // log.info({
+                    //     //     dbQuery: set
+                    //     }
                 }
             }
         },

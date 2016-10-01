@@ -11,6 +11,11 @@ module.exports = function(app) {
     //Evento de conexão
     mongoose.connection.on('connected',  () => {
       console.log('Mongoose:: Conectado em ' + cfg.url);
+      mongoose.set('debug', function (collectionName, method, query, e) {
+
+        app.libs.logger.info(collectionName+'.'+ method + '(' + JSON.stringify(query) + ',' + JSON.stringify(e) +')');
+
+      });
     });
 
     //Evento quando desconectado

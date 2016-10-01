@@ -9,6 +9,7 @@ var app = express();
 consign({verbose: false})
   .then('./libs/config.js')
   .then('./libs/email.js')
+  .then('./libs/logger.js')
   .then('db.js')
   .then('models')
   .then('./libs/populatedb.js')
