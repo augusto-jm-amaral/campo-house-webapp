@@ -77,17 +77,53 @@
         });
     };
 
-    // $scope.dataAtualFormatada = function (d){
-    //   var data = new Date(d);
-    //   var dia = data.getDate();
-    //   if (dia.toString().length == 1)
-    //     dia = "0"+dia;
-    //   var mes = data.getMonth()+1;
-    //   if (mes.toString().length == 1)
-    //     mes = "0"+mes;
-    //   var ano = data.getFullYear();
-    //   return dia+"/"+mes+"/"+ano+' '+data.getHours() + '.' + data.getMinutes()+'h';
-    // }
+    $scope.dataAtualFormatada = function (d){
+
+      // console.log(d);
+
+      var data = new Date(d);
+
+      console.log(data);
+
+      // var dataMensagem = data.getTime();
+      // var dataAgora = new Date().getTime();
+
+      // var data = new Date(dataAgora - dataMensagem);
+
+      var dataInicio = new Date(d);
+      var dataFim = new Date();
+
+      var diffMilissegundos = dataFim - dataInicio;
+
+      var diffMeses = diffMilissegundos / (30 * 86400000);
+      if(Math.trunc(diffMeses))
+      var diffMilissegundos = diffMilissegundos - (diffMeses * (30 * 86400000));
+
+      var diffDias = diffMilissegundos / 86400000;
+      if(Math.trunc(diffDias))
+        var diffMilissegundos = diffMilissegundos - (diffDias * 86400000);
+
+      var diffHoras = diffMilissegundos / (60000 * 60);
+      if(Math.trunc(diffHoras))
+        var diffMilissegundos = diffMilissegundos - (diffHoras * (60000 * 60));
+
+      var diffMinutos = diffMilissegundos / 60000;
+      if(Math.trunc(diffMinutos))
+      var diffMilissegundos = diffMilissegundos - (diffMinutos * 60000);
+
+      // var rAno = ano ? ano + ' ano(s)' : '';
+      var rMes = Math.trunc(diffMeses) ? Math.trunc(diffMeses) + ' mes(es) ' : '' ;
+      var rDia = Math.trunc(diffDias) ? Math.trunc(diffDias) + ' dia(s) ' : '';
+      var rhora = Math.trunc(diffHoras) ? Math.trunc(diffHoras) + ' hora(s) ' : '';
+      var rMin = Math.trunc(diffMinutos) ? Math.trunc(diffMinutos) + ' minuto(s) ' : '';
+      //
+      if(!(rMes ||  rDia || rhora || rMin))
+        rMin = 0 + ' minuto(s)';
+
+      return rMes + rDia + rhora + rMin;
+
+      // return '';
+    };
 
   };
 

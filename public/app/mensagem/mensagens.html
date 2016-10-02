@@ -70,7 +70,7 @@
                 <div class="chat-body clearfix">
                   <div class="header">
                     <strong class="primary-font">{{texto.usuario.nome}}</strong> <small class="pull-right text-muted">
-                      <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                      <span class="glyphicon glyphicon-time"></span>{{dataAtualFormatada(texto.data);}} atrás</small>
                     </div>
                     <p>
                       {{texto.texto}}
@@ -83,7 +83,7 @@
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
-                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{dataAtualFormatada(texto.data);}} atrás</small>
                     <strong class="pull-right primary-font">{{texto.usuario.nome}}</strong>
                   </div>
                   <p>
