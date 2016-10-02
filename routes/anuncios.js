@@ -426,6 +426,7 @@ module.exports = function(app) {
                             path: 'listaArquivos',
                             model: 'Arquivos'
                         }])
+                        .sort({dataCadastro: -1})
                         .then(function(anuncios) {
                             res.status(200).json(anuncios).end();
                         }).catch(function(err) {
