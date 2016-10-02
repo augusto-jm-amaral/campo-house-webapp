@@ -8,6 +8,8 @@ module.exports = function(app) {
     const Usuarios = app.db.models.Usuarios;
     const Planos = app.db.models.Planos;
 
+
+
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
@@ -40,12 +42,12 @@ module.exports = function(app) {
                             if (!err) {
                                 res.sendStatus(200).end();
                             } else {
-                                console.log(err);
+                                app.libs.logger.info(err);
                                 res.sendStatus(412).end();
                             }
                         });
                     } else {
-                        console.log('LOG: ' + err);
+                        app.libs.logger.info(err);
                         res.sendStatus(412).end();
                     }
                 });
@@ -88,12 +90,12 @@ module.exports = function(app) {
                         res.sendStatus(404).end();
                     }
                 }).catch(function(err) {
-                    console.log(err);
+                    app.libs.logger.info(err);
                     res.sendStatus(412).end();
                 });
 
             } else {
-                console.log(erros);
+                app.libs.logger.info(erros);
                 res.sendStatus(400).end();
             }
         });
@@ -125,14 +127,14 @@ module.exports = function(app) {
                     else
                         nomePlano = 'Promo Lançamento';
 
-                    console.log(nomePlano);
+                    app.libs.logger.info(nomePlano);
 
                     Planos.findOne({
                         nome: nomePlano
                     }, function(err, plano) {
 
-                        console.log(err);
-                        console.log(plano);
+                        app.libs.logger.info(err);
+                        app.libs.logger.info(plano);
 
                         var data = new Date();
 
@@ -151,7 +153,7 @@ module.exports = function(app) {
 
                         usuario.save(function(err) {
                             if (err) {
-                                console.log(err);
+                                app.libs.logger.info(err);
                                 res.sendStatus(412).end();
                             } else {
 
@@ -184,15 +186,15 @@ module.exports = function(app) {
 
                                     var sendMail = transporter.sendMail(mailOptions, function(error, info) {
                                         if (error) {
-                                            console.log(error);
+                                            app.libs.logger.info(error);
                                         } else {
-                                            console.log('Email	enviado:	' + info.response);
+                                            app.libs.logger.info('Email	enviado:	' + info.response);
                                         }
                                     });
 
                                 });
 
-                                // console.log(Email.gerarEmail(textEmail));
+                                // app.libs.logger.info(Email.gerarEmail(textEmail));
 
                                 res.sendStatus(200).end();
                             }
@@ -208,12 +210,12 @@ module.exports = function(app) {
                 // req.body.planoFin = new Date((data.getTime() + plano.duracao));
 
                 // }).catch(function(err) {
-                //     console.log(err);
+                //     app.libs.logger.info(err);
                 //     res.sendStatus(412);
                 // });
 
             } else {
-                console.log(erros);
+                app.libs.logger.info(erros);
                 res.sendStatus(400).end();
             }
         });

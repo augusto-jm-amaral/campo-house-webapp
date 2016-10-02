@@ -19,6 +19,7 @@ module.exports = function(app) {
                         ordem: 1,
                         preco: 44.9,
                         duracao: (86400000 * 30), // 1 dia x 30
+                        dias: 30,
                         parcelas: 1,
                         valorParcela: 44.9,
                         economia: 0,
@@ -39,6 +40,7 @@ module.exports = function(app) {
                         valorParcela: 22.9,
                         economia: 48,
                         duracao: (86400000 * 180),
+                        dias: 180,
                         descricao: 'Neste plano seu anúncio fica disponível por um prazo máximo de 180 dias a partir da data do cadastro.'
                     }).save();
                 }
@@ -55,6 +57,7 @@ module.exports = function(app) {
                         parcelas: 12,
                         valorParcela: 14.9,
                         economia: 66,
+                        dias: 365,
                         duracao: (86400000 * 365),
                         descricao: 'Neste plano seu anúncio fica disponível por um prazo máximo de 365 dias a partir da data do cadastro.'
                     }).save();
@@ -74,6 +77,7 @@ module.exports = function(app) {
                         parcelas: 0,
                         valorParcela: 0,
                         economia: 0,
+                        dias: 0,
                         duracao: (86400000 * 30),
                         descricao: '30 dias a partir da data do cadastro do usuário no site. Este plano NÃO estará disponível para o usuário contratar, será vinculado automaticamente no momento do cadastro.'
                     }).save(function (err) {

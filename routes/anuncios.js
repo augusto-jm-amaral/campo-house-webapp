@@ -11,9 +11,9 @@ module.exports = function(app) {
     app.route(cfg.urlRaizApi + '/anuncios')
         .get(function get(req, res) {
 
-            var limite = 9;
+            // var limite = 9;
             var pagina = req.query.pagina;
-            var skip = ((pagina - 1) * limite);
+            // var skip = ((pagina - 1) * limite);
 
             var busca = {};
             var buscaEndereco = {};
@@ -97,14 +97,16 @@ module.exports = function(app) {
 
                                     if (c) {
 
+                                      busca.$where = '(this.listaArquivos.length > 0)';
+
                                         Anuncios.find(busca)
                                             .sort('sobreTitulo')
-                                            .skip(skip)
-                                            .limit(limite)
+                                            // .skip(skip)
+                                            // .limit(limite)
                                             .populate(['listaArquivos', 'numAcomoda'])
                                             .then(function(anuncios) {
                                                 res.status(200).json({
-                                                    count: c,
+                                                    // count: c,
                                                     anuncios: anuncios
                                                 }).end();
                                             })
@@ -383,7 +385,13 @@ module.exports = function(app) {
         .get(function get(req, res) {
 
             Anuncios.aggregate(
-                    [{
+                    [
+                      // {
+                      //   $match: {
+                      //     $where : '(listaArquivos.length > 0)'
+                      //   }
+                      // },
+                      {
                         $sort: {
                             listaArquivos: -1,
                             dataCadastro: -1
@@ -403,7 +411,8 @@ module.exports = function(app) {
                     Anuncios.find({
                             _id: {
                                 $in: anuncios[0].ids
-                            }
+                            },
+                            $where: '(this.listaArquivos.length > 0)'
                         })
                         .populate([{
                             path: 'usuario',

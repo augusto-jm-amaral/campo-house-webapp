@@ -13,6 +13,10 @@
 
       vm.email = '';
 
+      vm.url = 'https://www.campohouse.com.br';
+
+      vm.tweet = {text: 'CampoHouse', url: 'https://www.campohouse.com.br'};
+
       vm.cadastraEmail = function () {
           if(vm.formnews.$valid){
             Email.save(vm.email)

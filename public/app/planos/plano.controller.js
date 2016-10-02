@@ -27,9 +27,9 @@
 
             console.log(err);
             toaster.pop({
-              type:'warning',
+              type:'info',
               title: 'Planos',
-              body: "Ocorreu um erro, tente novamente ou entre em contato",
+              body: "Você ainda possui mais de 15 dias de plano.",
               showCloseButton: true
             });
 

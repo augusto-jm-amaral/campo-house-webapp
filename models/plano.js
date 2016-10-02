@@ -16,6 +16,10 @@ module.exports = function() {
             type: Number,
             required: true
         },
+        dias: {
+            type: Number,
+            required: true
+        },
         preco: {
             type: Number,
             required: true

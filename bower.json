@@ -33,6 +33,7 @@
     "angular-i18n": "^1.5.8",
     "angular-input-masks": "^2.4.0",
     "bootstrap-toggle": "^2.2.2",
-    "photoswipe": "^4.1.1"
+    "photoswipe": "^4.1.1",
+    "angulike": "^1.2.0"
   }
 }

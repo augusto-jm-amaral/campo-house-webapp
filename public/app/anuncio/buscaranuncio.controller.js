@@ -65,7 +65,8 @@
       Anuncio.get(null, query)
         .then(function (res) {
           $scope.anuncios = res.data.anuncios;
-          $scope.count = res.data.count;
+          // $scope.count = res.data.count;
+          $scope.count = res.data.anuncios.length;
           $scope.buscando = true;
         }).catch(function (err) {
           console.log(err);
