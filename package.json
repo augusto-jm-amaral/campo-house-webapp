@@ -37,8 +37,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon index.js",
-    "startprod": "nodemon clusters.js"
+    "start": "node index.js",
+    "startprod": "node clusters.js"
   },
   "author": "",
   "license": "ISC"
