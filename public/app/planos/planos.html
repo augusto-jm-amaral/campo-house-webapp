@@ -96,7 +96,7 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <button type="button" name="button" ng-click="plano.contratar(3);" class="btn btn-lg btn-danger btn-contratar">CONTRATAR</button>
+                <button type="button" name="button" data-toggle="modal" data-target="#modal-plano" class="btn btn-lg btn-danger btn-contratar">CONTRATAR</button>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <p class="text-center" style="margin-top:25px;font-size:14px;">
@@ -106,4 +106,31 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modal-plano" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">Contratação de Plano</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>Olá Bruno!</p>
+                <p>
+                  Você está prestes a contratar o plano Anual no valor de R$ 178,80 e pode ser parcela em 12 vezes.
+                </p>
+                <p class="text-center" style="margin-top:25px;font-size:14px;">
+                    IMPORTANTE: Ao clicar em CONTRATAR em uma das opções de Planos, você concorda com os <a href="#/termos" target="_blank">Termos e Condições Gerais</a> do site.
+                </p>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+                <button type="button" class="btn btn-lg btn-danger">SIM, DESEJO CONTRATAR</button>
+                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Agora não</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <div ng-include src="'app/rodape/rodape.html'" />

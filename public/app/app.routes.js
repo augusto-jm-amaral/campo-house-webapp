@@ -134,6 +134,12 @@
           loginRequerido: false
         }
       })
+      .when('/planosucesso', {
+        templateUrl: 'app/planos/planosucesso.html',
+        access: {
+          loginRequerido: false
+        }
+      })
       .when('/validarcadastro', {
         templateUrl: 'app/validarcadastro/validarcadastro.html',
         // controller: '',
