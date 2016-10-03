@@ -7,9 +7,9 @@ var title = '';
 
   angular.module('campohouse').controller('AnuncioCtrl',AnuncioCtrl);
 
-  AnuncioCtrl.$inject = ['$scope', '$location', '$routeParams', 'Anuncio', 'Mensagem', 'toaster', 'Logradouro', '$window', '$timeout', 'Login'];
+  AnuncioCtrl.$inject = ['$scope', '$rootScope', '$location', '$routeParams', 'Anuncio', 'Mensagem', 'toaster', 'Logradouro', '$window', '$timeout', 'Login', '$http'];
 
-  function AnuncioCtrl($scope, $location, $routeParams, Anuncio, Mensagem, toaster, Logradouro, $window, $timeout, Login) {
+  function AnuncioCtrl($scope, $rootScope, $location, $routeParams, Anuncio, Mensagem, toaster, Logradouro, $window, $timeout, Login, $http) {
 
     $scope.width = $window.screen.availWidth;
     $scope.anuncio = {};
@@ -17,6 +17,19 @@ var title = '';
     $scope.fotoPrincipal = {};
 
     $scope.fotoPrincipal = {};
+
+    $scope.meuid = '';
+
+    // if($rootScope.logged){
+      // console.log('aki');
+      $http.get('/meuid')
+      .then(function (res) {
+        $scope.meuid = res.data._id;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    // }
+
 
     $scope.mensagem = {
       texto: ''
@@ -67,6 +80,7 @@ var title = '';
 
     Anuncio.get($routeParams._id,'')
       .then(function (res) {
+
 
         $scope.fotoPrincipal = res.data.listaArquivos.shift();
 

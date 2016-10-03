@@ -75,7 +75,7 @@
             <div class="panel-body">
                 <p class="anuncio-nome-dono">{{anuncio.usuario.nome + ' ' + anuncio.usuario.sobreNome}}</p>
                 <p ng-show="anuncio.usuario.telefone" class="anuncio-contato-dono"><i class="fa fa-mobile" aria-hidden="true"></i> {{formatTeleone(anuncio.usuario.telefone)}}</p>
-                <form class="form-horizontal form-custom-mensagem">
+                <form ng-hide="meuid == anuncio.usuario._id" class="form-horizontal form-custom-mensagem">
                     <div class="form-group">
                         <label>Deixe uma mensagem:</label>
                         <textarea ng-disabled="!logged" ng-model="mensagem.texto" class="form-control no-resize" rows="5"></textarea>

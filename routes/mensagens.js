@@ -50,7 +50,8 @@ module.exports = function(app) {
 
                             Chat.findOne({
                                     de: req.user._id,
-                                    para: anuncio.usuario._id
+                                    para: anuncio.usuario._id,
+                                    anuncio: req.params._id
                                 })
                                 .then(function(chat) {
                                     if (chat) {
