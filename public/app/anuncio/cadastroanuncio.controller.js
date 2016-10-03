@@ -48,6 +48,12 @@
     //   localComplemento: ''
     // };
 
+    $scope.clickLocalizacao = function () {
+      $timeout(function () {
+        $scope.autoCompleteEndereco();
+      }, 500);
+    };
+
     if($routeParams._id){
 
       Anuncio.getEdit($routeParams._id,'')
