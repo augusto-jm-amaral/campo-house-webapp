@@ -390,7 +390,9 @@
        language: 'pt-BR',
        types: ['(cities)'],
        componentRestrictions: { country: "br" }
-     }
+     };
+
+    //  console.log('aki');
 
       $scope.autocomplete = new google.maps.places.Autocomplete(document.getElementById('enderecoLocal'), optionsAutoComplete);
       $scope.autocomplete.bindTo('bounds', $scope.map);
