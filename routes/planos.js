@@ -10,7 +10,8 @@ module.exports = function(app) {
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
-        // secure: false,
+        requireTLS: true,
+          // secure: false,
         tls: {
             rejectUnauthorized: false
         },

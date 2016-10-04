@@ -428,9 +428,15 @@
 								</div>
 								<div class="col-xs-12" style="margin-top: 2em;">
 									<div class="col-xs-6 col-sm-4 col-md-4 col-lgs-4" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
-										<i ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%; z-index: 99; cursor: pointer;"></i>
+										<i ng-hide="file.$ngfBlobUrl" ng-click="deleteImagem(file);" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 7%; z-index: 99; cursor: pointer;"></i>
 										<div class="img-thumbnail" style="width: 100%;">
-											<div class="fotos-ranchos-home" style="background-image:url('{{file.path}}')"></div>
+											<div class="fotos-ranchos-home" style="background-image:url('{{file.path ? file.path : file.$ngfBlobUrl}}')"></div>
+											<!-- <h5ng-show="file.$ngfBlobUrl">{{ + '%'}}</h5> -->
+											<div ng-show="file.$ngfBlobUrl" class="progress" style="margin-bottom: 0px; margin-top: 0.5em;">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{file.progress ? file.progress : 0}}%;">
+													<span>{{(file.progress ? file.progress : 0) + '%' }}</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

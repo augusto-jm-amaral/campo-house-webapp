@@ -12,7 +12,8 @@ module.exports = function(app) {
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
-        // secure: false,
+        requireTLS: true,
+          // secure: false,
         tls: {
             rejectUnauthorized: false
         },
@@ -158,7 +159,7 @@ module.exports = function(app) {
             var mailOptions = {
                 from: 'CampoHouse	<campohouse@campohouse.com.br>',
                 to: usuario.email,
-                subject: 'Bem Vindo a Campo House',
+                subject: 'Nova Mensagem',
                 html: data.replace('*.&123456789*.&', textEmail)
                     // html: 'teste'
             };

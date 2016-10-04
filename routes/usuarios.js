@@ -8,12 +8,11 @@ module.exports = function(app) {
     const Usuarios = app.db.models.Usuarios;
     const Planos = app.db.models.Planos;
 
-
-
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
         requireTLS: true,
+          // secure: false,
         tls: {
             rejectUnauthorized: false
         },
