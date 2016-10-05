@@ -7,7 +7,7 @@
         <div class="w3l-about-heading">
           <div class="w3l-about-heading">
               <h2 ng-show="planosucesso.success == 1">PARABÉNS</h2>
-              <h2>ATENÇÃO</h2>
+              <h2 ng-hide="planosucesso.success == 1">ATENÇÃO</h2>
           </div>
         </div>
         <div ng-show="planosucesso.success == 0" class="agileits-a-about-grids text-center">
