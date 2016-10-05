@@ -98,28 +98,35 @@
         <div class="row row-space-bottom">
             <h3 class="">{{anuncio.sobreTitulo}}</h3>
             <p class="text-title-2">{{logradouro.endereco }}</p>
-            <div class="container-icons">
-                <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <i class="fa fa-home fa-espaco" aria-hidden="true"></i>
-                    <p class="p-espaco">{{anuncio.tipoImovel.nome}}</p>
-                </div>
-                <div ng-show="anuncio.numAcomoda.num" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <i class="fa fa-users fa-espaco" aria-hidden="true"></i>
-                    <p class="p-espaco">Acomoda {{anuncio.numAcomoda.num}}</p>
-                </div>
-                <div ng-show="anuncio.numCamas" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p class="p-espaco">{{anuncio.numCamas}} Camas</p>
-                </div>
-                <div ng-show="anuncio.numQuartos" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p class="p-espaco">{{anuncio.numQuartos}} Quartos</p>
-                </div>
-                <div ng-show="anuncio.numBanheiros" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                    <i class="fa fa-bed fa-espaco" aria-hidden="true"></i>
-                    <p class="p-espaco">{{anuncio.numBanheiros}} Banheiros</p>
-                </div>
+            <p class="text-title-2">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span>{{anuncio.tipoImovel.nome}}</span>
+            </p>
+            <!-- <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
             </div>
+            <div class="col-xs-12"></div> -->
+        </div>
+
+        <div class="row row-space-bottom">
+          <hr>
+          <div class="">
+            <div ng-show="anuncio.numAcomoda.num" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/guest.svg">
+              <p class="p-espaco">Acomoda {{anuncio.numAcomoda.num}}</p>
+            </div>
+            <div ng-show="anuncio.numCamas" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/wake-up.svg">
+              <p class="p-espaco">{{anuncio.numCamas}} Cama(s)</p>
+            </div>
+            <div ng-show="anuncio.numQuartos" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/bell-boy.svg">
+              <p class="p-espaco">{{anuncio.numQuartos}} Quarto(s)</p>
+            </div>
+            <div ng-show="anuncio.numBanheiros" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+              <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/toilet.svg">
+              <p class="p-espaco">{{anuncio.numBanheiros}} Banheiro(s)</p>
+            </div>
+          </div>
         </div>
 
         <div class="row row-space-bottom">
