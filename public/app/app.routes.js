@@ -134,7 +134,7 @@
           loginRequerido: false
         }
       })
-      .when('/planosucesso', {
+      .when('/planosucesso/:_success/:_numplano', {
         templateUrl: 'app/planos/planosucesso.html',
         access: {
           loginRequerido: false

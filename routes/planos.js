@@ -21,6 +21,34 @@ module.exports = function(app) {
         }
     });
 
+    app.route('/plan/:_numplano')
+      .get(function (req, res) {
+
+        req.checkParams('_numplano').notEmpty().isNumeric();
+
+        var erros = req.validationErrors();
+
+        if (!erros) {
+
+          Planos.findOne({ordem: req.params._numplano})
+            .then(function (plano) {
+              if(plano){
+                res.status(200).json(plano).end();
+              }else{
+                res.sendStatus(412).end();
+              }
+            }).catch(function (err) {
+              app.libs.logger.info(err);
+              res.sendStatus(412).end();
+            });
+
+        }else{
+          app.libs.logger.info(erros);
+          res.sendStatus(400).end();
+        }
+
+      });
+
     app.route(cfg.urlRaizApi + '/planos/:_numplano')
         .all(app.auth.authenticate('usuario'))
         .get(function get(req, res) {

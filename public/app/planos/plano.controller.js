@@ -3,38 +3,33 @@
 
   angular.module('campohouse').controller('PlanoCtrl',PlanoCtrl);
 
-  PlanoCtrl.$inject = ['Login', '$location', 'toaster', 'Plano'];
+  PlanoCtrl.$inject = ['$rootScope', '$window', '$timeout', 'Login', '$location', 'toaster', 'Plano', '$http'];
 
-  function PlanoCtrl(Login, $location, toaster, Plano) {
+  function PlanoCtrl($rootScope, $window, $timeout, Login, $location, toaster, Plano, $http) {
 
     var vm = this;
 
-    vm.contratar = function (num) {
+    vm.plano = {};
 
-      if(Login.islogin()){
+    if($window.sessionStorage.nome)
+      vm.nome = $window.sessionStorage.nome.split(' ')[0];
 
-        Plano.contratar(num)
-          .then(function (res) {
+    vm.showModalPlano = function (numPlano) {
 
-            toaster.pop({
-              type:'success',
-              title: 'Planos',
-              body: "Plano contratado, você recebera um e-mail com instruções",
-              showCloseButton: true
-            });
 
-          }).catch(function (err) {
+      if($rootScope.logged){
+        $http.get('/plan/' + numPlano)
+        .then(function (res) {
 
-            console.log(err);
-            toaster.pop({
-              type:'info',
-              title: 'Planos',
-              body: "Você ainda possui mais de 15 dias de plano.",
-              showCloseButton: true
-            });
+          vm.plano = res.data;
 
-          });
+          $timeout(function () {
+            $('#modal-plano').modal('show');
+          }, 10);
 
+        }).catch(function (err) {
+          console.log(err);
+        });
       }else{
         toaster.pop({
           type:'info',
@@ -44,6 +39,50 @@
         });
         $location.path('/entrar');
       }
+
+    };
+
+    vm.contratar = function (num) {
+
+
+      // $timeout(function () {
+        $('#modal-plano').modal('hide');
+
+        $('body').removeClass('modal-open');
+
+        $('.modal-backdrop').remove();
+      // }, 50);
+
+
+        if(Login.islogin()){
+
+          Plano.contratar(num)
+          .then(function (res) {
+
+            $location.path('/planosucesso/1/' + num );
+
+          }).catch(function (err) {
+
+            console.log(err);
+            $location.path('/planosucesso/0/' + num );
+            // toaster.pop({
+            //   type:'info',
+            //   title: 'Planos',
+            //   body: "Você ainda possui mais de 15 dias de plano.",
+            //   showCloseButton: true
+            // });
+
+          });
+
+        }else{
+          toaster.pop({
+            type:'info',
+            title: 'Planos',
+            body: "Você precisa fazer login para contratar um plano",
+            showCloseButton: true
+          });
+          $location.path('/entrar');
+        }
 
     };
 
