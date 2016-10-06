@@ -107,7 +107,13 @@
 					<div class="news-grid-info-bottom">
 						<div class="date-grid">
 							<div class="admin">
-								<a href="#/anuncio/{{anuncio._id}}" target="_blank">{{anuncio.sobreTitulo}}</a>
+
+								<a>
+									<div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+										{{anuncio.endereco.localCidade}}
+									</div>
+								</a>
 								<!-- <a ><i class="fa fa-user" aria-hidden="true"></i> {{anuncio.usuario.nome.split(' ')[0];}}</a> -->
 								<!-- <a ><i class="fa fa-user" aria-hidden="true"></i></a> -->
 							</div>
@@ -122,11 +128,16 @@
 							</div> -->
 						</div>
 						<div class="news-grid-info-bottom-text">
-							<a>
-								<i class="fa fa-map-marker" aria-hidden="true"></i>
-								{{anuncio.endereco.localCidade}}
+							<a href="#/anuncio/{{anuncio._id}}" target="_blank" >
+								<div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+									{{anuncio.sobreTitulo}}
+								</div>
 							</a>
-							<p>{{anuncio.sobreDescricao}}</p>
+							<p>
+								<div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+									{{anuncio.sobreDescricao}}
+								</div>
+							</p>
 						</div>
 					</div>
 				</div>

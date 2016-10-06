@@ -161,7 +161,7 @@ module.exports = function(app) {
                                 var textEmail = '<h1><span style="font-size:22px">Olá ' + usuario.nome + '! Seja bem-vindo(a).</span></h1>&nbsp;' +
                                     '<h4>Seu cadastro foi realizado com sucesso.<br>' +
                                     '<br>' +
-                                    'Por questões de segurança, pedimos que confirme seu cadastro clicando <a href="http://localhost/#/validarcadastro/'+ req.body.chaveAcesso +'"  target="_blank">aqui</a>.<br>' +
+                                    'Por questões de segurança, pedimos que confirme seu cadastro clicando <a href="'+ site +'/#/validarcadastro/'+ req.body.chaveAcesso +'"  target="_blank">aqui</a>.<br>' +
                                     '<br>' +
                                     'Agora você já pode desfrutar de todos nossos recursos.<br>' +
                                     '<br>' +
