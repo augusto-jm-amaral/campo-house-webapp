@@ -428,6 +428,7 @@ module.exports = function(app) {
                             model: 'Logradouros'
                         }])
                         .sort({dataCadastro: -1})
+                        .limit(3)
                         .then(function(anuncios) {
                             res.status(200).json(anuncios).end();
                         }).catch(function(err) {
