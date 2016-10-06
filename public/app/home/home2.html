@@ -107,15 +107,25 @@
 					<div class="news-grid-info-bottom">
 						<div class="date-grid">
 							<div class="admin">
-								<a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{anuncio.usuario.nome.split(' ')[0];}}</a>
+								<a href="#/anuncio/{{anuncio._id}}" target="_blank">{{anuncio.sobreTitulo}}</a>
+								<!-- <a ><i class="fa fa-user" aria-hidden="true"></i> {{anuncio.usuario.nome.split(' ')[0];}}</a> -->
+								<!-- <a ><i class="fa fa-user" aria-hidden="true"></i></a> -->
 							</div>
 							<div class="time">
 								<p style="font-size: 11px;"><i class="fa fa-calendar" aria-hidden="true"></i> {{ dataformatada(anuncio.dataCadastro);  }}</p>
 							</div>
 							<div class="clearfix"> </div>
+							<!-- <div class="admin">
+								<a>
+									{{anuncio.endereco.localCidade;}}
+								</a>
+							</div> -->
 						</div>
 						<div class="news-grid-info-bottom-text">
-							<a href="#/anuncio/{{anuncio._id}}" target="_blank">{{anuncio.sobreTitulo}}</a>
+							<a>
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+								{{anuncio.endereco.localCidade}}
+							</a>
 							<p>{{anuncio.sobreDescricao}}</p>
 						</div>
 					</div>

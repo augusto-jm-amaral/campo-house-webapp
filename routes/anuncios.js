@@ -384,35 +384,33 @@ module.exports = function(app) {
         // .all(app.auth.authenticate('usuario'))
         .get(function get(req, res) {
 
-            Anuncios.aggregate(
-                    [
-                      // {
-                      //   $match: {
-                      //     $where : '(listaArquivos.length > 0)'
-                      //   }
-                      // },
-                      {
-                        $sort: {
-                            listaArquivos: -1,
-                            dataCadastro: -1
-                        }
-                    }, {
-                        $limit: 3
-                    }, {
-                        $group: {
-                            _id: null,
-                            ids: {
-                                "$addToSet": "$_id"
-                            }
-                        }
-                    }]
-                )
-                .exec(function(err, anuncios) {
+            // Anuncios.aggregate(
+            //         [
+            //           // {
+            //           //   $match: {
+            //           //     $where : '(listaArquivos.length > 0)'
+            //           //   }
+            //           // },
+            //           {
+            //             $sort: {
+            //                 listaArquivos: -1,
+            //                 dataCadastro: -1
+            //             }
+            //         }, {
+            //             $limit: 3
+            //         }, {
+            //             $group: {
+            //                 _id: null,
+            //                 ids: {
+            //                     "$addToSet": "$_id"
+            //                 }
+            //             }
+            //         }]
+            //     )
+            //     .exec(function(err, anuncios) {
                     Anuncios.find({
-                            _id: {
-                                $in: anuncios[0].ids
-                            },
-                            $where: '(this.listaArquivos.length > 0)'
+                            endereco: { $exists: true },
+                            $where: '((this.listaArquivos.length > 0) && (this.precoDiaria > 0))'
                         })
                         .populate([{
                             path: 'usuario',
@@ -425,6 +423,9 @@ module.exports = function(app) {
                         }, {
                             path: 'listaArquivos',
                             model: 'Arquivos'
+                        }, {
+                            path: 'endereco',
+                            model: 'Logradouros'
                         }])
                         .sort({dataCadastro: -1})
                         .then(function(anuncios) {
@@ -433,7 +434,7 @@ module.exports = function(app) {
                             console.log(err);
                             res.sendStatus(412).end();
                         });
-                });
+                // });
 
         });
 
