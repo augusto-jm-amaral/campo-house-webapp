@@ -22,7 +22,7 @@ module.exports = function(app) {
         }
     });
 
-    app.route(cfg.urlRaizApi + '/usuarios/validaremail/:_hash')
+    app.route('/usuarios/validaremail/:_hash')
         .get(function get(req, res) {
 
             req.checkParams('_hash', '').notEmpty();
@@ -161,14 +161,14 @@ module.exports = function(app) {
                                 var textEmail = '<h1><span style="font-size:22px">Olá ' + usuario.nome + '! Seja bem-vindo(a).</span></h1>&nbsp;' +
                                     '<h4>Seu cadastro foi realizado com sucesso.<br>' +
                                     '<br>' +
-                                    'Por questões de segurança, pedimos que confirme seu cadastro clicando <a href="' + site + '" target="_blank">aqui</a>.<br>' +
+                                    'Por questões de segurança, pedimos que confirme seu cadastro clicando <a href="'+ site +'/#/validarcadastro/'+ req.body.chaveAcesso +'"  target="_blank">aqui</a>.<br>' +
                                     '<br>' +
                                     'Agora você já pode desfrutar de todos nossos recursos.<br>' +
                                     '<br>' +
                                     'A partir de agora você já ganhou 30 dias GRÁTIS para anunciar seu imóvel.<br>' +
                                     'Clique <a href="' + site + '/#/anunciar" target="_blank" >aqui</a> e anuncie já, é rápido.<br>' +
                                     '<br>' +
-                                    'Quaisquer dúvidas ou sugestões, "fale conosco", ficaremos honrados em atendê-lo.<br>' +
+                                    'Quaisquer dúvidas ou sugestões, <a href="' + site + '/#/faleconosco" >fale conosco</a>, ficaremos honrados em atendê-lo.<br>' +
                                     '<br>' +
                                     'Grande abraço,<br>' +
                                     'Equipe Campo House.</h4>';

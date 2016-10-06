@@ -50,6 +50,11 @@ module.exports = function() {
             ref: 'Usuarios',
             required: true
         },
+        endereco: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Logradouros'
+            // required: true
+        },
         numQuartos: {
             type: Number,
             required: true,

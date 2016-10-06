@@ -140,7 +140,7 @@
           loginRequerido: false
         }
       })
-      .when('/validarcadastro', {
+      .when('/validarcadastro/:_hash', {
         templateUrl: 'app/validarcadastro/validarcadastro.html',
         // controller: '',
         access: {
