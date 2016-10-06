@@ -46,7 +46,7 @@
     function isLogin() {
 
       $rootScope.logged = Login.islogin();
-
+      console.log($rootScope.logged);
     };
 
     isLogin();

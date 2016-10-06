@@ -117,13 +117,6 @@
                         $scope.loginForm.emailLogin.$touched = false;
                         $scope.loginForm.senhaLogin.$touched = false;
 
-                        // toaster.pop({
-                        //     type: 'success',
-                        //     title: 'Login',
-                        //     body: "Login realizado com sucesso",
-                        //     showCloseButton: true
-                        // });
-
                         $scope.login = {};
 
                         $rootScope.nome = res.data.nome;

@@ -12,7 +12,8 @@ module.exports = function(app) {
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
-        // secure: false,
+        requireTLS: true,
+          // secure: false,
         tls: {
             rejectUnauthorized: false
         },
@@ -50,7 +51,8 @@ module.exports = function(app) {
 
                             Chat.findOne({
                                     de: req.user._id,
-                                    para: anuncio.usuario._id
+                                    para: anuncio.usuario._id,
+                                    anuncio: req.params._id
                                 })
                                 .then(function(chat) {
                                     if (chat) {
@@ -157,7 +159,7 @@ module.exports = function(app) {
             var mailOptions = {
                 from: 'CampoHouse	<campohouse@campohouse.com.br>',
                 to: usuario.email,
-                subject: 'Bem Vindo a Campo House',
+                subject: 'Nova Mensagem',
                 html: data.replace('*.&123456789*.&', textEmail)
                     // html: 'teste'
             };

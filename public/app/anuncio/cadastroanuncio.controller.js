@@ -48,6 +48,12 @@
     //   localComplemento: ''
     // };
 
+    $scope.clickLocalizacao = function () {
+      $timeout(function () {
+        $scope.autoCompleteEndereco();
+      }, 500);
+    };
+
     if($routeParams._id){
 
       Anuncio.getEdit($routeParams._id,'')
@@ -246,9 +252,11 @@
       $scope.errFiles = errFiles;
       angular.forEach(files, function(file) {
 
-        // console.log(file);
+        console.log(file);
 
         if($scope.anuncio.listaArquivos.length < 20){
+
+          $scope.anuncio.listaArquivos.push(file);
 
           resize.photo(file, 1024, 'file', function(imagem) {
             // console.log(imagem);
@@ -390,7 +398,9 @@
        language: 'pt-BR',
        types: ['(cities)'],
        componentRestrictions: { country: "br" }
-     }
+     };
+
+    //  console.log('aki');
 
       $scope.autocomplete = new google.maps.places.Autocomplete(document.getElementById('enderecoLocal'), optionsAutoComplete);
       $scope.autocomplete.bindTo('bounds', $scope.map);

@@ -23,7 +23,7 @@
             .then(function(res) {
                 $scope.anuncioshome = res.data;
             }).catch(function(err) {
-
+              console.log(err);
             });
 
        $scope.dataformatada = function (date) {

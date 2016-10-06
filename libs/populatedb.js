@@ -96,6 +96,7 @@ module.exports = function(app) {
                         parcelas: 0,
                         valorParcela: 0,
                         economia: 0,
+                        dias: 0,
                         duracao: new Date(2016, 12, 31, 23, 59, 99).getTime(),
                         descricao: 'até 31/12 para os 50 primeiros usuários que se cadastrarem e realizarem o anúncio no site. Este plano também não estará disponível para o usuário optar por sua contratação, será automatico para quem estiver dentro da regra citada acima'
                     }).save();
@@ -198,7 +199,7 @@ module.exports = function(app) {
                             categoria: categoria._id
                         }).save();
                         new Comodidades({
-                            descComodidade: 'Playground para Crianças',
+                            descComodidade: 'Playground',
                             categoria: categoria._id
                         }).save();
                         new Comodidades({
@@ -207,6 +208,132 @@ module.exports = function(app) {
                         }).save();
                         new Comodidades({
                             descComodidade: 'Fogão a Lenha',
+                            categoria: categoria._id
+                        }).save();
+
+                        new Comodidades({
+                            descComodidade: 'Quadra Poliesportiva',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Campo de Futebol',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Rio',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Lago',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Barcos',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Motor de Popa',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Pesca',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Salão de Jogos',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Mesa de Sinuka',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Mesa para Tênis de Mesa',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Pomar',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Trilhas',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Antena Parabólica',
+                            categoria: categoria._id
+                        }).save();
+
+                        new Comodidades({
+                            descComodidade: 'Vista Panorâmica',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Churrasqueira',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Estacionamento',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Fogão à Gás',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Forno de Pizza',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Freezer',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Geladeira',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Internet sem Fio',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Basico - Toalhas, Lençóis, Sabonete Papel Higiênico',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Permitido Animais',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Permitido Fumar',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Cabides',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Ferro Elétrico',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Secador de Cabelo',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Segurança 24hrs',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Utensílios de Cozinha',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Ventilador de Teto',
+                            categoria: categoria._id
+                        }).save();
+                        new Comodidades({
+                            descComodidade: 'Vestiários',
                             categoria: categoria._id
                         }).save();
 
@@ -267,6 +394,15 @@ module.exports = function(app) {
                 if (!tipos.length) {
                     new TipoImovelOption({
                         nome: 'Sítio'
+                    }).save();
+                }
+            });
+            TipoImovelOption.find({
+                nome: 'Área de Lazer'
+            }, function(err, tipos) {
+                if (!tipos.length) {
+                    new TipoImovelOption({
+                        nome: 'Área de Lazer'
                     }).save();
                 }
             });
