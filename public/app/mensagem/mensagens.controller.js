@@ -117,6 +117,8 @@
       var rhora = Math.trunc(diffHoras) ? Math.trunc(diffHoras) + ' hora(s) ' : '';
       var rMin = Math.trunc(diffMinutos) ? Math.trunc(diffMinutos) + ' minuto(s) ' : '';
       //
+      console.log(diffHoras);
+
       if(!(rMes ||  rDia || rhora || rMin))
         rMin = 0 + ' minuto(s)';
 

@@ -13,7 +13,7 @@ module.exports = function(app) {
         host: 'smtp.mail.pawnmail.com',
         port: 587,
         requireTLS: true,
-          // secure: false,
+        // secure: false,
         tls: {
             rejectUnauthorized: false
         },
@@ -70,13 +70,29 @@ module.exports = function(app) {
                                         // chat.save(function (err) {
                                         //
                                         // });
-                                        Chat.update({
-                                            _id: chat._id
-                                        }, {
-                                            $inc: {
-                                                countNewDe: 1
-                                            }
-                                        }).exec();
+                                        // console.log(req.user._id);
+                                        // console.log(anuncio.usuario._id );
+                                        // console.log(((req.user._id + '') == (anuncio.usuario._id + '')));
+
+                                        // if ((req.user._id + '') == (anuncio.usuario._id + '')) {
+                                        //
+                                        //     Chat.update({
+                                        //         _id: chat._id
+                                        //     }, {
+                                        //         $inc: {
+                                        //             countNewPara: 1
+                                        //         }
+                                        //     }).exec();
+                                        // } else {
+                                        //     Chat.update({
+                                        //         _id: chat._id
+                                        //     }, {
+                                        //         $inc: {
+                                        //             countNewDe: 1
+                                        //         }
+                                        //     }).exec();
+                                        //
+                                        // }
 
                                         enviarEmailMensagem(anuncio.usuario);
                                         res.sendStatus(200).end();
@@ -183,12 +199,39 @@ module.exports = function(app) {
 
             var erros = req.validationErrors();
 
-            Chat.update({
-                    _id: req.params._id
-                }, {
-                    countNew: 0
-                })
-                .exec();
+            // Chat.findOne({
+            //         _id: req.params._id
+            //     })
+            //     .then(function(chat) {
+            //
+            //         // if ((chat.para + '') == (req.user._id + '')) {
+            //         //
+            //         //     Chat.update({
+            //         //         _id: chat._id
+            //         //     }, {
+            //         //         countNewDe: 0
+            //         //
+            //         //     }).exec();
+            //         // } else {
+            //         //     Chat.update({
+            //         //         _id: chat._id
+            //         //     }, {
+            //         //
+            //         //         countNewPara: 0
+            //         //
+            //         //     }).exec();
+            //         //
+            //         // }
+            //
+            //     }).catch(function() {
+            //
+            //     });
+            // Chat.update({
+            //         _id: req.params._id
+            //     }, {
+            //         countNew: 0
+            //     })
+            //     .exec();
 
             if (!erros) {
 

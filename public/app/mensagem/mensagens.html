@@ -20,7 +20,7 @@
               {{mensagem.anuncio.sobreTitulo}}
             </a>
             &nbsp;
-            <span ng-show="mensagem.countNew" class="badge" style="margin-top: -2px; margin-left: 5px;">+{{isMyMessage(mensagem.de._id) ? mensagem.countNewPara : mensagem.countNewDe}} </span>
+            <span ng-show="{{isMyMessage(mensagem.de._id) ? 'mensagem.countNewPara' : 'mensagem.countNewDe'}} " class="badge" style="margin-top: -2px; margin-left: 5px;">+{{isMyMessage(mensagem.de._id) ? mensagem.countNewPara : mensagem.countNewDe}} </span>
             <!-- <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" class="thumbnail text-center"> -->
             <div class="btn-group pull-right">
               <a type="button" class="btn btn-default btn-xs" ng-click="isOpen(mensagem._id);" onclick="return false;" data-toggle="collapse" data-parent="#accordion{{mensagem._id}}" ng-href="#collapseOne{{mensagem._id}}">
@@ -65,7 +65,7 @@
               <div ng-repeat="texto in mensagem.textos">
 
                 <li ng-show="!isMyMessage(texto.usuario._id)" class="left clearfix"><span class="chat-img pull-left">
-                  <img ng-src="http://placehold.it/50/55C1E7/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
+                  <img ng-src="https://placehold.it/50/55C1E7/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
@@ -79,7 +79,7 @@
                 </li>
 
                 <li ng-show="isMyMessage(texto.usuario._id)" class="right clearfix"><span class="chat-img pull-right">
-                  <img ng-src="http://placehold.it/50/FA6F57/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
+                  <img ng-src="https://placehold.it/50/FA6F57/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
