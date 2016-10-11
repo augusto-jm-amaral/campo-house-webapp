@@ -6,6 +6,7 @@ module.exports = function(app) {
     const cfg = app.libs.config;
     const Planos = app.db.models.Planos;
     const ContratoPlanos = app.db.models.ContratoPlanos;
+    const Logger = app.libs.logger;
 
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
@@ -38,12 +39,12 @@ module.exports = function(app) {
                 res.sendStatus(412).end();
               }
             }).catch(function (err) {
-              app.libs.logger.info(err);
+              app.libs.logger.error(err);
               res.sendStatus(412).end();
             });
 
         }else{
-          app.libs.logger.info(erros);
+          app.libs.logger.error(erros);
           res.sendStatus(400).end();
         }
 
@@ -135,19 +136,19 @@ module.exports = function(app) {
                                     res.sendStatus(200).end();
 
                                 } else {
-                                    app.libs.logger.info(err);
+                                    app.libs.logger.error(err);
                                     res.sendStatus(412).end();
                                 }
                             });
 
                     })
                     .catch(function(err) {
-                        app.libs.logger.info(err);
+                        app.libs.logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                app.libs.logger.info(erros);
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
 

@@ -7,6 +7,7 @@ module.exports = function(app) {
     const TipoImovelOption = app.db.models.TipoImovelOption;
     const NumAcomodaOption = app.db.models.NumAcomodaOption;
     const ObjectId = app.db.Types.ObjectId;
+    const Logger = app.libs.logger;
 
     app.route(cfg.urlRaizApi + '/anuncios')
         .get(function get(req, res) {
@@ -59,15 +60,12 @@ module.exports = function(app) {
                 }]
             ).exec(function(err, idsAnuncios) {
 
-                // console.log(idsAnuncios);
 
                 if (idsAnuncios.length) {
 
                     busca._id = {
                         $in: idsAnuncios[0].id
                     };
-
-                    console.log(buscaNumAcomoda);
 
                     NumAcomodaOption.aggregate(
                         [{
@@ -82,15 +80,11 @@ module.exports = function(app) {
                         }]
                     ).exec(function(err, idsNumAcodoma) {
 
-                        console.log(idsNumAcodoma);
-
                         if (idsNumAcodoma) {
 
                             busca.numAcomoda = {
                                 $in: idsNumAcodoma[0].id
                             };
-
-                            console.log(busca);
 
                             Anuncios.count(busca)
                                 .then(function(c) {
@@ -111,7 +105,7 @@ module.exports = function(app) {
                                                 }).end();
                                             })
                                             .catch(function(err) {
-                                                console.log(err);
+                                                logger.error(err);
                                                 res.sendStatus(412).end();
                                             });
 
@@ -123,12 +117,12 @@ module.exports = function(app) {
                                     }
 
                                 }).catch(function(err) {
-                                    console.log(err);
+                                    logger.error(err);
                                     res.sendStatus(412).end();
                                 });
 
                         } else {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412).end();
                         }
 
@@ -186,7 +180,7 @@ module.exports = function(app) {
                 .then(function(anuncios) {
                     res.status(200).json(anuncios).end();
                 }).catch(function(err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(412).end();
                 });
 
@@ -251,12 +245,12 @@ module.exports = function(app) {
                         }
                     })
                     .catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -295,12 +289,12 @@ module.exports = function(app) {
                         }
                     })
                     .catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -336,7 +330,7 @@ module.exports = function(app) {
                         }
                     })
                     .catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
@@ -368,13 +362,13 @@ module.exports = function(app) {
                         if (!err) {
                             res.status(200).json(anuncio).end();
                         } else {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412).end();
                         }
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -432,7 +426,7 @@ module.exports = function(app) {
                         .then(function(anuncios) {
                             res.status(200).json(anuncios).end();
                         }).catch(function(err) {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412).end();
                         });
                 // });
@@ -480,7 +474,7 @@ module.exports = function(app) {
                     },
                     function(err) {
                         if (err) {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412);
                         } else {
                             Anuncios.findOne({
@@ -508,7 +502,7 @@ module.exports = function(app) {
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 

@@ -273,10 +273,6 @@ module.exports = function(app) {
                             categoria: categoria._id
                         }).save();
                         new Comodidades({
-                            descComodidade: 'Estacionamento',
-                            categoria: categoria._id
-                        }).save();
-                        new Comodidades({
                             descComodidade: 'Fogão à Gás',
                             categoria: categoria._id
                         }).save();

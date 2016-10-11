@@ -32,14 +32,17 @@ module.exports = function(app) {
                                 _id: usuario._id
                             }).end();
                         } else {
+                            app.libs.logger.error(err);
                             res.sendStatus(400).end();
                         }
                     } else {
+                        app.libs.logger.error(err);
                         res.sendStatus(400).end();
                     }
                 });
 
             } else {
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
         });

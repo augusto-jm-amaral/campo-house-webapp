@@ -307,7 +307,7 @@
                     toaster.pop({
                         type: 'warning',
                         title: 'Anúncio',
-                        body: "São permitidas 12 imagens por anúncio.",
+                        body: "São permitidas 20 imagens por anúncio.",
                         showCloseButton: true
                     });
                 }

@@ -15,7 +15,7 @@ module.exports = function(app) {
                     res.status(412).json(comodidades).end();
 
                 }).catch(function(err) {
-                    console.log(err);
+                    app.libs.logger.error(err);
                     res.sendStatus(412).end();
                 });
 
@@ -46,7 +46,7 @@ module.exports = function(app) {
                                 usuario: req.user_id
                             }).save(function(err, anuncioComodidade) {
                                 if (err) {
-                                    console.log(err);
+                                    app.libs.logger.error(err);
                                     res.sendStatus(412).end();
                                 } else {
                                     Anuncios.update({
@@ -62,7 +62,7 @@ module.exports = function(app) {
                                         .then(function() {
                                             res.status(200).json(anuncioComodidade).end();
                                         }).catch(function(err) {
-                                            console.log(err);
+                                            app.libs.logger.error(err);
                                             res.sendStatus(412).end();
                                         });
                                 }
@@ -72,12 +72,12 @@ module.exports = function(app) {
                         }
                     })
                     .catch(function(err) {
-                        console.log(err);
+                        app.libs.logger.error(err);
                         res.sendStatus(400).end();
                     });
 
             } else {
-                console.log(erros);
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
         });
@@ -103,11 +103,11 @@ module.exports = function(app) {
                     }).then(function(anuncio) {
                         res.sendStatus(200).end();
                     }).catch(function(err) {
-                        console.log(err);
+                        app.libs.logger.error(err);
                         res.sendStatus(412).end();
                     })
                 }).catch(function(err) {
-                    console.log(err);
+                    app.libs.logger.error(err);
                     res.sendStatus(412).end();
                 })
             } else {
@@ -132,7 +132,7 @@ module.exports = function(app) {
                 }).then(function(anuncioComodidade) {
                     res.status(200).json(anuncioComodidade).end();
                 }).catch(function(err) {
-                    console.log(err);
+                    app.libs.logger.error(err);
                     res.sendStatus(412).end();
                 })
 

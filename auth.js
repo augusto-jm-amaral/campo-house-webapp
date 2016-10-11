@@ -23,9 +23,12 @@ module.exports = function (app) {
         // if(usuario && !usuario.bloqueado){
         if(usuario){
           return done(null, usuario);
+        }else{
+          app.libs.logger.error('Erro usuario invalido: ' + playload._id);
         }
         return done(null, false);
       }).catch(function (err) {
+        app.libs.logger.error(err);
         return done(null, false);
       });
   }));

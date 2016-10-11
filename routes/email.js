@@ -2,6 +2,7 @@ module.exports = function(app) {
 
     const cfg = app.libs.config;
     const Emails = app.db.models.Emails;
+    const Logger = app.libs.logger;
 
     app.route(cfg.urlRaizApi + '/emails')
         .post(function get(req, res) {
@@ -19,7 +20,7 @@ module.exports = function(app) {
 
                     res.sendStatus(200).end();
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 

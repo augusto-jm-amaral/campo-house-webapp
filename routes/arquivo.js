@@ -6,15 +6,12 @@ module.exports = function(app) {
     const cfg = app.libs.config;
     const Anuncios = app.db.models.Anuncios;
     const Arquivos = app.db.models.Arquivos;
+    // const Logger = app.libs.logger;
 
-    // var limits = { fileSize: 1024 * 5} // 4 mb
 
     var storage = multer.diskStorage({
         fileFilter: function(req, file, cb) {
 
-            // console.log(file);
-            // console.log(req.query.width);
-            // console.log(req.query.height);
 
             req.checkParams('_id', '').notEmpty().isMongoId();
             req.checkQuery('width', '').notEmpty().isNumeric();
@@ -22,7 +19,7 @@ module.exports = function(app) {
 
             var erros = req.validationErrors();
 
-            console.log(erros);
+            app.libs.logger.error(erros);
 
             if (!erros) {
                 cb(null, true);
@@ -32,14 +29,11 @@ module.exports = function(app) {
         },
         destination: function(req, file, cb) {
 
-            // cb(null, './imganuncio');
             cb(null, '/imgs');
 
         },
         filename: function(req, file, cb) {
             var datetimestamp = Date.now();
-            // console.log(JSON.stringify(file));
-            // console.log(file);
             cb(null, file.fieldname + '-' + datetimestamp + '.' + file.mimetype.split('/')[file.mimetype.split('/').length - 1]);
         }
     });
@@ -77,7 +71,7 @@ module.exports = function(app) {
                             .save()
                             .then(function(img) {
 
-                                console.log(req.params._id);
+                                // console.log(req.params._id);
 
                                 Anuncios.findOne({
                                         _id: req.params._id,
@@ -96,26 +90,26 @@ module.exports = function(app) {
                                                         .then(function(anuncio) {
                                                             res.status(200).json(anuncio).end();;
                                                         }).catch(function(err) {
-                                                            console.log(err);
+                                                            app.libs.logger.error(err);
                                                             res.sendStatus(412).end();
                                                         });
                                                 }).catch(function(err) {
-                                                    console.log(err);
+                                                    app.libs.logger.error(err);
                                                     res.sendStatus(412).end();
                                                 })
                                         } else {
-                                            console.log(anuncio);
+                                            app.libs.logger.error(anuncio);
                                             res.sendStatus(412).end();
                                         }
                                     })
                                     .catch(function(err) {
-                                        console.log(err);
+                                        app.libs.logger.error(err);
                                         res.sendStatus(412).end();
                                     });
 
                                 // res.status(200).json({}).end();
                             }).catch(function(err) {
-                                console.log(err);
+                                app.libs.logger.error(err);
                                 res.sendStatus(412).end();
                             });
 
@@ -126,7 +120,7 @@ module.exports = function(app) {
                 });
 
             } else {
-                console.log(erros);
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
         });
@@ -149,12 +143,7 @@ module.exports = function(app) {
                     .then(function(imagem) {
 
                         if (imagem) {
-                            // fs.unlink('./public' + imagem.path, function(err) {
                             fs.unlink('/imgs/' + imagem.path, function(err) {
-                                // if (err) {
-                                // console.log(err);
-                                // res.sendStatus(500).end();
-                                // } else {
                                 Arquivos.remove({
                                     _id: req.params._idimagem,
                                     anuncio: req.params._idanuncio,
