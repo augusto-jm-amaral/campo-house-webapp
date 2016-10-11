@@ -6,6 +6,7 @@ module.exports = function(app) {
     const TipoImovelOption = app.db.models.TipoImovelOption;
     const Comodidades = app.db.models.Comodidades;
     const OfertaValores = app.db.models.OfertaValores;
+    const Logger = app.libs.logger;
 
 
     app.route(cfg.urlRaizApi + '/numacomoda')
@@ -14,7 +15,7 @@ module.exports = function(app) {
 
             NumAcomodaOption.find({}, function(err, num) {
                 if (err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(400).end();
                 } else {
                     res.status(200).json(num).end();
@@ -28,7 +29,7 @@ module.exports = function(app) {
 
             TipoImovelOption.find({}, function(err, num) {
                 if (err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(400).end();
                 } else {
                     res.status(200).json(num).end();
@@ -50,7 +51,7 @@ module.exports = function(app) {
                     res.status(200).json(com).end();
                 })
                 .catch(function(err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(400).end();
                 });
 
@@ -67,7 +68,7 @@ module.exports = function(app) {
                     res.status(200).json(ofertas).end();
                 })
                 .catch(function(err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(400).end();
                 });
 

@@ -9,6 +9,8 @@ module.exports = function(app) {
     const cfg = app.libs.config;
     const Anuncios = app.db.models.Anuncios;
     const Logradouros = app.db.models.Logradouros;
+    const Logger = app.libs.logger;
+
 
     app.route(cfg.urlRaizApi + '/anuncios/:_id/logradouros')
         .all(app.auth.authenticate('usuario'))
@@ -37,8 +39,8 @@ module.exports = function(app) {
 
                     if (!err && inexact.length) {
 
-                        console.log(inexact);
-                        console.log(exact);
+                        // console.log(inexact);
+                        // console.log(exact);
                         new Logradouros({
                                 endereco: req.body.endereco,
                                 // localCep: inexact[0].postalCode,
@@ -79,19 +81,19 @@ module.exports = function(app) {
                                 }).end();
                             })
                             .catch(function(err) {
-                                console.log(err);
+                                logger.error(err);
                                 res.sendStatus(412).end();
                             });
 
                     } else {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(404).end();
                     }
 
                 });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -175,25 +177,25 @@ module.exports = function(app) {
                                             });
                                         }
                                     }).catch(function(err) {
-                                        console.log(1);
-                                        console.log(err);
+                                        // console.log(1);
+                                        logger.error(err);
                                         res.sendStatus(412).end();
                                     });
                             })
                             .catch(function(err) {
-                                console.log(err);
+                                logger.error(err);
                                 res.sendStatus(412).end();
                             });
 
                     } else {
-                        console.log(erros);
+                        logger.error(erros);
                         res.sendStatus(404).end();
                     }
 
                 });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
         })
@@ -213,12 +215,12 @@ module.exports = function(app) {
                     if (!err) {
                         res.sendStatus(200).end();
                     } else {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(404).end();
                     }
                 });
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(404).end();
             }
 
@@ -240,7 +242,7 @@ module.exports = function(app) {
                     })
                     .then(function(logradouro) {
 
-                        console.log(logradouro);
+                        // logger.error(logradouro);
                         if (logradouro) {
                             if (logradouro.exibir) {
                                 res.status(200).json({
@@ -264,12 +266,12 @@ module.exports = function(app) {
                         }
                     }).catch(function(err) {
                         // console.log(1);
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 

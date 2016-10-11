@@ -41,12 +41,12 @@ module.exports = function(app) {
                             if (!err) {
                                 res.sendStatus(200).end();
                             } else {
-                                app.libs.logger.info(err);
+                                app.libs.logger.error(err);
                                 res.sendStatus(412).end();
                             }
                         });
                     } else {
-                        app.libs.logger.info(err);
+                        app.libs.logger.error(err);
                         res.sendStatus(412).end();
                     }
                 });
@@ -89,12 +89,12 @@ module.exports = function(app) {
                         res.sendStatus(404).end();
                     }
                 }).catch(function(err) {
-                    app.libs.logger.info(err);
+                    app.libs.logger.error(err);
                     res.sendStatus(412).end();
                 });
 
             } else {
-                app.libs.logger.info(erros);
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
         });
@@ -126,14 +126,14 @@ module.exports = function(app) {
                     else
                         nomePlano = 'Promo Lançamento';
 
-                    app.libs.logger.info(nomePlano);
+                    app.libs.logger.error(nomePlano);
 
                     Planos.findOne({
                         nome: nomePlano
                     }, function(err, plano) {
 
-                        app.libs.logger.info(err);
-                        app.libs.logger.info(plano);
+                        app.libs.logger.error(err);
+                        app.libs.logger.error(plano);
 
                         var data = new Date();
 
@@ -152,7 +152,7 @@ module.exports = function(app) {
 
                         usuario.save(function(err) {
                             if (err) {
-                                app.libs.logger.info(err);
+                                app.libs.logger.error(err);
                                 res.sendStatus(412).end();
                             } else {
 
@@ -185,9 +185,9 @@ module.exports = function(app) {
 
                                     var sendMail = transporter.sendMail(mailOptions, function(error, info) {
                                         if (error) {
-                                            app.libs.logger.info(error);
+                                            app.libs.logger.error(error);
                                         } else {
-                                            app.libs.logger.info('Email	enviado:	' + info.response);
+                                            app.libs.logger.warn('Email	enviado:	' + info.response);
                                         }
                                     });
 
@@ -214,7 +214,7 @@ module.exports = function(app) {
                 // });
 
             } else {
-                app.libs.logger.info(erros);
+                app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
         });

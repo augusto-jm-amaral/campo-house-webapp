@@ -4,11 +4,11 @@ module.exports = function(app) {
 
     const FaleConosco = app.db.models.FaleConosco;
     const cfg = app.libs.config;
+    const Logger = app.libs.logger;
 
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
         port: 587,
-        // secure: false,
         tls: {
             rejectUnauthorized: false
         },
@@ -21,7 +21,6 @@ module.exports = function(app) {
     app.route(cfg.urlRaizApi + '/faleconosco')
         .post(function get(req, res) {
 
-            // console.log(req.body);
 
             req.checkBody('nome', '').notEmpty();
             req.checkBody('email', '').notEmpty();
@@ -45,9 +44,9 @@ module.exports = function(app) {
 
                   var sendMail = transporter.sendMail(mailOptions, function(error, info) {
                       if (error) {
-                          console.log(error);
+                          logger.error(error);
                       } else {
-                          console.log('Email	enviado:	' + info.response);
+                          logger.error('Email	enviado:	' + info.response);
                       }
                   });
 
@@ -55,12 +54,12 @@ module.exports = function(app) {
 
                 })
                 .catch(function (err) {
-                  console.log(err);
+                  logger.error(err);
                   res.sendStatus(412);
                 });
 
             } else {
-              console.log(erros);
+              logger.error(erros);
               res.sendStatus(400);
             }
 

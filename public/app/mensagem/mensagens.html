@@ -5,146 +5,85 @@
 <div ng-include src="'app/menu/menu3.html'"></div>
 
 <div class="container">
-  <div class="row" style="margin-top: 1em;">
-    <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="row" style="margin-top: 1em;">
+        <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
     </div> -->
-    <!-- <a style="position: fixed; z-index: 99; bottom: 1em; left: 1em;" ng-href="#/cadastroanuncio" class="btn btn-warning pull-right pull-right-custom">Criar Novo Anúncio</a> -->
+        <!-- <a style="position: fixed; z-index: 99; bottom: 1em; left: 1em;" ng-href="#/cadastroanuncio" class="btn btn-warning pull-right pull-right-custom">Criar Novo Anúncio</a> -->
 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="mensagem in mensagens">
-      <div class="col-xs-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading" id="accordion{{mensagem._id}}">
-            <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp; {{isMyMessage(mensagem.de._id) ? ('Para: ' + mensagem.para.nome) : ('De: ' + mensagem.de.nome)}}
-            <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" style="color: #fff; font-weight: 700; margin-left: 1em;" class="text-center">
-              <!-- <img ng-src="{{mensagem.anuncio.listaArquivos[0].path}}" class="img img-responsive"></img> -->
-              {{mensagem.anuncio.sobreTitulo}}
-            </a>
-            &nbsp;
-            <span ng-show="{{isMyMessage(mensagem.de._id) ? 'mensagem.countNewPara' : 'mensagem.countNewDe'}} " class="badge" style="margin-top: -2px; margin-left: 5px;">+{{isMyMessage(mensagem.de._id) ? mensagem.countNewPara : mensagem.countNewDe}} </span>
-            <!-- <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" class="thumbnail text-center"> -->
-            <div class="btn-group pull-right">
-              <a type="button" class="btn btn-default btn-xs" ng-click="isOpen(mensagem._id);" onclick="return false;" data-toggle="collapse" data-parent="#accordion{{mensagem._id}}" ng-href="#collapseOne{{mensagem._id}}">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </a>
-            </div>
-          </div>
-          <div class="panel-collapse collapse" id="collapseOne{{mensagem._id}}">
-            <div class="panel-body">
-              <ul class="chat">
-                <!-- <div ng-repeat="texto as textos"> -->
-                    <!-- {{mensagem.textos}} -->
-                  <!-- <li class="clearfix" ng-repeat="texto in mensagem.textos" ng-class="((isMyMessage(mensagem.de._id) && isMyMessage(texto.usuario._id)) ? 'right' : 'left')">
-                    <span class="chat-img" ng-class="((isMyMessage(mensagem.de._id) && isMyMessage(texto.usuario._id)) ? 'pull-right' : 'pull-left')">
-                      <img ng-src="http://placehold.it/50/{{((isMyMessage(mensagem.de._id) && isMyMessage(texto.usuario._id)) ? 'FA6F57' : '55C1E7')}}/fff&text=U" alt="User Avatar" class="img-circle" />
-                    </span>
-                    <div class="chat-body clearfix">
-                      <div class="header">
-                        <strong class="primary-font" ng-class="((isMyMessage(mensagem.de._id) && isMyMessage(texto.usuario._id)) ? 'pull-right' : 'pull-left')">{{texto.usuario.nome}}</strong> <small class="text-muted" ng-class="((isMyMessage(mensagem.de._id) && isMyMessage(texto.usuario._id)) ? 'left' : 'right')">
-                          <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                      </div>
-                      <p>
-                        {{texto.texto}}
-                      </p>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="mensagem in mensagens">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" id="accordion{{mensagem._id}}">
+                        <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp; {{isMyMessage(mensagem.de._id) ? ('Para: ' + mensagem.para.nome) : ('De: ' + mensagem.de.nome)}}
+                        <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" style="color: #fff; font-weight: 700; margin-left: 1em;" class="text-center">
+                            <!-- <img ng-src="{{mensagem.anuncio.listaArquivos[0].path}}" class="img img-responsive"></img> -->
+                            {{mensagem.anuncio.sobreTitulo}}
+                        </a>
+                        &nbsp;
+                        <span ng-show="{{isMyMessage(mensagem.de._id) ? 'mensagem.countNewPara' : 'mensagem.countNewDe'}} " class="badge" style="margin-top: -2px; margin-left: 5px;">+{{isMyMessage(mensagem.de._id) ? mensagem.countNewPara : mensagem.countNewDe}} </span>
+                        <!-- <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" class="thumbnail text-center"> -->
+                        <div class="btn-group pull-right">
+                            <a type="button" class="btn btn-default btn-xs" ng-click="isOpen(mensagem._id);" onclick="return false;" data-toggle="collapse" data-parent="#accordion{{mensagem._id}}" ng-href="#collapseOne{{mensagem._id}}">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </div>
                     </div>
-                  </li> -->
+                    <div class="panel-collapse collapse" id="collapseOne{{mensagem._id}}">
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <div ng-repeat="texto in mensagem.textos">
 
-                  <!-- <li class="right clearfix"><span class="chat-img pull-right">
-                    <img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
-                  </span>
-                  <div class="chat-body clearfix">
-                    <div class="header">
-                      <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                      <strong class="pull-right primary-font">João da silva</strong>
-                    </div>
-                    <p>
-                      AUHAHUUHAUHAHUAUHAUH
-                    </p>
-                  </div>
-                </li> -->
-                <!-- </div> -->
-              <div ng-repeat="texto in mensagem.textos">
-
-                <li ng-show="!isMyMessage(texto.usuario._id)" class="left clearfix"><span class="chat-img pull-left">
+                                    <li ng-show="!isMyMessage(texto.usuario._id)" class="left clearfix"><span class="chat-img pull-left">
                   <img ng-src="https://placehold.it/50/55C1E7/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
                 </span>
-                <div class="chat-body clearfix">
-                  <div class="header">
-                    <strong class="primary-font">{{texto.usuario.nome}}</strong> <small class="pull-right text-muted">
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">{{texto.usuario.nome}}</strong> <small class="pull-right text-muted">
                       <span class="glyphicon glyphicon-time"></span>{{dataAtualFormatada(texto.data);}} atrás</small>
-                    </div>
-                    <p>
-                      {{texto.texto}}
-                    </p>
-                  </div>
-                </li>
+                                            </div>
+                                            <p>
+                                                {{texto.texto}}
+                                            </p>
+                                        </div>
+                                    </li>
 
-                <li ng-show="isMyMessage(texto.usuario._id)" class="right clearfix"><span class="chat-img pull-right">
+                                    <li ng-show="isMyMessage(texto.usuario._id)" class="right clearfix"><span class="chat-img pull-right">
                   <img ng-src="https://placehold.it/50/FA6F57/fff&text={{texto.usuario.nome[0]}}" alt="User Avatar" class="img-circle" />
                 </span>
-                <div class="chat-body clearfix">
-                  <div class="header">
-                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{dataAtualFormatada(texto.data);}} atrás</small>
-                    <strong class="pull-right primary-font">{{texto.usuario.nome}}</strong>
-                  </div>
-                  <p>
-                    {{texto.texto}}
-                  </p>
-                </div>
-              </li>
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{dataAtualFormatada(texto.data);}} atrás</small>
+                                                <strong class="pull-right primary-font">{{texto.usuario.nome}}</strong>
+                                            </div>
+                                            <p>
+                                                {{texto.texto}}
+                                            </p>
+                                        </div>
+                                    </li>
 
-            </div>
+                                </div>
 
-          </ul>
-        </div>
-        <div class="panel-footer">
-          <div class="input-group">
-            <input ng-model="mensagem.resposta" id="btn-input" type="text" class="form-control input-sm" placeholder="Escreva uma mensagem..." />
-            <span class="input-group-btn">
-              <button ng-click="responseMessage(mensagem);" class="btn btn-warning btn-sm" id="btn-chat">
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input ng-model="mensagem.resposta" id="btn-input" type="text" class="form-control input-lg" placeholder="Escreva uma mensagem..." />
+                                <span class="input-group-btn">
+              <button ng-click="responseMessage(mensagem);" class="btn btn-warning btn-lg" id="btn-chat">
                 Enviar
               </button>
               </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-      <!-- <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{mensagem.de.nome + ' ' + mensagem.de.sobreNome }}</h3>
-        </div>
-        <div class="panel-body">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <a href="#">
-              <div ng-show="{{anuncio.listaArquivos.length}}" class="fotos-meus-anuncios" style="background-image:url({{anuncio.listaArquivos[0].path}})"></div>
-              <div ng-show="{{!anuncio.listaArquivos.length}}" class="fotos-meus-anuncios">
-                <i class="fa fa-envelope-o" style="color: black; display: table; font-size: 14em; margin: 0 auto;" aria-hidden="true"></i>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-            <div ng-show="!validaAnuncio(anuncio);" class="alert alert-info" role="alert">
-              <strong>{{mensagem.de.nome}}:</strong> {{mensagem.texto}} <br>{{dataAtualFormatada(mensagem.data)}} <span style="float: right;" ng-show="mensagem.nummsg" class="badge">+{{mensagem.nummsg}}</span>
-            </div>
-            <p>
-              <strong>Anúncio</strong>
-            </p>
-            <div class="col-xs-2" style="padding-left: 0px;">
-              <a ng-href="#/anuncio/{{mensagem.anuncio._id}}" class="thumbnail text-center">
-                <img ng-src="{{mensagem.anuncio.listaArquivos[0].path}}" class="img img-responsive"></img>
-                {{mensagem.anuncio.sobreTitulo}}
-              </a>
-            </div>
-
-
-              <a ng-href="#/cadastroanuncio/{{anuncio._id}}" class="btn btn-success btn-editar-anuncio" name="button">Editar</a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </div>
 
 
-<div ng-include src="'app/rodape/rodape.html'"/>
+<div ng-include src="'app/rodape/rodape.html'" />

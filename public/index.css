@@ -39,7 +39,6 @@ body {
 
 input {
     display: inline-block;
-    background: none;
     border: 1.5px solid #BBBBBB;
     width: 100%;
     outline: none;
@@ -50,7 +49,6 @@ input {
 }
 
 textarea {
-    background: none;
     border: 1.5px solid #BBBBBB;
     width: 100%;
     display: block;

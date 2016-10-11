@@ -8,6 +8,7 @@ module.exports = function(app) {
     const Mensagens = app.db.models.Mensagens;
     const Usuarios = app.db.models.Usuarios;
     const Chat = app.db.models.Chat;
+    const Logger = app.libs.logger;
 
     var transporter = nodemailer.createTransport({
         host: 'smtp.mail.pawnmail.com',
@@ -63,7 +64,7 @@ module.exports = function(app) {
                                             chat: chat._id
                                         }).save(function(err) {
                                             if (err)
-                                                console.log(err);
+                                                logger.error(err);
                                         });
 
                                         // chat.countNew + 1;
@@ -106,7 +107,7 @@ module.exports = function(app) {
                                             countNewDe: 1
                                         }).save(function(err, chat) {
 
-                                            console.log(chat);
+                                            logger.error(chat);
 
                                             if (!err) {
 
@@ -116,7 +117,7 @@ module.exports = function(app) {
                                                     chat: chat._id
                                                 }).save(function(err) {
                                                     if (err)
-                                                        console.log(err);
+                                                        logger.error(err);
                                                 });
 
                                                 // chat.countNew + 1;
@@ -130,29 +131,29 @@ module.exports = function(app) {
                                                 res.sendStatus(200).end();
 
                                             } else {
-                                                console.log(err);
+                                                logger.error(err);
                                                 res.sendStatus(412).end();
                                             }
                                         });
                                     }
                                 })
                                 .catch(function(err) {
-                                    console.log(err);
+                                    logger.error(err);
                                     res.sendStatus(412).end();
                                 });
 
                         } else {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412).end();
                         }
 
                     }).catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -182,9 +183,9 @@ module.exports = function(app) {
 
             var sendMail = transporter.sendMail(mailOptions, function(error, info) {
                 if (error) {
-                    console.log(error);
+                    logger.error(error);
                 } else {
-                    console.log('Email	enviado:	' + info.response);
+                    logger.warn('Email	enviado:	' + info.response);
                 }
             });
 
@@ -252,12 +253,12 @@ module.exports = function(app) {
                     .then(function(mensagens) {
                         res.status(200).json(mensagens).end();
                     }).catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
         });
@@ -310,7 +311,7 @@ module.exports = function(app) {
                                 chat: chat._id
                             }).save(function(err) {
                                 if (err) {
-                                    console.log(err);
+                                    logger.error(err);
                                     res.sendStatus(412).end();
                                 } else {
 
@@ -331,7 +332,7 @@ module.exports = function(app) {
                                         .then(function(mensagens) {
                                             res.status(200).json(mensagens).end();
                                         }).catch(function(err) {
-                                            console.log(err);
+                                            logger.error(err);
                                             res.sendStatus(412).end();
                                         });
 
@@ -350,19 +351,19 @@ module.exports = function(app) {
 
 
                         } else {
-                            console.log(err);
+                            logger.error(err);
                             res.sendStatus(412).end();
 
                         }
                     })
                     .catch(function(err) {
-                        console.log(err);
+                        logger.error(err);
                         res.sendStatus(412).end();
                     });
 
 
             } else {
-                console.log(erros);
+                logger.error(erros);
                 res.sendStatus(400).end();
             }
 
@@ -405,7 +406,7 @@ module.exports = function(app) {
                     res.status(200).json(chats).end();
 
                 }).catch(function(err) {
-                    console.log(err);
+                    logger.error(err);
                     res.sendStatus(412).end();
 
                 });
