@@ -295,7 +295,9 @@ module.exports = function(app) {
                 }]
             ).exec(function(err, cidades) {
                 if (!err) {
+                  if(cidades[0]){
                     res.status(200).json(cidades[0].nomes).end();
+                  }
                 } else {
                     res.sendStatus(400);
                 }
