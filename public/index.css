@@ -37,7 +37,7 @@ body {
 	border: 1.5px solid #a94442 !important;
 }
 
-input {
+input[type="text"] {
     display: inline-block;
     border: 1.5px solid #BBBBBB;
     width: 100%;
@@ -59,4 +59,12 @@ textarea {
     resize: none;
     padding: 10px 15px 10px 15px;
     margin-bottom: 1em;
+}
+
+.contact-form-grid input[type="text"],
+.contact-form-grid input[type="password"],
+.contact-form-grid input[type="email"],
+.contact-form-grid textarea,
+.footer-grid-info form input[type="email"] {
+	color: black !important;
 }
