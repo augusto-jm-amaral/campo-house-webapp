@@ -23,7 +23,7 @@
 				</ul>
 			</div>
 
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="geral">
 						<fieldset>
@@ -85,39 +85,16 @@
 						<!-- FORM LOGRADOURO -->
 						<form name="formLogradouro" class="form-horizontal" id="form-cad-anuncio-localizacao">
 
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">País</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localPais.$invalid && formLogradouro.localPais.$touched }">
-			    				<select name="localPais" ng-model="logradouro.localPais" class="form-control" data-model="localPais" required="required">
-			    					<option value="Brazil">Brasil</option>
-			    				</select>
-			    				<p ng-show="formLogradouro.localPais.$invalid && formLogradouro.localPais.$touched" class="text-danger" data-for="localPais">Campo obrigatório</p>
-			    			</div>
-			    		</div> -->
-
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Logradouro</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched }">
-			    				<input name="localRua" ng-model="logradouro.localRua" type="text" class="form-control" placeholder="ex. Rua das Andorinhas, 15. ou Estrada do Bambú, 258" data-model="localLogradouro" ng-required="true" maxlength="255">
-			    				<p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p>
-			    			</div>
-			    		</div> -->
-
 							<div class="form-group">
-								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Deseja exibir seu endereço?</label>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<input ng-model="localizacao.exibir" type="checkbox" data-toggle="toggle">
-									<!-- <input id="enderecoLocal" type="text" class="form-control" maxlength="255" placeholder="Rio Dourados, Lins - SP, Brasil"> -->
-									<!-- <p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p> -->
-									<!-- <p>Escreva pelo Menos a cidade.</p> -->
-								</div>
+									Deseja exibir seu endereço?
+								</label>
 							</div>
 							<div class="form-group">
 								<label id="enderecoLocalLabel" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Endereço*</label>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<input id="enderecoLocal" type="text" class="" maxlength="255" placeholder="Lins - SP, Brasil">
-									<!-- <p ng-show="formLogradouro.localRua.$invalid && formLogradouro.localRua.$touched" class="text-danger" data-for="localLogradouro">Campo obrigatório</p> -->
-									<!-- <p>{{localizacao}}</p> -->
 								</div>
 							</div>
 
@@ -133,46 +110,6 @@
 									<textarea ng-model="localizacao.complemento" type="text" class="" style="resize: vertical;" maxlength="255"></textarea>
 								</div>
 							</div>
-
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Cidade</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localCidade.$invalid && formLogradouro.localCidade.$touched }">
-			    				<input name="localCidade" ng-model="logradouro.localCidade" type="text" class="form-control" placeholder="ex. Lins" data-model="localCidade" ng-required="true" maxlength="255">
-			    				<p ng-show="formLogradouro.localCidade.$invalid && formLogradouro.localCidade.$touched" class="text-danger" data-for="localCidade">Campo obrigatório</p>
-			    			</div>
-			    		</div> -->
-
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Estado</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localEstado.$invalid && formLogradouro.localEstado.$touched }">
-                  <select name="localEstado" ng-model="logradouro.localEstado" class="form-control" data-model="localEstado" ng-required="true">
-                    <option value="São Paulo">São Paulo</option>
-                  </select>
-			    				<p ng-show="formLogradouro.localEstado.$invalid && formLogradouro.localEstado.$touched" class="text-danger" data-for="localEstado">Campo obrigatório</p>
-			    			</div>
-			    		</div> -->
-
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">CEP</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{ 'has-error' : formLogradouro.localCep.$invalid && formLogradouro.localCep.$touched }">
-			    				<input name="localCep" ng-model="logradouro.localCep" type="text" class="form-control icep" placeholder="ex. 12543-000" data-model="localCep" ng-required="true" maxlength="10">
-			    				<p ng-show="formLogradouro.localCep.$invalid && formLogradouro.localCep.$touched" class="text-danger" data-for="localCep">Campo obrigatório</p>
-			    			</div>
-			    		</div> -->
-
-							<!-- <div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Complemento</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<textarea ng-model="logradouro.localComplemento" class="form-control" row="3" placeholder="Dê mais informações que ajudem localizar o imóvel" data-model="localComplemento" maxlength="255"></textarea>
-			    			</div>
-			    		</div>
-
-			    		<div class="form-group">
-			    			<label class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Informações das proximidades</label>
-			    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			    				<textarea ng-model="logradouro.localInfoProximidades" class="form-control" row="3" placeholder="Conte aos seus anfitriões o que ele encontrarão nas redondezas" data-model="localInfoProximidades" maxlength="300"></textarea>
-			    			</div>
-			    		</div> -->
 
 							<div class="form-group">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -423,8 +360,8 @@
 								<div id="progressBarFotos" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
 							</div> -->
 							<div class="form-group">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-md-12">
-									<button class="btn1" ngf-select="uploadFiles($files, $invalidFiles);" ngf-multiple="true" accept="image/*" ngf-max-height="10000" ngf-max-width="10000" ngf-max-size="10MB">Adicionar</button>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-md-12">
+									<button class="btn1" ngf-select="uploadFiles($files, $invalidFiles);" ngf-multiple="true" accept="image/*" ngf-max-height="10000" ngf-max-width="10000" ngf-max-size="10MB">Adicionar Fotos</button>
 								</div>
 								<div class="col-xs-12" style="margin-top: 2em;">
 									<div class="col-xs-6 col-sm-4 col-md-4 col-lgs-4" ng-repeat="file in anuncio.listaArquivos" style="margin-top: 1em;">
