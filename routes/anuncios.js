@@ -239,7 +239,7 @@ module.exports = function(app) {
                                 anuncio.usuario.telefone = '';
                             }
 
-                            console.log(anuncio);
+                            // console.log(anuncio);
 
                             res.status(200).json(anuncio).end();
                         } else {
