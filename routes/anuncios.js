@@ -226,7 +226,7 @@ module.exports = function(app) {
                         model: 'Comodidades'
                     }, {
                         path: 'listaOfertaValores',
-                        model: 'AnuncioOfertaValores'
+                        model: 'OfertaValores'
                     }])
                     .then(function(anuncio) {
                         if (anuncio) {
@@ -238,6 +238,8 @@ module.exports = function(app) {
                             if (!timePlano) {
                                 anuncio.usuario.telefone = '';
                             }
+
+                            console.log(anuncio);
 
                             res.status(200).json(anuncio).end();
                         } else {

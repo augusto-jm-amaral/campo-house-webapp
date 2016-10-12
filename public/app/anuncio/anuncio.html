@@ -163,11 +163,11 @@
             </p>
         </div>
 
-        <div class="row row-space-bottom">
+        <div ng-show="anuncio.listaOfertaValores.length" class="row row-space-bottom">
             <hr>
             <h4 class="">Oferta de Valor</h4>
-            <p class="text-justify text-title-2 text-justify-padding-right">
-                Este imóvel é perfeito para pescarias.
+            <p class="text-justify text-title-2 text-justify-padding-right" ng-repeat="oferta in anuncio.listaOfertaValores">
+                {{oferta.nome}}
             </p>
         </div>
 
