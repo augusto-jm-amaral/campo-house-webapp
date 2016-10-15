@@ -194,6 +194,9 @@ module.exports = function(app) {
             var erros = req.validationErrors();
 
             if (!erros) {
+
+                Anuncios.update({_id: req.params._id},{$inc: {views: 1}}).exec();
+
                 Anuncios.findOne({
                         _id: req.params._id,
                         status: 1

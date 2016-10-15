@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer'),
 
 module.exports = function(app) {
 
-    const cfg = app.libs.config;
+    // const cfg = app.libs.config;
     const Usuarios = app.db.models.Usuarios;
     const Planos = app.db.models.Planos;
 
@@ -56,11 +56,11 @@ module.exports = function(app) {
             }
         });
 
-    app.route(cfg.urlRaizApi + '/usuarios/:_id')
+    app.route('/usuarios/:_id')
         .get(function get(req, res) {
 
             req.checkParams('_id', '').notEmpty().isMongoId();
-            req.checkQuery('p', '').notEmpty().isBoolean();
+            // req.checkQuery('p', '').notEmpty().isBoolean();
 
             var erros = req.validationErrors();
 
@@ -79,10 +79,11 @@ module.exports = function(app) {
                         anuncios: 1
                     });
 
-                if (req.query.p)
-                    query.populate('anuncios');
+                // if (req.query.p)
+                //     query.populate('anuncios');
 
                 query.then(function(usuario) {
+                    
                     if (usuario) {
                         res.status(200).json(usuario).end();
                     } else {
@@ -97,13 +98,44 @@ module.exports = function(app) {
                 app.libs.logger.error(erros);
                 res.sendStatus(400).end();
             }
+        }).put(function (req, res) {
+
+            req.checkParams('_id', '').notEmpty().isMongoId();
+
+            var erros = req.validationErrors();
+
+            if (!erros) {
+
+                var update = {
+                    nome: req.body.nome,
+                    email: req.body.email,
+                    telefone: req.body.telefone,
+                    sobre: req.body.sobre
+                };
+
+                if(req.body.senha){
+                    var salt = bcrypt.genSaltSync();
+                    update.senha = bcrypt.hashSync(req.body.senha, salt);
+                }
+
+                Usuarios.update({ _id: req.params._id }, update)
+                .then(function(usuario) {
+                    res.status(200).end();
+                }).catch(function(err) {
+                    app.libs.logger.error(err);
+                    res.sendStatus(412).end();
+                });
+
+            } else {
+                app.libs.logger.error(erros);
+                res.sendStatus(400).end();
+            }
         });
 
-    app.route(cfg.urlRaizApi + '/usuarios')
+    app.route('/usuarios')
         .post(function get(req, res) {
 
             req.checkBody('nome', '').notEmpty().isName();
-            // req.checkBody('plano', '').notEmpty().isNumeric();
             req.checkBody('email', '').notEmpty().isEmail();
             req.checkBody('senha', '').notEmpty().isPassword();
             req.checkBody('telefone', '').notEmpty().isNumeric();
@@ -193,8 +225,6 @@ module.exports = function(app) {
 
                                 });
 
-                                // app.libs.logger.info(Email.gerarEmail(textEmail));
-
                                 res.sendStatus(200).end();
                             }
                         });
@@ -202,16 +232,6 @@ module.exports = function(app) {
                     });
 
                 });
-                // var data = new Date();
-
-                // req.body.plano = plano._id;
-                // req.body.planoIni = data;
-                // req.body.planoFin = new Date((data.getTime() + plano.duracao));
-
-                // }).catch(function(err) {
-                //     app.libs.logger.info(err);
-                //     res.sendStatus(412);
-                // });
 
             } else {
                 app.libs.logger.error(erros);

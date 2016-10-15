@@ -38,6 +38,10 @@
                     // d.getSeconds().padLeft()].join(':');
        };
 
+       $scope.anuciegratis = function () {
+         $location.path('/entrar');
+       };
+
             // $scope.obterData = function (data) {
             //
             //   var data = new Date(data);

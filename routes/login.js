@@ -5,7 +5,7 @@ module.exports = function(app) {
     const cfg = app.libs.config;
     const Usuarios = app.db.models.Usuarios;
 
-    app.route(cfg.urlRaizApi + '/login')
+    app.route('/login')
         .post(function get(req, res) {
 
             req.checkBody('email').notEmpty();

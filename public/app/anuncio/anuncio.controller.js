@@ -18,6 +18,8 @@ var title = '';
 
     $scope.fotoPrincipal = {};
 
+    $scope.urlAnuncio = 'http://www.campohouse.com.br/#/anuncio/';
+
     $scope.meuid = '';
 
     // if($rootScope.logged){
@@ -89,6 +91,7 @@ var title = '';
          }
 
         $scope.anuncio = res.data;
+        $scope.urlAnuncio = $scope.urlAnuncio + $scope.anuncio._id;
         $scope.mensagem.anuncio = $scope.anuncio._id;
         title = $scope.anuncio.sobreTitulo;
 

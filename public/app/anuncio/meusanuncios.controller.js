@@ -29,6 +29,10 @@
         return true;
     };
 
+    $scope.editarAnuncio = function  (_id) {
+      $location.path('/cadastroanuncio/' + _id);
+    };
+
   };
 
 })();

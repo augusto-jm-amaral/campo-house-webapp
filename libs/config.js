@@ -29,7 +29,7 @@ module.exports = function(app) {
         jwtSession: {
             session: false
         },
-        urlRaizApi: '/apiv1.0',
+        urlRaizApi: '',
         urlServe: 'http://localhost:3000',
         etapasAnuncio: {
             geral: "Geral",

@@ -12,7 +12,7 @@
 
           if (nextRoute.access && nextRoute.access.loginRequerido) {
             if(!Login.islogin()){
-                // $location.path('/entrar');
+                $location.path('/entrar');
             }
           }
 
@@ -142,15 +142,19 @@
       })
       .when('/validarcadastro/:_hash', {
         templateUrl: 'app/validarcadastro/validarcadastro.html',
-        // controller: '',
         access: {
           loginRequerido: false
+        }
+      })
+      .when('/meusdados', {
+        templateUrl: 'app/usuario/usuario.html',
+        access: {
+          loginRequerido: true
         }
       })
       ;
 
       $routeProvider.otherwise({redirectTo: '/home'});
-      // $locationProvider.html5Mode(true);
 
     };
 

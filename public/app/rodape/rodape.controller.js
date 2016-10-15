@@ -13,9 +13,9 @@
 
       vm.email = '';
 
-      vm.url = 'https://www.campohouse.com.br';
+      vm.url = 'http://www.campohouse.com.br';
 
-      vm.tweet = {text: 'CampoHouse', url: 'https://www.campohouse.com.br'};
+      vm.tweet = {text: 'CampoHouse', url: 'http://www.campohouse.com.br'};
 
       vm.cadastraEmail = function () {
           if(vm.formnews.$valid){
