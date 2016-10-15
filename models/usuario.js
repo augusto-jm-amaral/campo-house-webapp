@@ -69,6 +69,13 @@ module.exports = function() {
         return usuario;
     });
 
+    // schema.method('gerarSenha', function(senha) {
+    //     var salt = bcrypt.genSaltSync();
+    //     senha = bcrypt.hashSync(senha, salt);
+        
+    //     return senha;
+    // });
+
     schema.method('validarSenha', function(encodedPassword, password) {
         return bcrypt.compareSync(password, encodedPassword);
     });

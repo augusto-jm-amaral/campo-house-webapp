@@ -9,7 +9,7 @@
 
   function Config() {
 
-      var urlApi = '/apiv1.0';
+      var urlApi = '';
 
       var service = {
         getUrlApi: getUrlApi

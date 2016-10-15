@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="app/menu/menu-home.css" charset="utf-8">
+<link rel="stylesheet" href="app/menu/menu-geral.css" charset="utf-8">
+<div ng-include src="'app/menu/menu3.html'"></div>
+<div class="a-grid" ng-controller="UsuarioCtrl as u">
+    <div class="container">
+        <div class="w3l-about-heading">
+            <h2>Meus Dados</h2>
+            <p>Mantenha seus dados atualizados</p>
+        </div>
+		<div class="col-md-6 col-xs-12">
+			<div class="agile-contact-form" style="height: 28.4em;">
+				<div class="col-md-offset-3 col-md-6">
+					<img class="img img-responsive" ng-src="images/user.png" style="margin-top: 4em; border: 1px solid; padding: 1em;">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+            <div class="agile-contact-form">
+                <div class="col-md-12 contact-form-right">
+                    <div class="contact-form-top">
+                        <!-- <h3 class="text-center">Cadastre-se. É Grátis.</h3> -->
+                    </div>
+                    <div class="contact-form-grid">
+                        <form name="u.formCadastro" novalidate="">
+                            
+                            <input type="text" ng-disabled="!u.isAtualizar" ng-model="u.usuario.nome" name="nome" placeholder="Seu nome completo" ng-required="true" ng-class="{ 'erro' : u.formCadastro.nome.$invalid && u.formCadastro.nome.$touched }">
+                            <p ng-show="u.formCadastro.nome.$invalid && u.formCadastro.nome.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            
+                            <input type="email" ng-disabled="!u.isAtualizar" ng-model="u.usuario.email" name="email" placeholder="Seu melhor email" ng-required="true" ng-class="{ 'erro' : u.formCadastro.email.$invalid && u.formCadastro.email.$touched }">
+                            <p ng-show="u.formCadastro.email.$invalid && u.formCadastro.email.$touched && u.formCadastro.email.$error.required" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+                            <p ng-show="u.formCadastro.email.$invalid && u.formCadastro.email.$touched && u.formCadastro.email.$error.email" class="text-danger" style="margin-top: -1em;">E-mail inválido</p>
+                            
+                            <input type="text" ng-disabled="!u.isAtualizar" ng-model="u.usuario.telefone" ui-br-phone-number name="telefone" placeholder="Telefone" ng-required="true" ng-class="{ 'erro' : u.formCadastro.telefone.$invalid && u.formCadastro.telefone.$touched }">
+                            <p ng-show="u.formCadastro.telefone.$invalid && u.formCadastro.telefone.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+
+                            <textarea ng-disabled="!u.isAtualizar" ng-model="u.usuario.sobre" placeholder="Escreva um pouco sobre você" ></textarea>
+
+                            <input type="password" ng-hide="!u.isAtualizar" ng-model="u.usuario.senha" name="senhaCadastro" placeholder="Senha" ng-required="false" ng-minlength="6" ng-maxlength="20" ng-class="{ 'erro' : u.formCadastro.senhaCadastro.$invalid && u.formCadastro.senhaCadastro.$touched }">
+                            <p ng-show="u.formCadastro.senhaCadastro.$error.minlength" class="text-danger"  style="margin-top: -1em;">Muito pequena</p>
+                            <p ng-show="u.formCadastro.senhaCadastro.$error.maxlength" class="text-danger" style="margin-top: -1em;">Muito grande</p>
+                            <p ng-show="!u.formCadastro.senhaCadastro.$error.minlength && !u.formCadastro.senhaCadastro.$error.maxlength && u.formCadastro.senhaCadastro.$invalid && u.formCadastro.senhaCadastro.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+
+                            <input type="password" ng-hide="!u.isAtualizar" ng-model="u.usuario.repetirSenha" name="repetirSenhaCadastro" placeholder="Digite novamente sua Senha" ng-required="false" ng-class="{ 'erro' : u.formCadastro.repetirSenha.$invalid && u.formCadastro.repetirSenha.$touched }">
+
+                            <p ng-show="u.formCadastro.repetirSenha.$invalid && u.formCadastro.repetirSenhaCadastro.$touched" class="text-danger" style="margin-top: -1em;">Campo obrigatório</p>
+
+                            <p ng-hide="u.usuario.repetirSenha === u.usuario.senha" class="text-danger" style="margin-top: -1em;">Senha não confirmada</p>
+
+                            <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                              <div class="col-xs-6" style="padding-left: 0px;">
+
+                              </div>
+                            </div>
+
+                            <div class="row">
+	                            <div ng-show="!u.isAtualizar" class="col-md-6 col-xs-12">
+	                            	<button class="btn1 btn-block" ng-click="u.alterarDados();">Alterar Dados ou Senha</button>
+	                            </div>
+	                            <div ng-show="u.isAtualizar" class="col-md-6 col-xs-12">
+	                            	<button class="btn1 btn-block" ng-click="u.atualizarDados();">Atualizar</button>
+	                            </div>	         
+	                            <div ng-show="u.isAtualizar" class="col-md-6 col-xs-12">
+	                            	<button class="btn1 btn-block" ng-click="u.voltar();">Voltar</button>
+	                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include src="'app/rodape/rodape.html'" />

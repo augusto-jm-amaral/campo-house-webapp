@@ -5,11 +5,11 @@
     .module('campohouse')
     .factory('Usuario', Usuario);
 
-  Usuario.$inject = ['$http','Config'];
+  Usuario.$inject = ['$http'];
 
-  function Usuario($http, Config) {
+  function Usuario($http) {
 
-      var url = Config.getUrlApi() + '/usuarios';
+      var url = '/usuarios';
 
       var service = {
         get: getUsuarios,
@@ -33,15 +33,15 @@
           getUrl += query;
        }
 
-       return $http.get(url);
+       return $http.get(getUrl);
      };
 
      function saveUsuarios(usuario) {
 
-       console.log(url);
+       // console.log(url);
 
        if(usuario._id){
-         return $http.put(url, usuario);
+         return $http.put(url + '/' + usuario._id, usuario);
        }else{
          return $http.post(url, usuario);
        }

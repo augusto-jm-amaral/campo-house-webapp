@@ -30,20 +30,6 @@
 
     <div class="row" style="margin-bottom: 2em;">
         <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-              <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="{{anuncio.listaArquivos[0].width + 'x' + anuncio.listaArquivos[0].height}}">
-                  <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
-              </a>
-          </figure> -->
-
-            <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin 0px; padding: 0px;">
-                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                    <a ng-href="{{anuncio.listaArquivos[0].path}}" itemprop="contentUrl" data-size="700x450">
-                        <img ng-src="{{anuncio.listaArquivos[0].path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
-                    </a>
-                </figure>
-            </div> -->
-            <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="foto in anuncio.listaArquivos" style="margin 0px; padding: 5px;"> -->
             <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" style="width:100%">
                 <a ng-href="{{fotoPrincipal.path}}" itemprop="contentUrl" data-size="{{fotoPrincipal.width + 'x' + fotoPrincipal.height}}">
                     <img ng-src="{{fotoPrincipal.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" style="display:none;" />
@@ -57,12 +43,6 @@
                 </a>
                 <div class="foto-min" style="background-image: url('{{foto.path}}');"></div>
               </figure>
-            <!-- </div> -->
-            <!-- <figure itemprop="associatedMedia" ng-repeat="foto in anuncio.listaArquivos" style="width:10%;" itemscope itemtype="http://schema.org/ImageObject">
-                <a ng-href="{{foto.path}}" itemprop="contentUrl" data-size="{{foto.width + 'x' + foto.height}}">
-                    <img ng-src="{{foto.path}}" itemprop="thumbnail" alt="Image description" class="img img-responsive" />
-                </a>
-            </figure> -->
         </div>
     </div>
     <hr>
@@ -83,11 +63,6 @@
                     <div class="form-group">
                         <a ng-show="!logged" ng-href="#/entrar" class="btn btn-lg btn-danger btn-block" target="_blank">Quer mandar uma mensagem?</a>
                         <button ng-show="logged" ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-lg btn-danger btn-block">Enviar</button>
-                        <!-- <p class="anuncio-nome-dono">Escreva uma mensagem:</p>
-                        <textarea ng-model="mensagem.texto" class="form-control no-resize" rows="5"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button ng-disabled="!mensagem.texto" ng-click="enviarMensagem();" type="button" class="btn btn-lg btn-danger btn-block">Enviar</button> -->
                     </div>
                 </form>
             </div>
@@ -96,15 +71,13 @@
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 div-espaco">
 
         <div class="row row-space-bottom">
-            <h3 class="">{{anuncio.sobreTitulo}}</h3>
+            <h3 class="">{{anuncio.sobreTitulo}}&nbsp;&nbsp;&nbsp; <!-- <div fb-like="urlAnuncio" style="display: inline;"></div> --> </h3>
+
             <p class="text-title-2">{{logradouro.endereco }}</p>
             <p class="text-title-2">
               <i class="fa fa-home" aria-hidden="true"></i>
               <span>{{anuncio.tipoImovel.nome}}</span>
             </p>
-            <!-- <div ng-show="anuncio.tipoImovel.nome" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-            </div>
-            <div class="col-xs-12"></div> -->
         </div>
 
         <div class="row row-space-bottom">
@@ -112,7 +85,7 @@
           <div class="">
             <div ng-show="anuncio.numAcomoda.num" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
               <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/guest.svg">
-              <p class="p-espaco">Acomoda {{anuncio.numAcomoda.num}}</p>
+              <p class="p-espaco">Acomoda {{anuncio.numAcomoda.nome}}</p>
             </div>
             <div ng-show="anuncio.numCamas" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
               <img style="width: 4em; display: table; margin: 0 auto;" class="img img-responsive" ng-src="images/wake-up.svg">

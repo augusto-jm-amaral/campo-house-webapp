@@ -86,6 +86,11 @@ module.exports = function() {
             type: String,
             default: ''
         },
+        views: {
+            type: Number,
+            required: true,
+            default: 0
+        },
         listaArquivos: {
             type: [{
                 type: mongoose.Schema.Types.ObjectId,

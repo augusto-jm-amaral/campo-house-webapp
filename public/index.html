@@ -90,7 +90,6 @@
 
     <script src="app/anuncio/cadastroanuncio.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/anuncio/buscaranuncio.controller.js" type="text/javascript" charset="utf-8"></script>
-    <script src="app/usuario/cadastrousuario.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/anuncio/meusanuncios.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/mensagem/mensagens.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/faleconosco/faleconosco.controller.js" type="text/javascript" charset="utf-8"></script>
@@ -99,6 +98,8 @@
     <script src="app/planos/plano.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/planos/planosucesso.controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="app/validarcadastro/validarcadastro.controller.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app/mensagem/chat.controller.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app/usuario/usuario.controller.js" type="text/javascript" charset="utf-8"></script>
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -114,6 +115,10 @@
 
 <body>
     <div ng-view autoscroll="true"></div>
+
+    <!-- <div ng-include src="'app/mensagem/mensagem_template.html'"></div> -->
+    <!-- UHAUHAUHA -->
+
     <toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 
     <!-- <script>

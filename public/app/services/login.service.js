@@ -3,18 +3,19 @@
 
   angular
     .module('campohouse')
-    .factory('Login', Login);
+    .service('Login', Login);
 
   Login.$inject = ['$http', '$window', 'Config'];
 
   function Login($http, $window, Config) {
 
-      var url = Config.getUrlApi() + '/login';
+      var url = '/login';
 
       var service = {
         login: login,
         logout: logout,
-        islogin: islogin
+        islogin: islogin,
+        getUserLogged : getUserLogged
       };
 
      return service;
@@ -23,6 +24,13 @@
 
      function login(email, senha) {
        return $http.post(url, {email: email, senha: senha});
+     };
+
+     function getUserLogged (argument) {
+       return {
+        nome: $window.sessionStorage.nome,
+        _id: $window.sessionStorage._id 
+       };
      };
 
      function logout(){
