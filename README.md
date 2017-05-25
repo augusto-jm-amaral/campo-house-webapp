@@ -23,7 +23,8 @@ Application developed for the disclosure of rental of laser spaces.<br><br>
     <strong>MongoDB</strong>
   </li>
 </ul>
-<br>
+</br>
+
 ### Features
 <ul>
   <li>
