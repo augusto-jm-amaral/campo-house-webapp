@@ -1,8 +1,17 @@
 # Campo House
 <br>
-Aplicação desenvolvida para a divulgação do aluguel de espaços de laser.<br><br>
-http://campohouse.com.br <br>
-<h3>Tecnologias</h3>
+Application developed for the disclosure of rental of laser spaces.<br><br>
+
+### Install
+
+```
+ npm install && npm start
+```
+
+> Note: Need mongodb. <a href="https://docs.mongodb.com/manual/installation/">Install guide</a>
+>       npm run startprod run the application in clusters.
+
+### Technologies
 <ul>
   <li>
     <strong>AngularJS v1</strong>
@@ -15,7 +24,7 @@ http://campohouse.com.br <br>
   </li>
 </ul>
 <br>
-<h3>Features</h3>
+### Features
 <ul>
   <li>
     SPA (Single Page Application)
@@ -24,6 +33,6 @@ http://campohouse.com.br <br>
     Full REST API
   </li>
    <li>
-    Minificação de imagens no front-end ao realizar o upload
+    Minimize images on the front end when uploading
   </li>
 </ul>
