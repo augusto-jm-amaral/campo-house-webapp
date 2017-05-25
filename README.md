@@ -28,12 +28,12 @@ Application developed for the disclosure of rental of laser spaces.<br><br>
 ### Features
 <ul>
   <li>
-    SPA (Single Page Application)
+    <strong>SPA (Single Page Application)</strong>
   </li>
    <li>
-    Full REST API
+    <strong>Full REST API</strong>
   </li>
    <li>
-    Minimize images on the front end when uploading
+    <strong>Minimize images on the front end when uploading</strong>
   </li>
 </ul>
